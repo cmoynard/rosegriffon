@@ -120,3 +120,42 @@
     @apply bg-background text-foreground;
   }
 }
+
+.rainbow {
+  animation: rainbow 5s linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rainbow {
+  0%,
+  100% {
+    color: #e60000; /* Rouge vif */
+  }
+  10% {
+    color: #ff6600; /* Orange foncé */
+  }
+  20% {
+    color: #ccaa00; /* Jaune foncé */
+  }
+  30% {
+    color: #669900; /* Vert olive */
+  }
+  40% {
+    color: #008000; /* Vert foncé */
+  }
+  50% {
+    color: #008080; /* Turquoise foncé */
+  }
+  60% {
+    color: #0066cc; /* Bleu moyen */
+  }
+  70% {
+    color: #0000cc; /* Bleu foncé */
+  }
+  80% {
+    color: #6600cc; /* Violet */
+  }
+  90% {
+    color: #cc0099; /* Rose foncé */
+  }
+}
