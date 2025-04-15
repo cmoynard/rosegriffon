@@ -45,7 +45,7 @@ export default function Footer({}: FooterProps) {
       </div>
       <span className="opacity-60 italic p-2">
         {" "}
-        Rose Griffon, Tous Droits Réservé 2023 - 2025
+        Rose Griffon, Tous Droits Réservés 2025
       </span>
     </div>
   );
