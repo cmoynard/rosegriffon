@@ -9,7 +9,7 @@ type FooterProps = {};
 
 export default function Footer({}: FooterProps) {
   return (
-    <div className="bg-white flex flex-col h-fit items-center absolute bottom-0 w-full gap-2">
+    <div className="bg-white flex flex-col h-fit w-full items-center gap-2">
       <div className="flex w-full h-full items-center place-content-evenly p-2">
         <div className="flex flex-col">
           <Link href={"*"} className="hover:underline">

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./_components/navbar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import Footer from "./_components/footer";
 
 export const metadata: Metadata = {
@@ -16,16 +20,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body>
-        <div className="flex h-[100dvh]">
-          <div className="relative flex flex-col flex-1 overflow-y-scroll overflow-x-hidden">
-            <Navbar />
-            <main className="grow [&>*:first-child]:scroll-mt-16 p-4 bg-amber-200">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </div>
+      <body className="min-h-screen flex flex-col">
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <div className="flex flex-col flex-1">
+              <main className="flex-1">
+                <div className="flex flex-col p-2 gap-2 bg-slate-200">
+                  <SidebarTrigger />
+                  <div className="flex flex-col justify-items-center h-dvh w-full ">
+                    {children}
+                  </div>
+                </div>
+                <Footer />
+              </main>
+            </div>
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
