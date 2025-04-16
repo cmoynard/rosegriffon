@@ -24,16 +24,14 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <div className="flex flex-col flex-1">
+            <div className="flex flex-col min-h-screen">
               <main className="flex-1">
-                <div className="flex flex-col p-2 gap-2 bg-slate-200">
+                <div className="flex flex-col p-2 gap-2 bg-slate-200 min-h-full">
                   <SidebarTrigger />
-                  <div className="flex flex-col justify-items-center h-dvh w-full ">
-                    {children}
-                  </div>
+                  <div className="flex-1">{children}</div>
                 </div>
-                <Footer />
               </main>
+              <Footer />
             </div>
           </SidebarInset>
         </SidebarProvider>
