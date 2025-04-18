@@ -34,7 +34,7 @@ import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
 const asso = [
   {
     title: "Notre équipe",
-    url: "#",
+    url: "/notre-equipe",
     icon: Users,
   },
   {
