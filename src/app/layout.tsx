@@ -32,7 +32,6 @@ export default function RootLayout({
                   <div className="flex gap-2 items-center">
                     <SidebarTrigger />
                     <GlobalBreadcrumb />
-                    <BackButton />
                   </div>
                   <div className="flex-1">{children}</div>
                 </div>

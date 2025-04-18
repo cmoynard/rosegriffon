@@ -5,6 +5,7 @@ import HomeCarousel from "./_components/HomeCarousel";
 import FusionBlock from "./_components/FusionBlock";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 type HomeProps = {};
 
@@ -25,7 +26,7 @@ export default function Home({}: HomeProps) {
           </div>
         </FusionBlock>
 
-        <div className="flex text-6xl font-bold items-center">
+        <div className="flex text-6xl font-bold items-center gap-2">
           <Image
             src={LogoRG}
             alt="Rose Griffon Logo"
@@ -33,9 +34,22 @@ export default function Home({}: HomeProps) {
             width={128}
           />
           Nos projets
+          <a
+            href="/projects"
+            className="ml-4 text-lg font-medium bg-slate-800 text-white px-4 py-2 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md"
+          >
+            Voir plus
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
 
         <FusionBlock isImageLeft={false}>
+          <div className="space-y-4">
+            <h2 className="text-5xl font-bold">Projet 1</h2>
+            <p className="text-lg">Ceci est un projet de test.</p>
+          </div>
+        </FusionBlock>
+        <FusionBlock isImageLeft={true}>
           <div className="space-y-4">
             <h2 className="text-5xl font-bold">Projet 1</h2>
             <p className="text-lg">Ceci est un projet de test.</p>

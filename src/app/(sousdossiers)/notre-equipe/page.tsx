@@ -42,7 +42,7 @@ const teams: Team[] = [
     ],
   },
   {
-    name: "Azalée",
+    name: "Équipe Azalée",
     members: [
       {
         name: "Azalée",
@@ -52,7 +52,7 @@ const teams: Team[] = [
     ],
   },
   {
-    name: "Dessinateur",
+    name: " Équipe Dessinateur",
     members: [
       {
         name: "Dessinateur",
@@ -62,11 +62,31 @@ const teams: Team[] = [
     ],
   },
   {
-    name: "CM",
+    name: "Équipe Réseaux",
     members: [
       {
         name: "CM",
         role: "Community Manager",
+        image: "https://placehold.co/200x200",
+      },
+    ],
+  },
+  {
+    name: "Équipe Développement",
+    members: [
+      {
+        name: "Clément",
+        role: "Lead Developer",
+        image: "https://placehold.co/200x200",
+      },
+      {
+        name: "Tikan",
+        role: "Developer",
+        image: "https://placehold.co/200x200",
+      },
+      {
+        name: "Kyotaba",
+        role: "Designer",
         image: "https://placehold.co/200x200",
       },
     ],
