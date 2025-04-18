@@ -8,6 +8,7 @@ import {
 import { AppSidebar } from "@/components/app-sidebar";
 import Footer from "./_components/footer";
 import BackButton from "./_components/BackButton";
+import GlobalBreadcrumb from "./_components/GlobalBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Rose Griffon",
@@ -28,8 +29,9 @@ export default function RootLayout({
             <div className="flex flex-col min-h-screen">
               <main className="flex-1">
                 <div className="flex flex-col p-2 gap-2 bg-slate-200 min-h-full">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <SidebarTrigger />
+                    <GlobalBreadcrumb />
                     <BackButton />
                   </div>
                   <div className="flex-1">{children}</div>
