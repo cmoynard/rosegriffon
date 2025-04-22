@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import Footer from "./_components/footer";
-import BackButton from "./_components/BackButton";
 import GlobalBreadcrumb from "./_components/GlobalBreadcrumb";
+import { SidebarStateProvider } from "@/contexts/SidebarStateProvider";
 
 export const metadata: Metadata = {
   title: "Rose Griffon",
@@ -23,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
-        <SidebarProvider>
+        <SidebarStateProvider>
           <AppSidebar />
           <SidebarInset>
             <div className="flex flex-col min-h-screen">
@@ -39,7 +35,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </SidebarInset>
-        </SidebarProvider>
+        </SidebarStateProvider>
       </body>
     </html>
   );
