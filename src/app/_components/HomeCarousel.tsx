@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -14,9 +16,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 
-type HomeCarouselProps = {};
+type CarouselCardProps = {
+  isImage?: boolean;
+  imageSrc?: string;
+  text?: string;
+  blurAmount?: number;
+  href?: string;
+};
 
-export default function HomeCarousel({}: HomeCarouselProps) {
+type HomeCarouselProps = {
+  cards?: CarouselCardProps[];
+};
+
+export default function HomeCarousel({ cards }: HomeCarouselProps) {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
@@ -38,6 +50,38 @@ export default function HomeCarousel({}: HomeCarouselProps) {
     });
   }, [api]);
 
+  // Données de carrousel par défaut si aucune n'est fournie
+  const defaultCards: CarouselCardProps[] = [
+    {
+      isImage: true,
+      imageSrc: "/stand_ie.png",
+      text: "Nos futures présences",
+      blurAmount: 5,
+      href: "/stand",
+    },
+    {
+      isImage: false,
+      text: "Slide 2",
+    },
+    {
+      isImage: false,
+      text: "Slide 3",
+    },
+    {
+      isImage: false,
+      text: "Slide 4",
+    },
+    {
+      isImage: true,
+      imageSrc: "/ievr.png",
+      text: "Site officiel de Inazuma Eleven: Victory Road",
+      blurAmount: 5,
+      href: "https://www.inazuma.jp/victory-road/en/",
+    },
+  ];
+
+  const carouselCards = cards || defaultCards;
+
   return (
     <>
       <Carousel
@@ -51,16 +95,88 @@ export default function HomeCarousel({}: HomeCarouselProps) {
         onMouseLeave={plugin.current.reset}
       >
         <CarouselContent className="h-full">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className="h-full">
-              <div className="p-1 h-full">
-                <Card className="h-full">
-                  <CardContent className="flex items-center justify-center p-6 h-full">
-                    <span className="text-4xl font-semibold">
-                      CACA N°{index + 1}
-                    </span>
-                  </CardContent>
-                </Card>
+          {carouselCards.map((card, index) => (
+            <CarouselItem key={index} className="h-full pt-0">
+              <div className="h-full w-full">
+                {card.href ? (
+                  <Link href={card.href} className="block h-full w-full">
+                    <div className="h-full w-full overflow-hidden relative rounded-xl">
+                      {card.isImage && card.imageSrc && (
+                        <div className="absolute inset-0 w-full h-full">
+                          <Image
+                            src={card.imageSrc}
+                            alt={card.text || `Slide ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            priority
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              filter: `blur(${card.blurAmount || 0}px)`,
+                            }}
+                            className="w-full h-full"
+                          />
+                        </div>
+                      )}
+                      <div
+                        className={cn(
+                          "flex items-center justify-center p-0 h-full w-full relative",
+                          !card.isImage && "bg-card text-card-foreground"
+                        )}
+                      >
+                        {card.text && (
+                          <span
+                            className={cn(
+                              "text-4xl font-semibold relative z-10 px-4 py-2 rounded",
+                              card.isImage &&
+                                "text-white bg-black/40 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                            )}
+                          >
+                            {card.text}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="h-full w-full overflow-hidden relative rounded-xl">
+                    {card.isImage && card.imageSrc && (
+                      <div className="absolute inset-0 w-full h-full">
+                        <Image
+                          src={card.imageSrc}
+                          alt={card.text || `Slide ${index + 1}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: "center",
+                            filter: `blur(${card.blurAmount || 0}px)`,
+                          }}
+                          className="w-full h-full"
+                        />
+                      </div>
+                    )}
+                    <div
+                      className={cn(
+                        "flex items-center justify-center p-0 h-full w-full relative",
+                        !card.isImage && "bg-card text-card-foreground"
+                      )}
+                    >
+                      {card.text && (
+                        <span
+                          className={cn(
+                            "text-4xl font-semibold relative z-10 px-4 py-2 rounded",
+                            card.isImage &&
+                              "text-white bg-black/40 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                          )}
+                        >
+                          {card.text}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </CarouselItem>
           ))}
