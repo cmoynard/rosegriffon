@@ -58,7 +58,7 @@ const contact = [
   },
   {
     title: "Nous contacter",
-    url: "#",
+    url: "/a-propos/contact",
     icon: PencilLine,
   },
   {

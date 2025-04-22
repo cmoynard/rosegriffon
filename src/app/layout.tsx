@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import Footer from "./_components/footer";
 import GlobalBreadcrumb from "./_components/GlobalBreadcrumb";
 import { SidebarStateProvider } from "@/contexts/SidebarStateProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Rose Griffon",
@@ -35,6 +36,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </SidebarInset>
+          <Toaster richColors position="top-right" />
         </SidebarStateProvider>
       </body>
     </html>
