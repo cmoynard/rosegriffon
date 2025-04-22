@@ -28,6 +28,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import Link from "next/link";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
 
 // Menu items.
@@ -75,17 +76,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
-              <div className="flex items-center gap-2">
-                <Image
-                  src={LogoRG}
-                  width={64}
-                  height={64}
-                  alt="Rose Griffon Logo"
-                />
-                <span className="font-black text-lg overflow-hidden text-ellipsis whitespace-nowrap">
-                  Rose Griffon
-                </span>
-              </div>
+              <Link href="/" className="block w-full">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={LogoRG}
+                    width={64}
+                    height={64}
+                    alt="Rose Griffon Logo"
+                  />
+                  <span className="font-black text-lg overflow-hidden text-ellipsis whitespace-nowrap">
+                    Rose Griffon
+                  </span>
+                </div>
+              </Link>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarHeader>
@@ -98,7 +101,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
               {asso.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild tooltip={item.title}>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -118,7 +121,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
               {contact.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild tooltip={item.title}>
                     <a href={item.url} className={item.className ?? ""}>
                       <item.icon height={32} width={32} />
                       <span>{item.title}</span>
