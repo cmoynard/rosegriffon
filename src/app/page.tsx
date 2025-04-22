@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import BanniereRG from "@public/RG_screens_twitch_ethan.png";
 import BanniereAzalee from "@public/Azalée 2.png";
+import BanniereAchillea from "@public/achillea.png";
 
 type HomeProps = {};
 
@@ -61,7 +62,7 @@ export default function Home({}: HomeProps) {
             </p>
           </div>
         </FusionBlock>
-        <FusionBlock isImageLeft={true}>
+        <FusionBlock isImageLeft={true} image={BanniereAchillea.src}>
           <div className="space-y-4">
             <h2 className="text-5xl font-bold">
               Achilléa | Scène compétitive Inazuma Eleven
