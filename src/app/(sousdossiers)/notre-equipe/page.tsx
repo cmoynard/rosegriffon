@@ -109,7 +109,7 @@ export default function NotreEquipe() {
         {teams.map((team) => (
           <div key={team.name} className="bg-white rounded-xl p-6 shadow-md">
             <h2 className="text-3xl font-bold mb-6">{team.name}</h2>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-6">
               {team.members.map((member) => (
                 <div
                   key={member.name}
