@@ -12,6 +12,23 @@ import EthanPP from "@public/pp/ethan.png";
 import AbouniniPP from "@public/pp/abounini.png";
 import ClémentPP from "@public/pp/clement.jpg";
 import TikanPP from "@public/pp/tikan.png";
+import BrikoroPP from "@public/pp/brikoro.png";
+import TanejPP from "@public/pp/tanej.png";
+import HugofansubPP from "@public/pp/hugofansub.png";
+import PlaticusPP from "@public/pp/platicus.png";
+import GTDPP from "@public/pp/gtd.webp";
+import VelictoPP from "@public/pp/velicto.png";
+import KaruminasanPP from "@public/pp/karuminasan.png";
+import ErwanchannelPP from "@public/pp/erwanchannel.png";
+import JennScarletPP from "@public/pp/jennscarlet.png";
+import JojokirinoPP from "@public/pp/jojokirino.png";
+import MobuPP from "@public/pp/mobu.png";
+import SuumashPP from "@public/pp/suumash.png";
+import YaflinPP from "@public/pp/yaflin.png";
+import YannoushowPP from "@public/pp/yannoushow.png";
+import MohafubukiPP from "@public/pp/mohafubuki.png";
+import y3lisePP from "@public/pp/elise.webp";
+import YeggronPP from "@public/pp/yeggron.png";
 
 type TeamMember = {
   name: string;
@@ -84,12 +101,17 @@ const teams: Team[] = [
     name: "Équipe Azalée",
     members: [
       {
-        name: "Marie | Emio",
+        name: "Emio",
         role: "Cheffe de projet",
         image: EmioPP.src,
       },
       {
-        name: "Noa | Inazo",
+        name: "Velicto",
+        role: "Community Manager",
+        image: VelictoPP.src,
+      },
+      {
+        name: "Inazo",
         role: "Rédacteur",
         image: InazoPP.src,
       },
@@ -104,14 +126,34 @@ const teams: Team[] = [
         image: KyotabaPP.src,
       },
       {
-        name: "Lise | Dleez",
+        name: "Dleez",
         role: "Dessinatrice",
         image: DleezPP.src,
       },
       {
-        name: "Ethan | FullCapsEthan",
+        name: "FullCapsEthan",
         role: "Dessinateur",
         image: EthanPP.src,
+      },
+      {
+        name: "Erwanchannel",
+        role: "Dessinateur",
+        image: ErwanchannelPP.src,
+      },
+      {
+        name: "JennScarlet",
+        role: "Dessinatrice",
+        image: JennScarletPP.src,
+      },
+      {
+        name: "Yaflin",
+        role: "Dessinateur",
+        image: YaflinPP.src,
+      },
+      {
+        name: "y3lise",
+        role: "Dessinatrice",
+        image: y3lisePP.src,
       },
     ],
   },
@@ -124,17 +166,32 @@ const teams: Team[] = [
         image: KyotabaPP.src,
       },
       {
-        name: "Lise | Dleez",
+        name: "Platicus",
+        role: "Cheffe de projet",
+        image: PlaticusPP.src,
+      },
+      {
+        name: "Dleez",
         role: "Rédactrice",
         image: DleezPP.src,
       },
       {
-        name: "Noa | Inazo",
+        name: "Inazo",
         role: "Rédacteur",
         image: InazoPP.src,
       },
       {
-        name: "Ethan | FullCapsEthan",
+        name: "JennScarlet",
+        role: "Rédactrice",
+        image: JennScarletPP.src,
+      },
+      {
+        name: "Jojokirino",
+        role: "Dessinateur",
+        image: JojokirinoPP.src,
+      },
+      {
+        name: "FullCapsEthan",
         role: "Charadesign",
         image: EthanPP.src,
       },
@@ -144,22 +201,57 @@ const teams: Team[] = [
     name: "Équipe Réseaux",
     members: [
       {
-        name: "Noa | Inazo",
+        name: "Inazo",
         role: "Community Manager",
         image: InazoPP.src,
       },
       {
-        name: "Abounini",
-        role: "Traducteur",
-        image: AbouniniPP.src,
+        name: "Velicto",
+        role: "Community Manager",
+        image: VelictoPP.src,
+      },
+      {
+        name: "Karuminasan",
+        role: "Community Manager",
+        image: KaruminasanPP.src,
+      },
+      {
+        name: "Brikoro",
+        role: "Streamer",
+        image: BrikoroPP.src,
+      },
+      {
+        name: "Tanej",
+        role: "Streamer",
+        image: TanejPP.src,
+      },
+      {
+        name: "Yannoushow",
+        role: "Conseiller",
+        image: YannoushowPP.src,
+      },
+      {
+        name: "Mohafubuki",
+        role: "Conseiller",
+        image: MohafubukiPP.src,
+      },
+      {
+        name: "Mobu",
+        role: "Créateur de contenu",
+        image: MobuPP.src,
+      },
+      {
+        name: "Suumash",
+        role: "Créateur de contenu",
+        image: SuumashPP.src,
       },
     ],
   },
   {
-    name: "Équipe Développement",
+    name: "Équipe Production",
     members: [
       {
-        name: "Clément",
+        name: "Clément | Hellsaw",
         role: "Lead Developer",
         image: ClémentPP.src,
       },
@@ -172,6 +264,26 @@ const teams: Team[] = [
         name: "Kyotaba",
         role: "Designeuse",
         image: KyotabaPP.src,
+      },
+      {
+        name: "Yeggron",
+        role: "Graphiste",
+        image: YeggronPP.src,
+      },
+      {
+        name: "Abounini",
+        role: "Traducteur",
+        image: AbouniniPP.src,
+      },
+      {
+        name: "Hugofansub",
+        role: "Traducteur",
+        image: HugofansubPP.src,
+      },
+      {
+        name: "GTD",
+        role: "Traducteur",
+        image: GTDPP.src,
       },
     ],
   },
