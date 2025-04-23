@@ -1,18 +1,43 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeCarousel from "./_components/HomeCarousel";
 import FusionBlock from "./_components/FusionBlock";
+import DiscordBlock from "./_components/DiscordBlock";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import BanniereRG from "@public/RG_screens_twitch_ethan.png";
 import BanniereAzalee from "@public/Azalée 2.png";
 import BanniereAchillea from "@public/achillea.png";
+import BanniereTwitter from "@public/RG_screens_twitch_ethan.png";
+import BanniereTiktok from "@public/RG_screens_twitch_ethan.png";
+import BanniereDiscord from "@public/RG_screens_twitch_ethan.png";
 
 type HomeProps = {};
 
 export default function Home({}: HomeProps) {
+  const [tiktokData, setTiktokData] = useState<any>(null);
+
+  // Récupération des données TikTok
+  useEffect(() => {
+    const fetchTiktokData = async () => {
+      try {
+        // Remplacer par l'URL réelle de l'API TikTok
+        const response = await fetch("/api/tiktok-latest");
+        const data = await response.json();
+        setTiktokData(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données TikTok:",
+          error
+        );
+      }
+    };
+
+    fetchTiktokData();
+  }, []);
+
   return (
     <div className="flex flex-col mb-8">
       <HomeCarousel />
@@ -23,12 +48,139 @@ export default function Home({}: HomeProps) {
             <p className="text-lg">
               Rose Griffon est une association française régie par la loi 1901,
               ayant pour vocation de rassembler les principaux acteurs de la
-              communauté Inazuma Eleven ainsi que l’ensemble des passionnés sous
-              une même bannière. Elle s’engage à valoriser à la fois la scène
+              communauté Inazuma Eleven ainsi que l'ensemble des passionnés sous
+              une même bannière. Elle s'engage à valoriser à la fois la scène
               artistique liée à cette licence et son univers compétitif.
             </p>
           </div>
         </FusionBlock>
+
+        {/* Section des réseaux sociaux */}
+        <div className="flex text-6xl font-bold items-center gap-2">
+          <Image
+            src={LogoRG}
+            alt="Rose Griffon Logo"
+            height={128}
+            width={128}
+          />
+          Nos réseaux sociaux
+        </div>
+
+        {/* Twitter/X */}
+        <FusionBlock isImageLeft={false} image={BanniereTwitter.src}>
+          <div className="space-y-4">
+            <h2 className="text-5xl font-bold">
+              Twitter | Suivez notre actualité
+            </h2>
+            <p className="text-lg">
+              Restez informés des dernières actualités et annonces de Rose
+              Griffon en nous suivant sur Twitter. Partagez notre contenu et
+              rejoignez la conversation avec notre communauté.
+            </p>
+            <div className="flex items-center gap-4 mt-6">
+              <a
+                href="https://twitter.com/rosegriffonFR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-[#1DA1F2] text-white px-4 py-2 rounded-full hover:bg-[#1a8cd8] transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+                Suivre @rosegriffonFR
+              </a>
+            </div>
+          </div>
+        </FusionBlock>
+
+        {/* TikTok */}
+        <FusionBlock isImageLeft={true} image={BanniereTiktok.src}>
+          <div className="space-y-4">
+            <h2 className="text-5xl font-bold">TikTok | Suivez nos vidéos</h2>
+            <p className="text-lg">
+              Découvrez notre contenu court et dynamique sur TikTok. Des moments
+              forts de nos événements, des coulisses de l'association et bien
+              plus encore.
+            </p>
+            <div className="flex items-center gap-4 mt-6">
+              <a
+                href="https://www.tiktok.com/@rosegriffon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-[#000000] text-white px-4 py-2 rounded-full hover:bg-[#333333] transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
+                Suivre @rosegriffon
+              </a>
+            </div>
+            {tiktokData && (
+              <div className="mt-4">
+                <p className="text-sm font-medium">Notre dernière vidéo :</p>
+                <div className="mt-2 border rounded-lg overflow-hidden">
+                  {tiktokData.success ? (
+                    <div>
+                      <div className="p-2">
+                        <p className="font-medium truncate">
+                          {tiktokData.latest_video.description}
+                        </p>
+                        <div className="text-sm text-gray-500 flex gap-4 mt-1">
+                          <span>❤️ {tiktokData.latest_video.likes}</span>
+                          <span>💬 {tiktokData.latest_video.comments}</span>
+                          <span>👁️ {tiktokData.latest_video.views}</span>
+                        </div>
+                      </div>
+                      <div className="mt-2 p-2 flex justify-center">
+                        <a
+                          href={tiktokData.latest_video.video_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#000000] text-white px-4 py-2 rounded-full hover:bg-[#333333] transition-colors flex items-center gap-2"
+                        >
+                          <svg
+                            className="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                          </svg>
+                          Voir la vidéo sur TikTok
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm p-2">
+                      Impossible de charger la dernière vidéo TikTok
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </FusionBlock>
+
+        {/* Discord */}
+        <DiscordBlock serverId="1072991720268111892">
+          <div className="space-y-4">
+            <h2 className="text-5xl font-bold">
+              Discord | Rejoignez notre communauté
+            </h2>
+            <p className="text-lg">
+              Rejoignez notre serveur Discord pour discuter avec la communauté
+              Rose Griffon, participer à nos événements et rester informé de
+              toutes nos actualités en temps réel.
+            </p>
+          </div>
+        </DiscordBlock>
 
         <div className="flex text-6xl font-bold items-center gap-2">
           <Image
@@ -53,9 +205,9 @@ export default function Home({}: HomeProps) {
               Azalée | Média Inazuma Eleven
             </h2>
             <p className="text-lg">
-              Azalée est un média dédié à l’univers d’Inazuma Eleven,
-              appartenant à l’association Rose Griffon. Son objectif est de
-              fournir une information en temps réel sur l’actualité de la
+              Azalée est un média dédié à l'univers d'Inazuma Eleven,
+              appartenant à l'association Rose Griffon. Son objectif est de
+              fournir une information en temps réel sur l'actualité de la
               licence, avec la plus grande rigueur journalistique. Présente sur
               plusieurs réseaux sociaux, Azalée veille à offrir une couverture
               complète, fiable et accessible à tous les passionnés.
@@ -101,7 +253,7 @@ export default function Home({}: HomeProps) {
             </h2>
             <p className="text-lg">
               Achilléa est la branche e-sport de Rose Griffon, dédiée à la scène
-              compétitive d’Inazuma Eleven: Victory Road. Elle a pour mission de
+              compétitive d'Inazuma Eleven: Victory Road. Elle a pour mission de
               structurer la compétition de haut niveau autour du jeu, à travers
               des projets ambitieux, et de faire briller les talents de la
               communauté.
