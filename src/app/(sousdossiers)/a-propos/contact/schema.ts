@@ -1,4 +1,12 @@
+"use client";
+
 import { z } from "zod";
+
+// Vérifie si le code s'exécute dans un navigateur (côté client)
+const isClient = typeof window !== "undefined";
+
+// Constante pour la taille maximale de fichier (5MB)
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 // Schéma pour le formulaire de contact
 export const contactFormSchema = z.object({
@@ -25,38 +33,40 @@ export const contactFormSchema = z.object({
   description: z.string().min(10, {
     message: "La description doit contenir au moins 10 caractères.",
   }),
-  file: z
-    .instanceof(File)
-    .refine(
-      (file) => {
-        if (!file || file.size === 0) return true;
+  file: isClient
+    ? z
+        .instanceof(File)
+        .refine(
+          (file) => {
+            if (!file || file.size === 0) return true;
 
-        const acceptedTypes = [
-          "application/pdf",
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "image/jpeg",
-          "image/png",
-          "image/gif",
-          "text/plain",
-        ];
+            const acceptedTypes = [
+              "application/pdf",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "image/jpeg",
+              "image/png",
+              "image/gif",
+              "text/plain",
+            ];
 
-        return acceptedTypes.includes(file.type);
-      },
-      {
-        message:
-          "Format de fichier non valide. Formats acceptés: PDF, DOCX, images et TXT.",
-      }
-    )
-    .refine(
-      (file) => {
-        if (!file || file.size === 0) return true;
-        return file.size <= 5 * 1024 * 1024; // 5MB
-      },
-      {
-        message: "Le fichier doit faire moins de 5MB.",
-      }
-    )
-    .optional(),
+            return acceptedTypes.includes(file.type);
+          },
+          {
+            message:
+              "Format de fichier non valide. Formats acceptés: PDF, DOCX, images et TXT.",
+          }
+        )
+        .refine(
+          (file) => {
+            if (!file || file.size === 0) return true;
+            return file.size <= MAX_FILE_SIZE;
+          },
+          {
+            message: "Le fichier doit faire moins de 5MB.",
+          }
+        )
+        .optional()
+    : z.any().optional(),
 });
 
 // Type du formulaire de contact

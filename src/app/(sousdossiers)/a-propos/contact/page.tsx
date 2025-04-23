@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, type ContactFormValues } from "./schema";
 import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { sendContactEmail } from "./actions";
+import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,8 +28,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// Taille maximale de fichier en octets (5MB)
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toastIdRef = useRef<string | number | null>(null);
+  const [fileSize, setFileSize] = useState<number>(0);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -38,169 +44,255 @@ export default function ContactPage() {
     },
   });
 
+  // Utiliser TanStack Query pour la mutation
+  const mutation = useMutation({
+    mutationFn: sendContactEmail,
+    onMutate: () => {
+      // Afficher le toast de chargement
+      toastIdRef.current = toast.loading("Envoi en cours...", {
+        description: "Votre message est en cours d'envoi.",
+      });
+    },
+    onSuccess: () => {
+      // Mettre à jour le toast en succès
+      if (toastIdRef.current) {
+        toast.success("Formulaire envoyé", {
+          id: toastIdRef.current,
+          description:
+            "Nous avons bien reçu votre message et reviendrons vers vous rapidement.",
+        });
+      }
+      form.reset();
+      setFileSize(0);
+    },
+    onError: (error) => {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      // Mettre à jour le toast en erreur
+      if (toastIdRef.current) {
+        toast.error("Erreur lors de l'envoi", {
+          id: toastIdRef.current,
+          description:
+            "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
+        });
+      }
+    },
+    onSettled: () => {
+      // Réinitialiser la référence du toast
+      toastIdRef.current = null;
+    },
+  });
+
+  // Formatter la taille du fichier en format lisible
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+  };
+
   async function onSubmit(data: ContactFormValues) {
     try {
-      setIsSubmitting(true);
+      // Vérifier que les données sont valides avant l'envoi
+      const formData = { ...data };
 
-      // Simuler un envoi de formulaire
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // S'assurer que le fichier est bien un objet File s'il existe
+      if (formData.file && !(formData.file instanceof File)) {
+        // Supprimer le fichier s'il n'est pas valide
+        delete formData.file;
+      }
 
-      console.log("Formulaire soumis:", data);
+      // Vérifier une dernière fois la taille du fichier
+      if (formData.file && formData.file.size > MAX_FILE_SIZE) {
+        toast.error("Fichier trop volumineux", {
+          description: `La taille maximale autorisée est de ${formatFileSize(
+            MAX_FILE_SIZE
+          )}.`,
+        });
+        return;
+      }
 
-      toast.success("Formulaire envoyé", {
-        description:
-          "Nous avons bien reçu votre message et reviendrons vers vous rapidement.",
-      });
-
-      form.reset();
+      mutation.mutate(formData);
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire:", error);
       toast.error("Erreur lors de l'envoi", {
         description:
           "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   }
 
   return (
-    <div className="container py-10 space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Contactez-nous</h1>
-        <p className="text-muted-foreground">
-          Vous avez une question, une suggestion ou souhaitez collaborer avec
-          nous ? N'hésitez pas à nous contacter en remplissant le formulaire
-          ci-dessous.
-        </p>
-      </div>
+    <div className="flex flex-col mb-8">
+      <div className="flex flex-col gap-8 px-4 mt-8">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold">Contactez-nous</h1>
+          <p className="text-muted-foreground">
+            Vous avez une question, une suggestion ou souhaitez collaborer avec
+            nous ? N'hésitez pas à nous contacter en remplissant le formulaire
+            ci-dessous.
+          </p>
+        </div>
 
-      <div className="border rounded-lg p-6 bg-card">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Titre du message*</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Entrez le titre de votre message"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Un titre concis qui résume votre demande.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="subject"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Sujet*</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+        <div className="border rounded-lg p-8 bg-card">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel>Titre du message*</FormLabel>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez un sujet" />
-                      </SelectTrigger>
+                      <Input
+                        placeholder="Entrez le titre de votre message"
+                        {...field}
+                      />
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Information sur l'association">
-                        Information sur l'association
-                      </SelectItem>
-                      <SelectItem value="Collaboration">
-                        Collaboration
-                      </SelectItem>
-                      <SelectItem value="Don et soutien">
-                        Don et soutien
-                      </SelectItem>
-                      <SelectItem value="Événements à venir">
-                        Événements à venir
-                      </SelectItem>
-                      <SelectItem value="Adhésion">Adhésion</SelectItem>
-                      <SelectItem value="Bénévolat">Bénévolat</SelectItem>
-                      <SelectItem value="Demande de presse">
-                        Demande de presse
-                      </SelectItem>
-                      <SelectItem value="Témoignage">Témoignage</SelectItem>
-                      <SelectItem value="Support technique">
-                        Support technique
-                      </SelectItem>
-                      <SelectItem value="Autres">
-                        Autres (préciser dans le titre)
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>
-                    Choisissez le sujet qui correspond le mieux à votre demande.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormDescription>
+                      Un titre concis qui résume votre demande.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description*</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Détaillez votre demande ici..."
-                      className="min-h-[120px] resize-y"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Décrivez votre demande en détail pour que nous puissions
-                    mieux vous aider.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel>Sujet*</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionnez un sujet" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Information sur l'association">
+                          Information sur l'association
+                        </SelectItem>
+                        <SelectItem value="Collaboration">
+                          Collaboration
+                        </SelectItem>
+                        <SelectItem value="Don et soutien">
+                          Don et soutien
+                        </SelectItem>
+                        <SelectItem value="Événements à venir">
+                          Événements à venir
+                        </SelectItem>
+                        <SelectItem value="Adhésion">Adhésion</SelectItem>
+                        <SelectItem value="Bénévolat">Bénévolat</SelectItem>
+                        <SelectItem value="Demande de presse">
+                          Demande de presse
+                        </SelectItem>
+                        <SelectItem value="Témoignage">Témoignage</SelectItem>
+                        <SelectItem value="Support technique">
+                          Support technique
+                        </SelectItem>
+                        <SelectItem value="Autres">
+                          Autres (préciser dans le titre)
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormDescription>
+                      Choisissez le sujet qui correspond le mieux à votre
+                      demande.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="file"
-              render={({ field: { value, onChange, ...fieldProps } }) => (
-                <FormItem>
-                  <FormLabel>Pièce jointe (optionnel)</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="file"
-                      accept=".pdf,.docx,.txt,.jpg,.jpeg,.png,.gif"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        onChange(file || null);
-                      }}
-                      {...fieldProps}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et TXT.
-                    Taille maximale: 5MB.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel>Description*</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Détaillez votre demande ici..."
+                        className="min-h-[150px] resize-y"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Décrivez votre demande en détail pour que nous puissions
+                      mieux vous aider.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
-            </Button>
-          </form>
-        </Form>
+              <FormField
+                control={form.control}
+                name="file"
+                render={({ field: { value, onChange, ...fieldProps } }) => (
+                  <FormItem className="mb-8">
+                    <FormLabel>Pièce jointe (optionnel)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept=".pdf,.docx,.txt,.jpg,.jpeg,.png,.gif"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            setFileSize(file.size);
+                            if (file.size > MAX_FILE_SIZE) {
+                              toast.warning("Attention: fichier volumineux", {
+                                description: `Ce fichier dépasse la limite de ${formatFileSize(
+                                  MAX_FILE_SIZE
+                                )}.`,
+                              });
+                            }
+                          } else {
+                            setFileSize(0);
+                          }
+                          onChange(file || null);
+                        }}
+                        {...fieldProps}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et
+                      TXT.
+                      {fileSize > 0 && (
+                        <span
+                          className={
+                            fileSize > MAX_FILE_SIZE
+                              ? "text-red-500 font-medium"
+                              : ""
+                          }
+                        >
+                          {" "}
+                          Taille actuelle: {formatFileSize(fileSize)}.
+                        </span>
+                      )}{" "}
+                      Taille maximale: 5MB.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700"
+                disabled={mutation.isPending}
+              >
+                {mutation.isPending
+                  ? "Envoi en cours..."
+                  : "Envoyer le message"}
+              </Button>
+            </form>
+          </Form>
+        </div>
       </div>
     </div>
   );

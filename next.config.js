@@ -9,6 +9,11 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+  },
 };
 
 module.exports = nextConfig;
