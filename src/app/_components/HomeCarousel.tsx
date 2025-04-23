@@ -99,8 +99,8 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
             <CarouselItem key={index} className="h-full pt-0">
               <div className="h-full w-full">
                 {card.href ? (
-                  <Link href={card.href} className="block h-full w-full">
-                    <div className="h-full w-full overflow-hidden relative rounded-xl">
+                  <Link href={card.href} className="block h-full w-full group">
+                    <div className="h-full w-full overflow-hidden relative rounded-xl group">
                       {card.isImage && card.imageSrc && (
                         <div className="absolute inset-0 w-full h-full">
                           <Image
@@ -114,7 +114,7 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
                               objectPosition: "center",
                               filter: `blur(${card.blurAmount || 0}px)`,
                             }}
-                            className="w-full h-full"
+                            className="w-full h-full group-hover:scale-110 transition-all duration-500 ease-in-out"
                           />
                         </div>
                       )}
@@ -139,7 +139,7 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
                     </div>
                   </Link>
                 ) : (
-                  <div className="h-full w-full overflow-hidden relative rounded-xl">
+                  <div className="h-full w-full overflow-hidden relative rounded-xl group">
                     {card.isImage && card.imageSrc && (
                       <div className="absolute inset-0 w-full h-full">
                         <Image
@@ -152,8 +152,9 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
                             objectFit: "cover",
                             objectPosition: "center",
                             filter: `blur(${card.blurAmount || 0}px)`,
+                            transition: "transform 0.3s ease-in-out",
                           }}
-                          className="w-full h-full"
+                          className="w-full h-full group-hover:scale-110"
                         />
                       </div>
                     )}
