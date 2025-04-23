@@ -2,16 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    // Note: TikTok n'offre pas d'API publique officielle facile à utiliser
-    // Cette implémentation est un exemple qui devra être adaptée selon les besoins réels
-    // et les possibilités d'intégration TikTok
-
-    // Options possibles:
-    // 1. Utiliser TikTok Business API (nécessite une autorisation)
-    // 2. Utiliser un service tiers comme RapidAPI qui offre des endpoints TikTok
-    // 3. Scraper les données TikTok (attention aux limitations légales)
-
-    // Exemple fictif pour la démonstration
+    // trop chère et complexe a mettre en place
     const mockData = {
       username: "rosegriffon",
       latest_video: {
@@ -32,20 +23,7 @@ export async function GET() {
       success: true,
     };
 
-    // En production, remplacer par une vraie implémentation d'API TikTok
-    // const response = await fetch('https://api.example.com/tiktok/user/rosegriffon/latest', {
-    //   headers: {
-    //     'Authorization': `Bearer ${process.env.TIKTOK_API_KEY}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   next: { revalidate: 3600 }, // Mise en cache pour 1 heure
-    // });
-    //
-    // if (!response.ok) {
-    //   throw new Error('Impossible de récupérer les données TikTok');
-    // }
-    //
-    // const data = await response.json();
+    // TODO: récupérer les données réelles
 
     return NextResponse.json(mockData);
   } catch (error) {

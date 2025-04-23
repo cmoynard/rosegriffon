@@ -28,13 +28,11 @@ type DiscordData = {
 };
 
 type DiscordBlockProps = {
-  serverId: string;
   children: React.ReactNode;
   isWidgetLeft?: boolean;
 };
 
 export default function DiscordBlock({
-  serverId,
   children,
   isWidgetLeft = false,
 }: DiscordBlockProps) {
@@ -70,7 +68,7 @@ export default function DiscordBlock({
     };
 
     fetchDiscordData();
-  }, [serverId]);
+  }, []);
 
   // Composant pour afficher le statut
   const StatusIndicator = ({ status }: { status: string }) => {
@@ -87,28 +85,6 @@ export default function DiscordBlock({
           statusColors[status as keyof typeof statusColors]
         } absolute -bottom-0.5 -right-0.5 border-2 border-[#36393f]`}
       ></div>
-    );
-  };
-
-  // Composant pour afficher un canal avec icône
-  const ChannelItem = ({ channel }: { channel: DiscordChannel }) => {
-    return (
-      <div className="px-2 py-1 hover:bg-[#42464D] rounded cursor-pointer text-gray-300 hover:text-white flex items-center group">
-        {channel.type === "text" ? (
-          <span className="mr-1 text-gray-400 group-hover:text-gray-200">
-            #
-          </span>
-        ) : (
-          <svg
-            className="w-4 h-4 mr-1 text-gray-400 group-hover:text-gray-200"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zm7 9v2a7 7 0 0 1-14 0v-2h2v2a5 5 0 0 0 10 0v-2h2z"></path>
-          </svg>
-        )}
-        <span className="text-sm font-medium">{channel.name}</span>
-      </div>
     );
   };
 
@@ -163,7 +139,7 @@ export default function DiscordBlock({
         </div>
       ) : (
         <>
-          <div className="bg-[#2f3136] p-3 flex items-center justify-between">
+          <div className="bg-[#2f3136] p-3 flex items-center justify-between shadow-lg">
             <div className="flex items-center">
               <div className="w-8 h-8 mr-2 relative overflow-hidden">
                 {discordData.icon ? (
@@ -288,7 +264,7 @@ export default function DiscordBlock({
           <div className="w-1/2 h-full bg-white p-8 flex items-center rounded-l-3xl shadow-lg">
             {children}
           </div>
-          <div className="w-1/2 h-full rounded-r-3xl overflow-hidden">
+          <div className="w-1/2 h-full rounded-r-3xl overflow-hidden shadow-lg">
             <CustomDiscordWidget />
           </div>
         </>
