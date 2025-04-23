@@ -137,76 +137,78 @@ export default function ContactPage() {
         <div className="border rounded-lg p-8 bg-card">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <FormLabel>Titre du message*</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Entrez le titre de votre message"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Un titre concis qui résume votre demande.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="subject"
-                render={({ field }) => (
-                  <FormItem className="mb-6">
-                    <FormLabel>Sujet*</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+              <div className="flex w-full justify-self-stretch gap-4">
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem className="">
+                      <FormLabel>Titre du message*</FormLabel>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Sélectionnez un sujet" />
-                        </SelectTrigger>
+                        <Input
+                          placeholder="Entrez le titre de votre message"
+                          {...field}
+                        />
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Information sur l'association">
-                          Information sur l'association
-                        </SelectItem>
-                        <SelectItem value="Collaboration">
-                          Collaboration
-                        </SelectItem>
-                        <SelectItem value="Don et soutien">
-                          Don et soutien
-                        </SelectItem>
-                        <SelectItem value="Événements à venir">
-                          Événements à venir
-                        </SelectItem>
-                        <SelectItem value="Adhésion">Adhésion</SelectItem>
-                        <SelectItem value="Bénévolat">Bénévolat</SelectItem>
-                        <SelectItem value="Demande de presse">
-                          Demande de presse
-                        </SelectItem>
-                        <SelectItem value="Témoignage">Témoignage</SelectItem>
-                        <SelectItem value="Support technique">
-                          Support technique
-                        </SelectItem>
-                        <SelectItem value="Autres">
-                          Autres (préciser dans le titre)
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormDescription>
-                      Choisissez le sujet qui correspond le mieux à votre
-                      demande.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormDescription>
+                        Un titre concis qui résume votre demande.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem className="">
+                      <FormLabel>Sujet*</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Sélectionnez un sujet" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="Information sur l'association">
+                            Information sur l'association
+                          </SelectItem>
+                          <SelectItem value="Collaboration">
+                            Collaboration
+                          </SelectItem>
+                          <SelectItem value="Don et soutien">
+                            Don et soutien
+                          </SelectItem>
+                          <SelectItem value="Événements à venir">
+                            Événements à venir
+                          </SelectItem>
+                          <SelectItem value="Adhésion">Adhésion</SelectItem>
+                          <SelectItem value="Bénévolat">Bénévolat</SelectItem>
+                          <SelectItem value="Demande de presse">
+                            Demande de presse
+                          </SelectItem>
+                          <SelectItem value="Témoignage">Témoignage</SelectItem>
+                          <SelectItem value="Support technique">
+                            Support technique
+                          </SelectItem>
+                          <SelectItem value="Autres">
+                            Autres (préciser dans le titre)
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormDescription>
+                        Choisissez le sujet qui correspond le mieux à votre
+                        demande.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <FormField
                 control={form.control}
