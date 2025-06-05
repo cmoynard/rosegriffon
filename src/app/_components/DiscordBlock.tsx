@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 type DiscordMember = {
   id: string;
@@ -8,13 +9,6 @@ type DiscordMember = {
   avatar_url?: string;
   status: "online" | "idle" | "dnd" | "offline";
   game?: { name: string };
-};
-
-type DiscordChannel = {
-  id: string;
-  name: string;
-  position: number;
-  type: "text" | "voice" | "category";
 };
 
 type DiscordData = {

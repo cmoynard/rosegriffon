@@ -12,23 +12,15 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 
-import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
-
-type CarouselCardProps = {
-  isImage?: boolean;
-  imageSrc?: string;
-  text?: string;
-  blurAmount?: number;
-  href?: string;
-};
+import { CarouselData } from "@/lib/get-carousel-images";
 
 type HomeCarouselProps = {
-  cards?: CarouselCardProps[];
+  data?: CarouselData[];
 };
 
-export default function HomeCarousel({ cards }: HomeCarouselProps) {
+export default function HomeCarousel({ data }: HomeCarouselProps) {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
@@ -50,37 +42,20 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
     });
   }, [api]);
 
-  // Données de carrousel par défaut si aucune n'est fournie
-  const defaultCards: CarouselCardProps[] = [
-    {
+  const carouselCards: {
+    isImage: boolean;
+    imageSrc?: string;
+    text?: string;
+    blurAmount?: number;
+    href?: string;
+  }[] =
+    data?.map((item) => ({
       isImage: true,
-      imageSrc: "/stand_ie.png",
-      text: "Nos futures présences",
+      imageSrc: item.url,
+      text: item.metadata.title,
+      href: item.metadata.href,
       blurAmount: 5,
-      href: "/stand",
-    },
-    {
-      isImage: false,
-      text: "Slide 2",
-    },
-    {
-      isImage: false,
-      text: "Slide 3",
-    },
-    {
-      isImage: false,
-      text: "Slide 4",
-    },
-    {
-      isImage: true,
-      imageSrc: "/ievr.png",
-      text: "Site officiel de Inazuma Eleven: Victory Road",
-      blurAmount: 5,
-      href: "https://www.inazuma.jp/victory-road/en/",
-    },
-  ];
-
-  const carouselCards = cards || defaultCards;
+    })) || [];
 
   return (
     <>
@@ -183,14 +158,17 @@ export default function HomeCarousel({ cards }: HomeCarouselProps) {
           ))}
         </CarouselContent>
 
-        <CarouselPrevious>
-          <span className="text-xl">{"<"}</span>
-        </CarouselPrevious>
-        <CarouselNext>
-          <span className="text-xl">{">"}</span>
-        </CarouselNext>
+        <div className="mt-2">
+          <CarouselPrevious>
+            <span className="text-xl">{"<"}</span>
+          </CarouselPrevious>
+          <CarouselNext>
+            <span className="text-xl">{">"}</span>
+          </CarouselNext>
+        </div>
       </Carousel>
-      <div className="flex justify-center gap-2 py-2">
+
+      <div className="flex justify-center gap-2 py-4">
         {Array.from({ length: count }).map((_, index) => (
           <div
             key={index}

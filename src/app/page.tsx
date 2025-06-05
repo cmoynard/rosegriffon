@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomeCarousel from "./_components/HomeCarousel";
 import FusionBlock from "./_components/FusionBlock";
 import DiscordBlock from "./_components/DiscordBlock";
@@ -12,13 +10,16 @@ import BanniereAzalee from "@public/Azalée 2.png";
 import BanniereAchillea from "@public/achillea.png";
 import BanniereTwitter from "@public/twitterbanner.jpeg";
 import BanniereTiktok from "@public/RG_screens_twitch_ethan.png";
+import getCarouselImages from "@/lib/get-carousel-images";
 
 type HomeProps = {};
 
-export default function Home({}: HomeProps) {
+export default async function Home({}: HomeProps) {
+  const carouselImages = await getCarouselImages();
+
   return (
     <div className="flex flex-col mb-8">
-      <HomeCarousel />
+      <HomeCarousel data={carouselImages} />
       <div className="flex flex-col gap-8 px-4 mt-8">
         <FusionBlock isImageLeft={true} image={BanniereRG.src}>
           <div className="space-y-4">

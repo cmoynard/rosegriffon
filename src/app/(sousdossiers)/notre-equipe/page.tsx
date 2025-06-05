@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import FusionBlock from "../../_components/FusionBlock";
+import getTeamMembers from "@/lib/get-team-members";
+
 import KyotabaPP from "@public/pp/kyotaba.png";
 import DleezPP from "@public/pp/dleez.png";
 import KoltiPP from "@public/pp/kolti.png";
@@ -30,45 +31,16 @@ import MohafubukiPP from "@public/pp/mohafubuki.png";
 import y3lisePP from "@public/pp/elise.webp";
 import YeggronPP from "@public/pp/yeggron.png";
 
-type TeamMember = {
-  name: string;
-  role: string;
-  image?: string;
-};
+import BoardMembersSection from "./_components/board";
 
 type Team = {
   name: string;
-  members: TeamMember[];
+  members: {
+    name: string;
+    role: string;
+    image?: string;
+  }[];
 };
-
-// Membres du bureau de l'association
-const boardMembers: TeamMember[] = [
-  {
-    name: "Benjamin | KoltiLasko",
-    role: "Président",
-    image: KoltiPP.src,
-  },
-  {
-    name: "Marie | Emio",
-    role: "Vice-présidente",
-    image: EmioPP.src,
-  },
-  {
-    name: "Lise | Dleez",
-    role: "Vice-présidente",
-    image: DleezPP.src,
-  },
-  {
-    name: "Ethan | FullCapsEthan",
-    role: "Secrétaire",
-    image: EthanPP.src,
-  },
-  {
-    name: "Noa | Inazo",
-    role: "Trésorier",
-    image: InazoPP.src,
-  },
-];
 
 // Équipes du projet
 const teams: Team[] = [
@@ -293,39 +265,7 @@ export default function NotreEquipe() {
   return (
     <div className="flex flex-col gap-16 px-4 py-8">
       {/* Section 1: Membres de l'association */}
-      <section className="flex flex-col gap-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-5xl font-bold">Bureau de l'Association</h2>
-          <p className="text-xl max-w-3xl mx-auto">
-            Les membres du bureau de l'association Rose Griffon sont
-            responsables de la gestion administrative, légale et financière du
-            projet. Ils assurent le bon fonctionnement de l'association et
-            coordonnent les différentes équipes.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-4 mt-6">
-          {boardMembers.map((member) => (
-            <div
-              key={member.name}
-              className="flex flex-col items-center text-center gap-4 w-64"
-            >
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
-                <Image
-                  src={member.image || "https://placehold.co/200x200"}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold">{member.name}</h3>
-                <p className="text-xl text-rose-700">{member.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <BoardMembersSection />
 
       {/* Section 2: Équipes du projet */}
       <section className="flex flex-col gap-8">
