@@ -3,6 +3,7 @@ import {
   Files,
   Heart,
   PencilLine,
+  ScrollText,
   UserPlus,
   Users,
 } from "lucide-react";
@@ -36,9 +37,14 @@ const asso = [
     icon: Files,
   },
   {
-    title: "Nos prochaines présences",
+    title: "Nos futures présences",
     url: "#",
     icon: CalendarCheck2,
+  },
+  {
+    title: "Charte et engagement",
+    url: "#",
+    icon: ScrollText,
   },
 ];
 
@@ -55,7 +61,7 @@ const contact = [
   },
   {
     title: "Nous soutenir",
-    url: "#",
+    url: "/a-propos/soutenir",
     icon: Heart,
     className: "rainbow font-extrabold",
   },
