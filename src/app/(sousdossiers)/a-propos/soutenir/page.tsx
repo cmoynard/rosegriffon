@@ -3,15 +3,23 @@ export default function SoutenirPage() {
     <div className="flex flex-col mb-8">
       <div className="container mx-auto py-12">
         <div className="flex flex-col gap-8 px-4">
-          <h2 className="text-5xl font-bold mb-8">Comment nous soutenir ?</h2>
+          <h2 className="text-5xl font-bold mb-4">Comment nous soutenir ?</h2>
+
+          <p className="text-lg">
+            Rose Griffon est une association à but non lucratif qui
+            s&apos;efforce de créer une communauté dynamique autour
+            d&apos;Inazuma Eleven. Votre soutien est essentiel pour nous
+            permettre de continuer à développer nos projets et à organiser des
+            événements de qualité.
+          </p>
 
           {/* Blocs de dons côte à côte */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Don unique via PayPal */}
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-blue-700 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold mb-4">
+                  <h3 className="text-3xl font-bold mb-4 text-blue-700">
                     Don unique via PayPal
                   </h3>
                   <p className="text-lg">
@@ -40,10 +48,10 @@ export default function SoutenirPage() {
             </div>
 
             {/* Don récurrent via Patreon */}
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-red-600 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold mb-4">
+                  <h3 className="text-3xl font-bold mb-4 text-red-600">
                     Don récurrent via Patreon
                   </h3>
                   <p className="text-lg">
@@ -72,66 +80,61 @@ export default function SoutenirPage() {
             </div>
           </div>
 
-          <p className="text-lg">
-            Rose Griffon est une association à but non lucratif qui
-            s&apos;efforce de créer une communauté dynamique autour
-            d&apos;Inazuma Eleven. Votre soutien est essentiel pour nous
-            permettre de continuer à développer nos projets et à organiser des
-            événements de qualité.
-          </p>
-
           {/* Bloc de transparence mis en avant */}
-          <div className="bg-white text-black p-8 rounded-lg shadow-lg">
-            <h3 className="text-3xl font-bold mb-4">Transparence</h3>
-            <p className="text-lg">
+          <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500">
+            <h2 className="text-5xl font-bold my-4 pb-2 inline-block">
+              Où va votre soutien ?
+            </h2>
+
+            <p className="text-lg mb-4">
               Rose Griffon s&apos;engage à utiliser vos dons de manière
               transparente. Un bilan financier est présenté chaque année lors de
               notre assemblée générale et partagé avec nos membres. Pour toute
               question concernant l&apos;utilisation des fonds, n&apos;hésitez
               pas à nous contacter.
             </p>
-          </div>
 
-          <h2 className="text-5xl font-bold mt-4">Où va votre soutien ?</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4">
+                  Événements communautaires
+                </h3>
+                <p className="text-lg">
+                  Vos dons nous permettent d&apos;organiser des tournois, des
+                  rencontres et des événements pour rassembler la communauté
+                  Inazuma Eleven.
+                </p>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">
-                Événements communautaires
-              </h3>
-              <p className="text-lg">
-                Vos dons nous permettent d&apos;organiser des tournois, des
-                rencontres et des événements pour rassembler la communauté
-                Inazuma Eleven.
-              </p>
-            </div>
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4">Projets médiatiques</h3>
+                <p className="text-lg">
+                  Nous investissons dans du matériel et des ressources pour
+                  améliorer la qualité de nos contenus sur Azalée et nos autres
+                  plateformes.
+                </p>
+              </div>
 
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">Projets médiatiques</h3>
-              <p className="text-lg">
-                Nous investissons dans du matériel et des ressources pour
-                améliorer la qualité de nos contenus sur Azalée et nos autres
-                plateformes.
-              </p>
-            </div>
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4">
+                  Développement e-sport
+                </h3>
+                <p className="text-lg">
+                  Votre soutien aide à structurer la scène compétitive
+                  d&apos;Inazuma Eleven à travers notre branche Achilléa et à
+                  organiser des compétitions de qualité.
+                </p>
+              </div>
 
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">Développement e-sport</h3>
-              <p className="text-lg">
-                Votre soutien aide à structurer la scène compétitive
-                d&apos;Inazuma Eleven à travers notre branche Achilléa et à
-                organiser des compétitions de qualité.
-              </p>
-            </div>
-
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-4">
-                Infrastructure technique
-              </h3>
-              <p className="text-lg">
-                Nous maintenons des serveurs, des sites web et des outils pour
-                offrir la meilleure expérience possible à notre communauté.
-              </p>
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+                <h3 className="text-2xl font-bold mb-4">
+                  Infrastructure technique
+                </h3>
+                <p className="text-lg">
+                  Nous maintenons des serveurs, des sites web et des outils pour
+                  offrir la meilleure expérience possible à notre communauté.
+                </p>
+              </div>
             </div>
           </div>
         </div>

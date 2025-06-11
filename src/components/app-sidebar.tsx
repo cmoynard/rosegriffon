@@ -23,6 +23,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
+import DiscordIcon from "@/shared/icons/discord";
+import TwitterIcon from "@/shared/icons/twitter";
+import TiktokIcon from "@/shared/icons/tiktok";
 
 // Menu items.
 const asso = [
@@ -67,6 +70,28 @@ const contact = [
   },
 ];
 
+// Réseaux sociaux
+const socialMedia = [
+  {
+    title: "Discord",
+    url: "https://discord.gg/TYzQvbByv4",
+    icon: DiscordIcon,
+    color: "bg-[#5865F2] hover:bg-[#4752C4]",
+  },
+  {
+    title: "Twitter",
+    url: "https://x.com/rose_griffon",
+    icon: TwitterIcon,
+    color: "bg-[#1DA1F2] hover:bg-[#1a8cd8]",
+  },
+  {
+    title: "TikTok",
+    url: "https://www.tiktok.com/@rose_griffon",
+    icon: TiktokIcon,
+    color: "bg-[#000000] hover:bg-[#333333]",
+  },
+];
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -90,7 +115,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarHeader>
+
         <SidebarSeparator />
+
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
             L&apos;association

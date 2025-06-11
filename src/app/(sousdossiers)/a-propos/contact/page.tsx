@@ -41,6 +41,7 @@ export default function ContactPage() {
       title: "",
       subject: undefined,
       description: "",
+      file: null,
     },
   });
 
@@ -187,11 +188,9 @@ export default function ContactPage() {
                             Événements à venir
                           </SelectItem>
                           <SelectItem value="Adhésion">Adhésion</SelectItem>
-                          <SelectItem value="Bénévolat">Bénévolat</SelectItem>
                           <SelectItem value="Demande de presse">
                             Demande de presse
                           </SelectItem>
-                          <SelectItem value="Témoignage">Témoignage</SelectItem>
                           <SelectItem value="Support technique">
                             Support technique
                           </SelectItem>
@@ -235,7 +234,7 @@ export default function ContactPage() {
               <FormField
                 control={form.control}
                 name="file"
-                render={({ field: { onChange, ...fieldProps } }) => (
+                render={({ field: { value, onChange, ...fieldProps } }) => (
                   <FormItem className="mb-8">
                     <FormLabel>Pièce jointe (optionnel)</FormLabel>
                     <FormControl>
