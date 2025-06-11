@@ -141,6 +141,8 @@ export default function DiscordBlock({
                   <Image
                     src={discordData.icon}
                     alt={discordData.name}
+                    width={32}
+                    height={32}
                     className="w-full h-full rounded-full object-cover"
                   />
                 ) : (
@@ -189,6 +191,8 @@ export default function DiscordBlock({
                               <Image
                                 src={member.avatar_url}
                                 alt={member.username}
+                                width={32}
+                                height={32}
                                 className="w-full h-full object-cover"
                               />
                             </div>
