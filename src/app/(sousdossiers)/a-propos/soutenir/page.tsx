@@ -3,7 +3,7 @@ export default function SoutenirPage() {
     <div className="flex flex-col mb-8">
       <div className="container mx-auto py-12">
         <div className="flex flex-col gap-8 px-4">
-          <h2 className="text-5xl font-bold mb-4">Comment nous soutenir ?</h2>
+          <h2 className="text-5xl font-bold">Comment nous soutenir ?</h2>
 
           <p className="text-lg">
             Rose Griffon est une association à but non lucratif qui
@@ -29,7 +29,7 @@ export default function SoutenirPage() {
                   </p>
                 </div>
                 <a
-                  href="https://www.paypal.com/donate/?hosted_button_id=VOTRE_ID"
+                  href="https://www.paypal.com/paypalme/rosegriffon"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#0070BA] hover:bg-[#005ea6] text-white font-bold py-4 px-8 rounded-full flex items-center justify-center transition-colors"

@@ -6,6 +6,7 @@ import {
   ScrollText,
   UserPlus,
   Users,
+  ChevronDown,
 } from "lucide-react";
 
 import {
@@ -19,7 +20,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import Image from "next/image";
 import Link from "next/link";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
@@ -36,8 +44,20 @@ const asso = [
   },
   {
     title: "Nos projets",
-    url: "#",
+    collapsible: true,
     icon: Files,
+    items: [
+      {
+        title: "Rose Griffon",
+        url: "/projets/rose-griffon",
+        icon: Files,
+      },
+      {
+        title: "Autre projet",
+        url: "/projets/autre-projet",
+        icon: Files,
+      },
+    ],
   },
   {
     title: "Nos futures présences",
@@ -126,12 +146,38 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
               {asso.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                  {item.collapsible ? (
+                    <Collapsible className="w-full group/collapsible">
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton tooltip={item.title}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                          <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items?.map((subItem) => (
+                            <li key={subItem.title}>
+                              <SidebarMenuSubButton asChild>
+                                <a href={subItem.url}>
+                                  <subItem.icon />
+                                  <span>{subItem.title}</span>
+                                </a>
+                              </SidebarMenuSubButton>
+                            </li>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
+                    <SidebarMenuButton asChild tooltip={item.title}>
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
