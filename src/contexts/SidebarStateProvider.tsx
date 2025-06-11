@@ -53,7 +53,7 @@ export function SidebarStateProvider({
       setIsOpenState(defaultState);
       console.error("Impossible de charger l'état de la sidebar:", error);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Fonction pour mettre à jour l'état de la sidebar
   const setIsOpen = (state: boolean) => {
