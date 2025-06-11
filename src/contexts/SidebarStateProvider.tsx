@@ -33,7 +33,7 @@ export function SidebarStateProvider({
   const defaultState = false;
 
   // État pour savoir si on est côté client
-  const [isClient, setIsClient] = useState(false);
+  const [, setIsClient] = useState(false);
 
   // État pour stocker l'état de la sidebar
   const [isOpen, setIsOpenState] = useState<boolean | null>(null);
@@ -51,6 +51,7 @@ export function SidebarStateProvider({
     } catch (error) {
       // En cas d'erreur (ex: localStorage désactivé), on utilise l'état par défaut
       setIsOpenState(defaultState);
+      console.error("Impossible de charger l'état de la sidebar:", error);
     }
   }, []);
 

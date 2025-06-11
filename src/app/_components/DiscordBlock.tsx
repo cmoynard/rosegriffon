@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 type DiscordMember = {
@@ -137,7 +138,7 @@ export default function DiscordBlock({
             <div className="flex items-center">
               <div className="w-8 h-8 mr-2 relative overflow-hidden">
                 {discordData.icon ? (
-                  <img
+                  <Image
                     src={discordData.icon}
                     alt={discordData.name}
                     className="w-full h-full rounded-full object-cover"
@@ -185,7 +186,7 @@ export default function DiscordBlock({
                         <div className="w-8 h-8 mr-2 relative">
                           {member.avatar_url ? (
                             <div className="w-full h-full rounded-full overflow-hidden">
-                              <img
+                              <Image
                                 src={member.avatar_url}
                                 alt={member.username}
                                 className="w-full h-full object-cover"

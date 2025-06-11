@@ -14,9 +14,11 @@ export default function NotFound() {
         height={300}
       />
       <h1 className="text-4xl font-bold">Il semble que tu te sois perdu...</h1>
-      <p className="text-2xl">404 - La page que vous cherchez n'existe pas.</p>
+      <p className="text-2xl">
+        404 - La page que vous cherchez n&apos;existe pas.
+      </p>
       <Link href="/" className="text-blue-500">
-        <Button>Retour à la page d'accueil</Button>
+        <Button>Retour à la page d&apos;accueil</Button>
       </Link>
     </div>
   );

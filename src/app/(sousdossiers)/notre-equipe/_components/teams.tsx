@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import KyotabaPP from "@public/pp/kyotaba.png";
 import DleezPP from "@public/pp/dleez.png";
-import KoltiPP from "@public/pp/kolti.png";
 import EmioPP from "@public/pp/emio.png";
 import InazoPP from "@public/pp/inazo.png";
 import EthanPP from "@public/pp/ethan.png";
@@ -266,9 +265,9 @@ export default function TeamsSection() {
       <div className="text-center space-y-4">
         <h2 className="text-5xl font-bold">Nos Équipes</h2>
         <p className="text-xl max-w-3xl mx-auto">
-          Découvrez les talents qui donnent vie à l'univers de Rose Griffon.
-          Notre équipe passionnée travaille ensemble pour créer des histoires
-          captivantes et des illustrations magnifiques.
+          Découvrez les talents qui donnent vie à l&apos;univers de Rose
+          Griffon. Notre équipe passionnée travaille ensemble pour créer des
+          histoires captivantes et des illustrations magnifiques.
         </p>
       </div>
 

@@ -1,13 +1,8 @@
 import {
-  Calendar,
   CalendarCheck2,
   Files,
   Heart,
-  Home,
-  Inbox,
   PencilLine,
-  Search,
-  Settings,
   UserPlus,
   Users,
 } from "lucide-react";
@@ -15,7 +10,6 @@ import {
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -23,8 +17,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProvider,
-  SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
@@ -95,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarSeparator />
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
-            L'association
+            L&apos;association
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

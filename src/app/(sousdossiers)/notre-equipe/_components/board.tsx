@@ -30,17 +30,17 @@ export default function BoardMembersSection() {
 
   useEffect(() => {
     boardMembersMutation.mutate();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="flex flex-col gap-8">
       <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold">Bureau de l'Association</h2>
+        <h2 className="text-5xl font-bold">Bureau de l&apos;Association</h2>
         <p className="text-xl max-w-3xl mx-auto">
-          Les membres du bureau de l'association Rose Griffon sont responsables
-          de la gestion administrative, légale et financière du projet. Ils
-          assurent le bon fonctionnement de l'association et coordonnent les
-          différentes équipes.
+          Les membres du bureau de l&apos;association Rose Griffon sont
+          responsables de la gestion administrative, légale et financière du
+          projet. Ils assurent le bon fonctionnement de l&apos;association et
+          coordonnent les différentes équipes.
         </p>
       </div>
 

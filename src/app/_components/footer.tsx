@@ -1,13 +1,10 @@
 import DiscordIcon from "@/shared/icons/discord";
 import TiktokIcon from "@/shared/icons/tiktok";
 import TwitterIcon from "@/shared/icons/twitter";
-import { LucideTwitter, Twitter } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-type FooterProps = {};
-
-export default function Footer({}: FooterProps) {
+export default function Footer() {
   return (
     <div className="bg-white flex flex-col h-fit w-full items-center gap-2">
       <div className="flex w-full h-full items-center place-content-evenly p-2">

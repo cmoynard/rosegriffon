@@ -129,8 +129,8 @@ export default function ContactPage() {
           <h1 className="text-3xl font-bold">Contactez-nous</h1>
           <p className="text-muted-foreground">
             Vous avez une question, une suggestion ou souhaitez collaborer avec
-            nous ? N'hésitez pas à nous contacter en remplissant le formulaire
-            ci-dessous.
+            nous ? N&apos;hésitez pas à nous contacter en remplissant le
+            formulaire ci-dessous.
           </p>
         </div>
 
@@ -175,7 +175,7 @@ export default function ContactPage() {
                         </FormControl>
                         <SelectContent>
                           <SelectItem value="Information sur l'association">
-                            Information sur l'association
+                            Information sur l&apos;association
                           </SelectItem>
                           <SelectItem value="Collaboration">
                             Collaboration
@@ -235,7 +235,7 @@ export default function ContactPage() {
               <FormField
                 control={form.control}
                 name="file"
-                render={({ field: { value, onChange, ...fieldProps } }) => (
+                render={({ field: { onChange, ...fieldProps } }) => (
                   <FormItem className="mb-8">
                     <FormLabel>Pièce jointe (optionnel)</FormLabel>
                     <FormControl>

@@ -12,9 +12,7 @@ import BanniereTwitter from "@public/twitterbanner.jpeg";
 import BanniereTiktok from "@public/RG_screens_twitch_ethan.png";
 import getCarouselImages from "@/lib/get-carousel-images";
 
-type HomeProps = {};
-
-export default async function Home({}: HomeProps) {
+export default async function Home() {
   const carouselImages = await getCarouselImages();
 
   return (
@@ -23,13 +21,16 @@ export default async function Home({}: HomeProps) {
       <div className="flex flex-col gap-8 px-4 mt-8">
         <FusionBlock isImageLeft={true} image={BanniereRG.src}>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">Qu'est-ce que Rose Griffon ?</h2>
+            <h2 className="text-5xl font-bold">
+              Qu&apos;est-ce que Rose Griffon ?
+            </h2>
             <p className="text-lg">
               Rose Griffon est une association française régie par la loi 1901,
               ayant pour vocation de rassembler les principaux acteurs de la
-              communauté Inazuma Eleven ainsi que l'ensemble des passionnés sous
-              une même bannière. Elle s'engage à valoriser à la fois la scène
-              artistique liée à cette licence et son univers compétitif.
+              communauté Inazuma Eleven ainsi que l&apos;ensemble des passionnés
+              sous une même bannière. Elle s&apos;engage à valoriser à la fois
+              la scène artistique liée à cette licence et son univers
+              compétitif.
             </p>
           </div>
         </FusionBlock>
@@ -114,8 +115,8 @@ export default async function Home({}: HomeProps) {
             <h2 className="text-5xl font-bold">TikTok | Suivez nos vidéos</h2>
             <p className="text-lg">
               Découvrez notre contenu court et dynamique sur TikTok. Des moments
-              forts de nos événements, des coulisses de l'association et bien
-              plus encore.
+              forts de nos événements, des coulisses de l&apos;association et
+              bien plus encore.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a
@@ -161,9 +162,9 @@ export default async function Home({}: HomeProps) {
               Azalée | Média Inazuma Eleven
             </h2>
             <p className="text-lg">
-              Azalée est un média dédié à l'univers d'Inazuma Eleven,
-              appartenant à l'association Rose Griffon. Son objectif est de
-              fournir une information en temps réel sur l'actualité de la
+              Azalée est un média dédié à l&apos;univers d&apos;Inazuma Eleven,
+              appartenant à l&apos;association Rose Griffon. Son objectif est de
+              fournir une information en temps réel sur l&apos;actualité de la
               licence, avec la plus grande rigueur journalistique. Présente sur
               plusieurs réseaux sociaux, Azalée veille à offrir une couverture
               complète, fiable et accessible à tous les passionnés.
@@ -211,10 +212,10 @@ export default async function Home({}: HomeProps) {
             </h2>
             <p className="text-lg">
               Achilléa est la branche e-sport de Rose Griffon, dédiée à la scène
-              compétitive d'Inazuma Eleven: Victory Road. Elle a pour mission de
-              structurer la compétition de haut niveau autour du jeu, à travers
-              des projets ambitieux, et de faire briller les talents de la
-              communauté.
+              compétitive d&apos;Inazuma Eleven: Victory Road. Elle a pour
+              mission de structurer la compétition de haut niveau autour du jeu,
+              à travers des projets ambitieux, et de faire briller les talents
+              de la communauté.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a
