@@ -16,6 +16,7 @@ type TeamMember = {
   metadata: {
     memberName: string;
     memberRole: string;
+    memberIndex: number;
   };
   url: string;
 };

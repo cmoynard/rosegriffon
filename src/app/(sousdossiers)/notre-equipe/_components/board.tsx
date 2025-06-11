@@ -1,36 +1,32 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import getTeamMembers from "@/lib/get-team-members";
 
 type TeamMember = {
   name: string;
   role: string;
   image?: string;
+  index: number;
 };
 
 export default function BoardMembersSection() {
-  const [boardMembers, setBoardMembers] = useState<TeamMember[]>([]);
-
-  const boardMembersMutation = useMutation({
-    mutationFn: async () => {
+  const { data: boardMembers, isLoading } = useQuery<TeamMember[]>({
+    queryKey: ["board-members"],
+    queryFn: async () => {
       const response = await getTeamMembers("assoteam");
       return response.map((member) => ({
         name: member.metadata.memberName,
         role: member.metadata.memberRole,
+        index: member.metadata.memberIndex,
         image: member.url,
       }));
     },
-    onSuccess: (data) => {
-      setBoardMembers(data);
-    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 30 * 60 * 1000, // 30 minutes (anciennement cacheTime)
   });
-
-  useEffect(() => {
-    boardMembersMutation.mutate();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="flex flex-col gap-8">
@@ -45,14 +41,15 @@ export default function BoardMembersSection() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mt-6">
-        {boardMembersMutation.isPending ? (
+        {isLoading ? (
           <div className="flex justify-center items-center p-8">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-rose-500"></div>
           </div>
         ) : (
-          boardMembers.map((member) => (
+          boardMembers &&
+          boardMembers.map((member: TeamMember) => (
             <div
-              key={member.name}
+              key={member.index}
               className="flex flex-col items-center text-center gap-4 w-64"
             >
               <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
@@ -61,6 +58,10 @@ export default function BoardMembersSection() {
                   alt={member.name}
                   fill
                   className="object-cover"
+                  priority={member.index < 3} // Charge en priorité les 3 premiers membres
+                  loading={member.index < 3 ? "eager" : "lazy"}
+                  sizes="(max-width: 768px) 100px, 144px"
+                  quality={70}
                 />
               </div>
               <div>
