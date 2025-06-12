@@ -61,7 +61,7 @@ const asso = [
   },
   {
     title: "Nos futures présences",
-    url: "#",
+    url: "/presences",
     icon: CalendarCheck2,
   },
   {
