@@ -74,7 +74,7 @@ const asso = [
 const contact = [
   {
     title: "Nous rejoindre",
-    url: "#",
+    url: "/a-propos/rejoindre-rg",
     icon: UserPlus,
   },
   {
