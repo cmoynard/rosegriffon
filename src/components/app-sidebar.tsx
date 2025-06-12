@@ -7,6 +7,7 @@ import {
   UserPlus,
   Users,
   ChevronDown,
+  Users2,
 } from "lucide-react";
 
 import {
@@ -48,9 +49,9 @@ const asso = [
     icon: Files,
     items: [
       {
-        title: "Rose Griffon",
-        url: "/projets/rose-griffon",
-        icon: Files,
+        title: "Projets communautaire",
+        url: "/projets/community",
+        icon: Users2,
       },
       {
         title: "Autre projet",
