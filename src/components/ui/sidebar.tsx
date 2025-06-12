@@ -69,9 +69,37 @@ function SidebarProvider({
   const isMobile = useIsMobile();
   const [openMobile, setOpenMobile] = React.useState(false);
 
+  // Fonction pour lire le cookie
+  const getCookieValue = React.useCallback((name: string): boolean | null => {
+    if (typeof document === "undefined") return null;
+
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + "=")) {
+        const value = cookie.substring(name.length + 1);
+        return value === "true";
+      }
+    }
+    return null;
+  }, []);
+
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen);
+  const [_open, _setOpen] = React.useState(() => {
+    // Si openProp est défini, on l'utilise
+    if (openProp !== undefined) return openProp;
+
+    // Sinon, on essaie de lire depuis le cookie
+    if (typeof window !== "undefined") {
+      const cookieValue = getCookieValue(SIDEBAR_COOKIE_NAME);
+      if (cookieValue !== null) return cookieValue;
+    }
+
+    // Si pas de cookie, on utilise la valeur par défaut
+    return defaultOpen;
+  });
+
   const open = openProp ?? _open;
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {

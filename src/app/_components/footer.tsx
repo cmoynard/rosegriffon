@@ -20,10 +20,10 @@ export default function Footer() {
           </Link>
         </div>
         <div className="flex flex-col items-center">
-          <Link href={"*"} className="hover:underline">
+          <Link href={"/a-propos/contact"} className="hover:underline">
             Nous contacter
           </Link>
-          <Link href={"*"} className="hover:underline rainbow">
+          <Link href={"/a-propos/soutenir"} className="hover:underline rainbow">
             Nous Soutenir
           </Link>
 
