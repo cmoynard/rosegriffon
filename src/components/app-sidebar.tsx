@@ -8,6 +8,8 @@ import {
   Users,
   ChevronDown,
   Users2,
+  Crown,
+  Mailbox,
 } from "lucide-react";
 
 import {
@@ -49,14 +51,19 @@ const asso = [
     icon: Files,
     items: [
       {
+        title: "Azalée",
+        url: "/projets/azalee",
+        icon: Mailbox,
+      },
+      {
+        title: "Achilléa",
+        url: "/projets/achillea",
+        icon: Crown,
+      },
+      {
         title: "Projets communautaire",
         url: "/projets/community",
         icon: Users2,
-      },
-      {
-        title: "Autre projet",
-        url: "/projets/autre-projet",
-        icon: Files,
       },
     ],
   },

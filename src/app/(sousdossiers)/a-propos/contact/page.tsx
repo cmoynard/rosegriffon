@@ -127,8 +127,8 @@ export default function ContactPage() {
     <div className="flex flex-col mb-8">
       <div className="flex flex-col gap-8 px-4 mt-8">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Contactez-nous</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-5xl font-bold">Nous contacter</h1>
+          <p className="text-muted-foreground text-lg">
             Vous avez une question, une suggestion ou souhaitez collaborer avec
             nous ? N&apos;hésitez pas à nous contacter en remplissant le
             formulaire ci-dessous.

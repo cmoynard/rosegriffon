@@ -1,17 +1,20 @@
+import Link from "next/link";
 import React from "react";
 
 export default function CommunityPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Communauté</h1>
+      <h1 className="text-5xl font-bold mb-6">Projets communautaires</h1>
 
-      <div className="prose max-w-none mb-8">
-        <p className="font-medium text-lg mb-4">
-          <strong>
+      <div className="flex flex-col gap-4 prose max-w-none mb-8">
+        <p className="font-medium text-lg">
+          <strong className="text-2xl">
             Rose Griffon valorise et encourage la créativité collective à
             travers une série d&apos;initiatives pensées pour faire vivre
             l&apos;imaginaire des fans.
           </strong>{" "}
+          <br />
+          <br />
           Nos deux <em>Murals communautaires</em> rassemblent des dizaines de
           créations originales et d&apos;histoires développées autour des
           personnages inventés par la communauté (OC), formant un véritable
@@ -19,9 +22,17 @@ export default function CommunityPage() {
           par nos concours réguliers — <em>InazumaRG</em>, <em>InazumaSona</em>{" "}
           ou encore <em>La Route du Sacre</em> — qui invitent chacun à inventer,
           scénariser ou illustrer leur propre vision d&apos;Inazuma. Enfin, via
-          l&apos;onglet <em>Vitrine Projet</em> sur notre site, chaque membre
-          peut proposer son projet personnel, partager ses avancées et
-          bénéficier du soutien actif de la communauté pour le faire évoluer.
+          l&apos;onglet <em>Vitrine Projet</em> sur notre{" "}
+          <Link
+            href="https://discord.gg/rosegriffon"
+            target="_blank"
+            className="text-blue-500 hover:underline"
+          >
+            Discord
+          </Link>
+          , chaque membre peut proposer son projet personnel, partager ses
+          avancées et bénéficier du soutien actif de la communauté pour le faire
+          évoluer.
         </p>
       </div>
 

@@ -2,25 +2,25 @@ import GoogleMapEvents from "./GoogleMapEvents";
 
 export default function PresencesPage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-6">Nos présences</h1>
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-5xl font-bold mb-6">Nos présences</h1>
 
-      <div className="prose max-w-none mb-8">
+      <div className="flex flex-col gap-4 prose max-w-none mb-8">
         <p className="text-lg">
           Retrouvez Rose Griffon lors de différents événements tout au long de
           l&apos;année. Notre association participe à de nombreuses
           manifestations pour promouvoir nos activités et rencontrer notre
           public.
         </p>
-        <p className="text-lg mt-4">
+        <p className="text-lg">
           La carte ci-dessous vous permet de visualiser nos prochaines
           présences. Cliquez sur un marqueur pour obtenir plus
           d&apos;informations sur l&apos;événement.
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4">Carte des événements</h2>
+      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600">
+        <h2 className="text-4xl font-semibold mb-4">Carte des événements</h2>
         <div
           id="map-container"
           className="w-full h-[600px] bg-gray-100 rounded-md relative"
@@ -50,8 +50,8 @@ export default function PresencesPage() {
         </div>
       </div>
 
-      <div className="mt-8 bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4">
+      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
+        <h2 className="text-4xl font-semibold mb-4">
           Liste des prochains événements
         </h2>
         <EventsList />
