@@ -234,7 +234,9 @@ export default function ContactPage() {
               <FormField
                 control={form.control}
                 name="file"
-                render={({ field: { value, onChange, ...fieldProps } }) => (
+                render={(
+                  { field: { value, onChange, ...fieldProps } } // eslint-disable-line @typescript-eslint/no-unused-vars
+                ) => (
                   <FormItem className="mb-8">
                     <FormLabel>Pièce jointe (optionnel)</FormLabel>
                     <FormControl>

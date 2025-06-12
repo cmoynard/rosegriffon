@@ -34,9 +34,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
-import DiscordIcon from "@/shared/icons/discord";
-import TwitterIcon from "@/shared/icons/twitter";
-import TiktokIcon from "@/shared/icons/tiktok";
 
 // Menu items.
 const asso = [
@@ -95,28 +92,6 @@ const contact = [
     url: "/a-propos/soutenir",
     icon: Heart,
     className: "rainbow font-extrabold",
-  },
-];
-
-// Réseaux sociaux
-const socialMedia = [
-  {
-    title: "Discord",
-    url: "https://discord.gg/TYzQvbByv4",
-    icon: DiscordIcon,
-    color: "bg-[#5865F2] hover:bg-[#4752C4]",
-  },
-  {
-    title: "Twitter",
-    url: "https://x.com/rose_griffon",
-    icon: TwitterIcon,
-    color: "bg-[#1DA1F2] hover:bg-[#1a8cd8]",
-  },
-  {
-    title: "TikTok",
-    url: "https://www.tiktok.com/@rose_griffon",
-    icon: TiktokIcon,
-    color: "bg-[#000000] hover:bg-[#333333]",
   },
 ];
 

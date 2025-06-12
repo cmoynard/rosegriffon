@@ -7,10 +7,10 @@ declare global {
   interface Window {
     google: {
       maps: {
-        Map: new (element: HTMLElement, options: any) => any;
-        InfoWindow: new (options: any) => any;
+        Map: new (element: HTMLElement, options: any) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+        InfoWindow: new (options: any) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
         marker: {
-          AdvancedMarkerElement: new (options: any) => any;
+          AdvancedMarkerElement: new (options: any) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
         };
       };
     };

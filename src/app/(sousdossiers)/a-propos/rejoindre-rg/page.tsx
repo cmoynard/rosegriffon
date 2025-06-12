@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,9 +10,6 @@ import {
 } from "@/components/ui/card";
 
 export default function RejoindreRGPage() {
-  const [showConditions, setShowConditions] = useState(false);
-  const [showEngagements, setShowEngagements] = useState(false);
-
   return (
     <div className="container mx-auto py-12 px-4">
       <h1 className="text-5xl font-bold mb-6">Rejoindre Rose Griffon</h1>
@@ -24,8 +20,8 @@ export default function RejoindreRGPage() {
         <p className="mb-8 text-lg">
           Rose Griffon est une association dynamique et passionnée qui recherche
           constamment de nouveaux talents pour renforcer son équipe. Nous
-          offrons différentes possibilités d'engagement pour permettre à chacun
-          de contribuer selon ses disponibilités et compétences.
+          offrons différentes possibilités d&apos;engagement pour permettre à
+          chacun de contribuer selon ses disponibilités et compétences.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -33,7 +29,7 @@ export default function RejoindreRGPage() {
           <Card className="border-l-4 border-l-rose-500">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl">
-                Conditions d'intégration
+                Conditions d&apos;intégration
               </CardTitle>
             </CardHeader>
 
@@ -43,7 +39,7 @@ export default function RejoindreRGPage() {
               </p>
               <ul className="list-disc pl-6 mt-2 space-y-2 text-lg">
                 <li>Passionnées par notre mission et nos valeurs</li>
-                <li>Motivées et prêtes à s'investir dans nos projets</li>
+                <li>Motivées et prêtes à s&apos;investir dans nos projets</li>
                 <li>
                   Disposant de compétences pertinentes pour les postes
                   recherchés
@@ -58,8 +54,9 @@ export default function RejoindreRGPage() {
               </ul>
               <p className="mt-4 text-lg">
                 Le processus de recrutement comprend généralement un entretien
-                avec l'équipe concernée, suivi d'une période d'intégration pour
-                vous familiariser avec nos méthodes de travail.
+                avec l&apos;équipe concernée, suivi d&apos;une période
+                d&apos;intégration pour vous familiariser avec nos méthodes de
+                travail.
               </p>
             </CardContent>
           </Card>
@@ -68,7 +65,7 @@ export default function RejoindreRGPage() {
           <Card className="border-l-4 border-l-indigo-500">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl">
-                Types d'engagement possibles
+                Types d&apos;engagement possibles
               </CardTitle>
             </CardHeader>
 
@@ -77,7 +74,7 @@ export default function RejoindreRGPage() {
                 <div className="border-b pb-3">
                   <h3 className="font-bold mb-1 text-lg">Temps plein</h3>
                   <p className="text-lg">
-                    Pour ceux qui souhaitent s'investir pleinement dans nos
+                    Pour ceux qui souhaitent s&apos;investir pleinement dans nos
                     projets et contribuer quotidiennement à notre mission.
                   </p>
                 </div>
@@ -156,7 +153,7 @@ export default function RejoindreRGPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl">
-                Coordinateur d'événements
+                Coordinateur d&apos;événements
               </CardTitle>
               <CardDescription className="text-lg">
                 Temps plein ou événementiel
