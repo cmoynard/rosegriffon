@@ -47,29 +47,31 @@ export default function BoardMembersSection() {
           </div>
         ) : (
           boardMembers &&
-          boardMembers.map((member: TeamMember) => (
-            <div
-              key={member.index}
-              className="flex flex-col items-center text-center gap-4 w-64"
-            >
-              <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
-                <Image
-                  src={member.image || "https://placehold.co/200x200"}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                  priority={member.index < 3} // Charge en priorité les 3 premiers membres
-                  loading={member.index < 3 ? "eager" : "lazy"}
-                  sizes="(max-width: 768px) 100px, 144px"
-                  quality={70}
-                />
+          boardMembers
+            .sort((a, b) => a.index - b.index)
+            .map((member: TeamMember) => (
+              <div
+                key={member.index}
+                className="flex flex-col items-center text-center gap-4 w-64"
+              >
+                <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
+                  <Image
+                    src={member.image || "https://placehold.co/200x200"}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    priority={member.index < 3} // Charge en priorité les 3 premiers membres
+                    loading={member.index < 3 ? "eager" : "lazy"}
+                    sizes="(max-width: 768px) 100px, 144px"
+                    quality={70}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold">{member.name}</h3>
+                  <p className="text-xl text-rose-700">{member.role}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-semibold">{member.name}</h3>
-                <p className="text-xl text-rose-700">{member.role}</p>
-              </div>
-            </div>
-          ))
+            ))
         )}
       </div>
     </section>
