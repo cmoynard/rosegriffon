@@ -11,7 +11,7 @@ import {
 
 export default function RejoindreRGPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-4 px-4">
       <h1 className="text-5xl font-bold mb-6">Rejoindre Rose Griffon</h1>
 
       {/* Section d'explication sur les conditions d'intégration */}
@@ -204,7 +204,7 @@ export default function RejoindreRGPage() {
               <path d="M12 11v6" />
               <path d="M9 14h6" />
             </svg>
-            Accéder au formulaire de candidature
+            Accéder au formulaire
           </a>
         </Button>
       </div>

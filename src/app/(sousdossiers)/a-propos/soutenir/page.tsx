@@ -1,7 +1,7 @@
 export default function SoutenirPage() {
   return (
     <div className="flex flex-col mb-8">
-      <div className="container mx-auto py-12">
+      <div className="container mx-auto py-4">
         <div className="flex flex-col gap-8 px-4">
           <h2 className="text-5xl font-bold">Comment nous soutenir ?</h2>
 

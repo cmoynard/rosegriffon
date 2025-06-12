@@ -125,7 +125,7 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col mb-8">
-      <div className="flex flex-col gap-8 px-4 mt-8">
+      <div className="flex flex-col gap-8 px-4 py-4">
         <div className="space-y-4">
           <h1 className="text-5xl font-bold">Nous contacter</h1>
           <p className="text-muted-foreground text-lg">
