@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import KyotabaPP from "@public/pp/kyotaba.png";
 import DleezPP from "@public/pp/dleez.png";
@@ -282,11 +283,9 @@ export default function TeamsSection() {
                   className="flex flex-col items-center text-center gap-2"
                 >
                   <div className="relative w-24 h-24 rounded-full overflow-hidden">
-                    <Image
+                    <ImageWithSkeleton
                       src={member.image || "https://placehold.co/200x200"}
                       alt={member.name}
-                      fill
-                      className="object-cover"
                     />
                   </div>
                   <div>
@@ -300,5 +299,25 @@ export default function TeamsSection() {
         ))}
       </div>
     </section>
+  );
+}
+
+// Image component with skeleton loader
+function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      {isLoading && (
+        <Skeleton className="absolute inset-0 w-full h-full rounded-full" />
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        onLoadingComplete={() => setIsLoading(false)}
+      />
+    </>
   );
 }

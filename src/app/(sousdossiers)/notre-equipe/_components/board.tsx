@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import getTeamMembers from "@/lib/get-team-members";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type TeamMember = {
   name: string;
@@ -11,6 +12,38 @@ type TeamMember = {
   image?: string;
   index: number;
 };
+
+// Image component with skeleton loader
+function ImageWithSkeleton({
+  src,
+  alt,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      {isLoading && (
+        <Skeleton className="absolute inset-0 w-full h-full rounded-full" />
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        onLoadingComplete={() => setIsLoading(false)}
+        priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        sizes="(max-width: 768px) 100px, 144px"
+        quality={70}
+      />
+    </>
+  );
+}
 
 export default function BoardMembersSection() {
   const { data: boardMembers, isLoading } = useQuery<TeamMember[]>({
@@ -42,8 +75,19 @@ export default function BoardMembersSection() {
 
       <div className="flex flex-wrap justify-center gap-4 mt-6">
         {isLoading ? (
-          <div className="flex justify-center items-center p-8">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-rose-500"></div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[...Array(8)].map((_, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center gap-4 w-64"
+              >
+                <Skeleton className="w-36 h-36 rounded-full bg-gray-400" />
+                <div className="space-y-2">
+                  <Skeleton className="h-8 w-48 bg-gray-400" />
+                  <Skeleton className="h-6 w-32 bg-gray-400" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           boardMembers &&
@@ -55,15 +99,10 @@ export default function BoardMembersSection() {
                 className="flex flex-col items-center text-center gap-4 w-64"
               >
                 <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
-                  <Image
+                  <ImageWithSkeleton
                     src={member.image || "https://placehold.co/200x200"}
                     alt={member.name}
-                    fill
-                    className="object-cover"
                     priority={member.index < 3} // Charge en priorité les 3 premiers membres
-                    loading={member.index < 3 ? "eager" : "lazy"}
-                    sizes="(max-width: 768px) 100px, 144px"
-                    quality={70}
                   />
                 </div>
                 <div>
