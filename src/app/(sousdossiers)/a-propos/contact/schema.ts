@@ -65,8 +65,9 @@ export const contactFormSchema = z.object({
             message: "Le fichier doit faire moins de 5MB.",
           }
         )
+        .nullable()
         .optional()
-    : z.any().optional(),
+    : z.any().nullable().optional(),
 });
 
 // Type du formulaire de contact

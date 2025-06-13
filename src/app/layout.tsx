@@ -10,7 +10,7 @@ import { Providers } from "@/lib/providers";
 
 export const metadata: Metadata = {
   title: "Rose Griffon",
-  description: "Page principale de Rose Griffon",
+  description: "Site officiel de l'association Rose Griffon",
 };
 
 export default function RootLayout({

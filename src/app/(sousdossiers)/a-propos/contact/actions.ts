@@ -53,6 +53,7 @@ export async function sendContactEmail(formData: ContactFormValues) {
     // Ajouter la pièce jointe si elle existe et a les propriétés attendues
     if (
       formData.file &&
+      formData.file instanceof File &&
       typeof formData.file === "object" &&
       "arrayBuffer" in formData.file &&
       "name" in formData.file &&
