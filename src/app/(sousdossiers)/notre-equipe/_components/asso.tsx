@@ -45,11 +45,11 @@ function ImageWithSkeleton({
   );
 }
 
-export default function BoardMembersSection() {
-  const { data: boardMembers, isLoading } = useQuery<TeamMember[]>({
-    queryKey: ["board-members"],
+export default function AssoMembersSection() {
+  const { data: assoMembers, isLoading } = useQuery<TeamMember[]>({
+    queryKey: ["asso-members"],
     queryFn: async () => {
-      const response = await getTeamMembers("bureauteam");
+      const response = await getTeamMembers("assoteam");
       return response.map((member) => ({
         name: member.metadata.memberName,
         role: member.metadata.memberRole,
@@ -64,12 +64,11 @@ export default function BoardMembersSection() {
   return (
     <section className="flex flex-col gap-8">
       <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold">Bureau de l&apos;Association</h2>
+        <h2 className="text-5xl font-bold">Membres de l&apos;Association</h2>
         <p className="text-xl max-w-3xl mx-auto">
-          Les membres du bureau de l&apos;association Rose Griffon sont
-          responsables de la gestion administrative, légale et financière du
-          projet. Ils assurent le bon fonctionnement de l&apos;association et
-          coordonnent les différentes équipes.
+          Les membres de l&apos;association Rose Griffon contribuent au
+          développement et à la réalisation du projet. Leur engagement et leur
+          passion sont essentiels à notre succès collectif.
         </p>
       </div>
 
@@ -90,8 +89,8 @@ export default function BoardMembersSection() {
             ))}
           </div>
         ) : (
-          boardMembers &&
-          boardMembers
+          assoMembers &&
+          assoMembers
             .sort((a, b) => a.index - b.index)
             .map((member: TeamMember) => (
               <div

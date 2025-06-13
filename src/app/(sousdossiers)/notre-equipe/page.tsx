@@ -2,6 +2,7 @@
 
 import React, { Suspense } from "react";
 import BoardMembersSection from "./_components/board";
+import AssoMembersSection from "./_components/asso";
 import TeamsSection from "./_components/teams";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -10,6 +11,10 @@ export default function TeamPage() {
     <main className="container mx-auto py-12 px-4 space-y-16">
       <Suspense fallback={<TeamSectionSkeleton />}>
         <BoardMembersSection />
+      </Suspense>
+
+      <Suspense fallback={<TeamSectionSkeleton />}>
+        <AssoMembersSection />
       </Suspense>
 
       <Suspense fallback={<TeamSectionSkeleton />}>
