@@ -4,7 +4,6 @@ import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import Footer from "./_components/footer";
 import GlobalBreadcrumb from "./_components/GlobalBreadcrumb";
-import { SidebarStateProvider } from "@/contexts/SidebarStateProvider";
 import { Toaster } from "sonner";
 import { Providers } from "@/lib/providers";
 

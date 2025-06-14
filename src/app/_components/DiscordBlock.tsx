@@ -172,7 +172,7 @@ export default function DiscordBlock({
             {/* Membres */}
             <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
               <h4 className="uppercase text-xs font-bold text-gray-400 mb-1">
-                L'équipe Rose Griffon en ligne
+                L&apos;équipe Rose Griffon en ligne
               </h4>
 
               {discordData.members && discordData.members.length > 0 ? (
