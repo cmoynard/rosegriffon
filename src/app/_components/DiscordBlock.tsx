@@ -172,14 +172,13 @@ export default function DiscordBlock({
             {/* Membres */}
             <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
               <h4 className="uppercase text-xs font-bold text-gray-400 mb-1">
-                Quelques membres en ligne
+                L&apos;équipe Rose Griffon en ligne
               </h4>
 
               {discordData.members && discordData.members.length > 0 ? (
                 <div className="space-y-1">
                   {discordData.members
-                    .sort(() => Math.random() - 0.5)
-                    .slice(0, 50)
+                    .sort((a, b) => a.username.localeCompare(b.username))
                     .map((member, index) => (
                       <div
                         key={index}
@@ -222,7 +221,7 @@ export default function DiscordBlock({
                 </div>
               ) : (
                 <div className="text-center py-4 text-gray-400 text-sm">
-                  Aucun membre en ligne pour le moment
+                  Aucun membre du staff en ligne pour le moment
                 </div>
               )}
             </div>
@@ -248,23 +247,23 @@ export default function DiscordBlock({
   );
 
   return (
-    <div className="flex w-full h-[400px]">
+    <div className="flex flex-col lg:flex-row w-full lg:h-[400px]">
       {isWidgetLeft ? (
         <>
-          <div className="w-1/2 h-full rounded-l-3xl overflow-hidden">
+          <div className="w-full lg:w-1/2 h-[400px] lg:h-full rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl overflow-hidden shadow-lg">
             <CustomDiscordWidget />
           </div>
-          <div className="w-1/2 h-full bg-white p-8 flex items-center rounded-r-3xl shadow-lg">
+          <div className="w-full lg:w-1/2 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl shadow-lg">
             {children}
           </div>
         </>
       ) : (
         <>
-          <div className="w-1/2 h-full bg-white p-8 flex items-center rounded-l-3xl shadow-lg">
-            {children}
-          </div>
-          <div className="w-1/2 h-full rounded-r-3xl overflow-hidden shadow-lg">
+          <div className="w-full lg:w-1/2 h-[400px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-t-none lg:rounded-r-3xl overflow-hidden shadow-lg">
             <CustomDiscordWidget />
+          </div>
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-b-none lg:rounded-l-3xl shadow-lg">
+            {children}
           </div>
         </>
       )}

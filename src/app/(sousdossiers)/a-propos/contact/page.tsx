@@ -98,13 +98,21 @@ export default function ContactPage() {
       const formData = { ...data };
 
       // S'assurer que le fichier est bien un objet File s'il existe
-      if (formData.file && !(formData.file instanceof File)) {
+      if (
+        formData.file !== null &&
+        formData.file !== undefined &&
+        !(formData.file instanceof File)
+      ) {
         // Supprimer le fichier s'il n'est pas valide
-        delete formData.file;
+        formData.file = null;
       }
 
       // Vérifier une dernière fois la taille du fichier
-      if (formData.file && formData.file.size > MAX_FILE_SIZE) {
+      if (
+        formData.file &&
+        formData.file instanceof File &&
+        formData.file.size > MAX_FILE_SIZE
+      ) {
         toast.error("Fichier trop volumineux", {
           description: `La taille maximale autorisée est de ${formatFileSize(
             MAX_FILE_SIZE

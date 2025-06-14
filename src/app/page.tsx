@@ -21,10 +21,10 @@ export default async function Home() {
       <div className="flex flex-col gap-8 px-4 mt-8">
         <FusionBlock isImageLeft={true} image={BanniereRG.src}>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Qu&apos;est-ce que Rose Griffon ?
             </h2>
-            <p className="text-lg">
+            <p className="text-base xl:text-lg">
               Rose Griffon est une association française régie par la loi 1901,
               ayant pour vocation de rassembler les principaux acteurs de la
               communauté Inazuma Eleven ainsi que l&apos;ensemble des passionnés
@@ -36,23 +36,24 @@ export default async function Home() {
         </FusionBlock>
 
         {/* Section des réseaux sociaux */}
-        <div className="flex text-6xl font-bold items-center gap-2">
+        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2">
           <Image
             src={LogoRG}
             alt="Rose Griffon Logo"
-            height={128}
-            width={128}
+            height={100}
+            width={100}
+            className="h-20 w-20 lg:h-32 lg:w-32"
           />
-          Où nous trouver ?
+          <span>Où nous trouver ?</span>
         </div>
 
         {/* Discord */}
         <DiscordBlock>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Discord | Rejoignez notre communauté
             </h2>
-            <p className="text-lg">
+            <p className="text-base lg:text-lg">
               Rejoignez notre serveur Discord pour discuter avec la communauté
               Rose Griffon, participer à nos événements et rester informé de
               toutes nos actualités en temps réel.
@@ -71,7 +72,7 @@ export default async function Home() {
           imageOverlay={
             <div className="absolute inset-0 flex items-center justify-center">
               <svg
-                className="w-24 h-24 text-white"
+                className="w-16 h-16 lg:w-24 lg:h-24 text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -81,10 +82,10 @@ export default async function Home() {
           }
         >
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Twitter | Suivez notre actualité
             </h2>
-            <p className="text-lg">
+            <p className="text-base xl:text-lg">
               Restez informés des dernières actualités et annonces de Rose
               Griffon en nous suivant sur Twitter. Partagez notre contenu et
               rejoignez la conversation avec notre communauté.
@@ -112,8 +113,10 @@ export default async function Home() {
         {/* TikTok */}
         <FusionBlock isImageLeft={false} image={BanniereTiktok.src}>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">TikTok | Suivez nos vidéos</h2>
-            <p className="text-lg">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
+              TikTok | Suivez nos vidéos
+            </h2>
+            <p className="text-base xl:text-lg">
               Découvrez notre contenu court et dynamique sur TikTok. Des moments
               forts de nos événements, des coulisses de l&apos;association et
               bien plus encore.
@@ -138,17 +141,18 @@ export default async function Home() {
           </div>
         </FusionBlock>
 
-        <div className="flex text-6xl font-bold items-center gap-2">
+        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2">
           <Image
             src={LogoRG}
             alt="Rose Griffon Logo"
-            height={128}
-            width={128}
+            height={100}
+            width={100}
+            className="h-20 w-20 lg:h-32 lg:w-32"
           />
-          Nos projets
+          <span>Nos projets</span>
           <a
             href="/projects"
-            className="ml-4 text-lg font-medium bg-slate-800 text-white px-4 py-2 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md"
+            className="ml-0 lg:ml-4 mt-4 lg:mt-0 text-lg font-medium bg-slate-800 text-white px-4 py-2 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md"
           >
             Voir plus
             <ArrowRight className="w-4 h-4" />
@@ -158,10 +162,10 @@ export default async function Home() {
         {/* Azalée */}
         <FusionBlock isImageLeft={true} image={BanniereAzalee.src}>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Azalée | Média Inazuma Eleven
             </h2>
-            <p className="text-lg">
+            <p className="text-base xl:text-lg">
               Azalée est un média dédié à l&apos;univers d&apos;Inazuma Eleven,
               appartenant à l&apos;association Rose Griffon. Son objectif est de
               fournir une information en temps réel sur l&apos;actualité de la
@@ -169,7 +173,7 @@ export default async function Home() {
               plusieurs réseaux sociaux, Azalée veille à offrir une couverture
               complète, fiable et accessible à tous les passionnés.
             </p>
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex flex-wrap items-center gap-4 mt-6">
               <a
                 href="https://twitter.com/AzaleeIE"
                 target="_blank"
@@ -207,17 +211,17 @@ export default async function Home() {
         {/* Achilléa */}
         <FusionBlock isImageLeft={false} image={BanniereAchillea.src}>
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Achilléa | Scène compétitive Inazuma Eleven
             </h2>
-            <p className="text-lg">
+            <p className="text-base xl:text-lg">
               Achilléa est la branche e-sport de Rose Griffon, dédiée à la scène
               compétitive d&apos;Inazuma Eleven: Victory Road. Elle a pour
               mission de structurer la compétition de haut niveau autour du jeu,
               à travers des projets ambitieux, et de faire briller les talents
               de la communauté.
             </p>
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
               <a
                 href="https://twitter.com/AchilleaIE"
                 target="_blank"

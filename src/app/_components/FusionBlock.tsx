@@ -19,10 +19,10 @@ export default function FusionBlock({
   const imageUrl = image || "https://placehold.co/600x400";
 
   return (
-    <div className="flex w-full h-[400px]">
+    <div className="flex flex-col lg:flex-row w-full lg:h-[400px]">
       {isImageLeft ? (
         <>
-          <div className="w-1/2 h-full rounded-l-3xl overflow-hidden relative shadow-lg">
+          <div className="w-full lg:w-1/2 h-[300px] lg:h-full rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl overflow-hidden relative shadow-lg">
             <Image
               src={imageUrl}
               alt="Description"
@@ -37,16 +37,13 @@ export default function FusionBlock({
               </div>
             )}
           </div>
-          <div className="w-1/2 h-full bg-white p-8 flex items-center rounded-r-3xl shadow-lg">
+          <div className="w-full lg:w-1/2 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl shadow-lg">
             {children}
           </div>
         </>
       ) : (
         <>
-          <div className="w-1/2 h-full bg-white p-8 flex items-center rounded-l-3xl shadow-lg">
-            {children}
-          </div>
-          <div className="w-1/2 h-full rounded-r-3xl overflow-hidden relative shadow-lg">
+          <div className="w-full lg:w-1/2 h-[300px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-t-none lg:rounded-r-3xl overflow-hidden relative shadow-lg">
             <Image
               src={imageUrl}
               alt="Description"
@@ -60,6 +57,9 @@ export default function FusionBlock({
                 {imageOverlay}
               </div>
             )}
+          </div>
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-b-none lg:rounded-l-3xl shadow-lg">
+            {children}
           </div>
         </>
       )}
