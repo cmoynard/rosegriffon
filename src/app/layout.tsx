@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -6,6 +5,7 @@ import Footer from "./_components/footer";
 import GlobalBreadcrumb from "./_components/GlobalBreadcrumb";
 import { Toaster } from "sonner";
 import { Providers } from "@/lib/providers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Rose Griffon",
