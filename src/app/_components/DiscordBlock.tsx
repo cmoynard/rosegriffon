@@ -172,14 +172,13 @@ export default function DiscordBlock({
             {/* Membres */}
             <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
               <h4 className="uppercase text-xs font-bold text-gray-400 mb-1">
-                Quelques membres en ligne
+                L'équipe Rose Griffon en ligne
               </h4>
 
               {discordData.members && discordData.members.length > 0 ? (
                 <div className="space-y-1">
                   {discordData.members
-                    .sort(() => Math.random() - 0.5)
-                    .slice(0, 50)
+                    .sort((a, b) => a.username.localeCompare(b.username))
                     .map((member, index) => (
                       <div
                         key={index}
@@ -222,7 +221,7 @@ export default function DiscordBlock({
                 </div>
               ) : (
                 <div className="text-center py-4 text-gray-400 text-sm">
-                  Aucun membre en ligne pour le moment
+                  Aucun membre du staff en ligne pour le moment
                 </div>
               )}
             </div>
