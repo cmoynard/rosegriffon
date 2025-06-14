@@ -22,24 +22,22 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <Providers>
-          <SidebarStateProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <div className="flex flex-col min-h-screen w-full">
-                <main className="flex-1 w-full">
-                  <div className="flex flex-col p-2 gap-2 bg-slate-200 min-h-full w-full overflow-x-hidden">
-                    <div className="flex gap-2 items-center">
-                      <SidebarTrigger />
-                      <GlobalBreadcrumb />
-                    </div>
-                    <div className="flex-1 w-full">{children}</div>
+          <AppSidebar />
+          <SidebarInset>
+            <div className="flex flex-col min-h-screen w-full">
+              <main className="flex-1 w-full">
+                <div className="flex flex-col p-2 gap-2 bg-slate-200 min-h-full w-full overflow-x-hidden">
+                  <div className="flex gap-2 items-center">
+                    <SidebarTrigger className="md:hidden" />
+                    <GlobalBreadcrumb />
                   </div>
-                </main>
-                <Footer />
-              </div>
-            </SidebarInset>
-            <Toaster richColors position="top-right" />
-          </SidebarStateProvider>
+                  <div className="flex-1 w-full">{children}</div>
+                </div>
+              </main>
+              <Footer />
+            </div>
+          </SidebarInset>
+          <Toaster richColors position="top-right" />
         </Providers>
       </body>
     </html>

@@ -28,6 +28,7 @@ import {
   SidebarSeparator,
   SidebarMenuSub,
   SidebarMenuSubButton,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -115,10 +116,87 @@ const contact = [
   },
 ];
 
+// Réseaux sociaux
+const socialLinks = [
+  {
+    name: "Discord",
+    url: "https://discord.gg/rosegriffon",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+      >
+        <path d="M18 9a5 5 0 0 0-5-5H9a5 5 0 0 0-5 5v7a5 5 0 0 0 5 5h4" />
+        <circle cx="15" cy="12" r="1" />
+        <circle cx="18" cy="10" r="1" />
+        <circle cx="18" cy="14" r="1" />
+        <circle cx="21" cy="12" r="1" />
+      </svg>
+    ),
+    color:
+      "text-[#FFFFFF] hover:bg-[#5865F2] hover:text-[#FFFFFF] bg-[#5865F2]",
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/Rose_Griffon",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+      >
+        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+      </svg>
+    ),
+    color:
+      "bg-[#1DA1F2] hover:bg-[#1DA1F2] text-[#FFFFFF] hover:text-[#FFFFFF]",
+  },
+  {
+    name: "TikTok",
+    url: "https://www.tiktok.com/@rose_griffon",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+      >
+        <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+        <path d="M15 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+        <path d="M15 2v14" />
+        <path d="M9 16v-5" />
+        <path d="M12 12h5" />
+      </svg>
+    ),
+    color: "text-white hover:text-white bg-[#000000] hover:bg-[#000000]",
+  },
+];
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarContent>
+      <SidebarContent className="overflow-y-auto overflow-x-hidden">
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
@@ -210,6 +288,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter className="mt-auto">
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
+            Nous suivre
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {socialLinks.map((social) => (
+                <SidebarMenuItem key={social.name}>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={social.name}
+                    className={social.color}
+                  >
+                    <Link href={social.url || "/"} className={social.color}>
+                      <social.icon height={32} width={32} />
+                      <span>{social.name}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarFooter>
     </Sidebar>
   );
 }
