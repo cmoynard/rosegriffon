@@ -10,6 +10,9 @@ import {
   Users2,
   Crown,
   Mailbox,
+  UserCircle,
+  Building,
+  Handshake,
 } from "lucide-react";
 
 import {
@@ -39,8 +42,25 @@ import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
 const asso = [
   {
     title: "Notre équipe",
-    url: "/notre-equipe",
+    collapsible: true,
     icon: Users,
+    items: [
+      {
+        title: "L'association",
+        url: "/notre-equipe/association",
+        icon: Building,
+      },
+      {
+        title: "Le Staff RG",
+        url: "/notre-equipe/staff",
+        icon: UserCircle,
+      },
+      {
+        title: "Les collaborateurs",
+        url: "/notre-equipe/collaborateurs",
+        icon: Handshake,
+      },
+    ],
   },
   {
     title: "Nos projets",
