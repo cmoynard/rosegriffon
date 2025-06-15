@@ -24,7 +24,7 @@ export default function RejoindreRGPage() {
           chacun de contribuer selon ses disponibilités et compétences.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
           {/* Conditions d'intégration */}
           <Card className="border-l-4 border-l-rose-500">
             <CardHeader>
@@ -34,29 +34,35 @@ export default function RejoindreRGPage() {
             </CardHeader>
 
             <CardContent>
-              <p className="text-lg">
-                Pour rejoindre notre équipe, nous recherchons des personnes :
+              <p className="text-lg border-b pb-3">
+                Pour rejoindre l&apos;association, il faut être{" "}
+                <span className="font-bold">légalement majeur</span>. Chaque
+                membre doit fournir certaines informations personnelles (nom,
+                prénom, date de naissance, ville et adresse e-mail) afin de
+                garantir une organisation sérieuse et transparente.
               </p>
-              <ul className="list-disc pl-6 mt-2 space-y-2 text-lg">
-                <li>Passionnées par notre mission et nos valeurs</li>
-                <li>Motivées et prêtes à s&apos;investir dans nos projets</li>
-                <li>
-                  Disposant de compétences pertinentes pour les postes
-                  recherchés
-                </li>
-                <li>
-                  Capables de travailler en équipe et de partager leurs
-                  connaissances
-                </li>
-                <li>
-                  Respectueuses de notre charte éthique et de nos engagements
-                </li>
-              </ul>
-              <p className="mt-4 text-lg">
-                Le processus de recrutement comprend généralement un entretien
-                avec l&apos;équipe concernée, suivi d&apos;une période
-                d&apos;intégration pour vous familiariser avec nos méthodes de
-                travail.
+              <p className="text-lg border-b py-3">
+                L&apos;engagement implique la{" "}
+                <span className="font-bold">
+                  capacité de se déplacer ponctuellement
+                </span>{" "}
+                dans sa région pour participer à des événements physiques (ex :
+                tenue de stand en convention), ou de s&apos;
+                <span className="font-bold">
+                  impliquer dans des événements en ligne
+                </span>{" "}
+                (tournois, lives, projets collectifs). Les membres doivent faire
+                preuve d&apos;
+                <span className="font-bold">organisation</span>, de{" "}
+                <span className="font-bold">sérieux</span>, et être capables
+                d&apos;
+                <span className="font-bold">assumer leurs responsabilités</span>
+                , notamment en cas d&apos;erreur.
+              </p>
+              <p className="text-lg pt-3">
+                Enfin, chacun doit pouvoir apporter une contribution concrète à
+                l&apos;association, qu&apos;elle soit créative, logistique,
+                technique ou humaine.
               </p>
             </CardContent>
           </Card>

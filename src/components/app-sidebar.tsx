@@ -8,8 +8,6 @@ import {
   Users,
   ChevronDown,
   Users2,
-  Crown,
-  Mailbox,
   UserCircle,
   Building,
   Handshake,
@@ -57,8 +55,8 @@ const asso = [
         icon: UserCircle,
       },
       {
-        title: "Les collaborateurs",
-        url: "/notre-equipe/collaborateurs",
+        title: "Les partenaires",
+        url: "/notre-equipe/partenaires",
         icon: Handshake,
       },
     ],
@@ -68,16 +66,16 @@ const asso = [
     collapsible: true,
     icon: Files,
     items: [
-      {
-        title: "Azalée",
-        url: "/projets/azalee",
-        icon: Mailbox,
-      },
-      {
-        title: "Achilléa",
-        url: "/projets/achillea",
-        icon: Crown,
-      },
+      // {
+      //   title: "Azalée",
+      //   url: "/projets/azalee",
+      //   icon: Mailbox,
+      // },
+      // {
+      //   title: "Achilléa",
+      //   url: "/projets/achillea",
+      //   icon: Crown,
+      // },
       {
         title: "Projets communautaire",
         url: "/projets/community",
