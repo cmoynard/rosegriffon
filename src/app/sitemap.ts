@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 // Définition du domaine du site
-const baseUrl = "https://rosegriffon.fr";
+const baseUrl = "https://www.rosegriffon.fr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Pages statiques principales
