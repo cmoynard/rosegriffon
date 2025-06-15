@@ -7,7 +7,7 @@ export default function CommunityPage() {
       <h1 className="text-5xl font-bold mb-6">Projets communautaires</h1>
 
       <div className="flex flex-col gap-4 prose max-w-none mb-8">
-        <p className="font-medium text-lg">
+        <p className="text-lg">
           <strong className="text-2xl">
             Rose Griffon valorise et encourage la créativité collective à
             travers une série d&apos;initiatives pensées pour faire vivre
@@ -15,14 +15,17 @@ export default function CommunityPage() {
           </strong>{" "}
           <br />
           <br />
-          Nos deux <em>Murals communautaires</em> rassemblent des dizaines de
-          créations originales et d&apos;histoires développées autour des
-          personnages inventés par la communauté (OC), formant un véritable
-          univers alternatif d&apos;Inazuma Eleven. Cette dynamique est enrichie
-          par nos concours réguliers — <em>InazumaRG</em>, <em>InazumaSona</em>{" "}
-          ou encore <em>La Route du Sacre</em> — qui invitent chacun à inventer,
-          scénariser ou illustrer leur propre vision d&apos;Inazuma. Enfin, via
-          l&apos;onglet <em>Vitrine Projet</em> sur notre{" "}
+          Nos deux <span className="font-bold">Murals communautaires</span>{" "}
+          rassemblent des dizaines de créations originales et d&apos;histoires
+          développées autour des personnages inventés par la communauté (OC),
+          formant un véritable univers alternatif d&apos;Inazuma Eleven. Cette
+          dynamique est enrichie par nos concours réguliers —{" "}
+          <span className="font-bold">InazumaRG</span>,{" "}
+          <span className="font-bold">InazumaSona</span> ou encore{" "}
+          <span className="font-bold">La Route du Sacre</span> — qui invitent
+          chacun à inventer, scénariser ou illustrer leur propre vision
+          d&apos;Inazuma. Enfin, via l&apos;onglet{" "}
+          <span className="font-bold">Vitrine Projet</span> sur notre{" "}
           <Link
             href="https://discord.gg/rosegriffon"
             target="_blank"
