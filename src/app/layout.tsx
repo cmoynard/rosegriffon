@@ -69,14 +69,14 @@ export default function RootLayout({
                 <SidebarTrigger />
                 <GlobalBreadcrumb />
               </div>
-              <main className="flex-1 w-full">
+              <div className="flex-1 w-full">
                 <div className="flex flex-col p-2 gap-2 bg-slate-200 min-h-full w-full overflow-x-hidden">
                   <div className="hidden md:flex gap-2 items-center">
                     <GlobalBreadcrumb />
                   </div>
                   <div className="flex-1 w-full">{children}</div>
                 </div>
-              </main>
+              </div>
               <Footer />
             </div>
           </SidebarInset>
