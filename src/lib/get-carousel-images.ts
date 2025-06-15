@@ -11,6 +11,7 @@ export type CarouselData = {
   metadata: {
     title: string;
     href: string;
+    newTab?: boolean;
   };
   url: string;
 };

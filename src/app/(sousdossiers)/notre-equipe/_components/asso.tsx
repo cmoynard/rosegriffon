@@ -72,7 +72,7 @@ export default function AssoMembersSection() {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 mt-6">
+      <div className="flex flex-wrap justify-center gap-6 mt-6">
         {isLoading ? (
           <div className="flex flex-wrap justify-center gap-4">
             {[...Array(8)].map((_, index) => (
@@ -106,7 +106,6 @@ export default function AssoMembersSection() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold">{member.name}</h3>
-                  <p className="text-xl text-rose-700">{member.role}</p>
                 </div>
               </div>
             ))
