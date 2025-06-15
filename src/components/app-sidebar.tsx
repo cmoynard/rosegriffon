@@ -205,7 +205,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <Collapsible className="w-full group/collapsible">
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton tooltip={item.title}>
-                          <item.icon className="text-white" />
+                          <item.icon />
                           <span>{item.title}</span>
                           <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
                         </SidebarMenuButton>
@@ -213,24 +213,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <CollapsibleContent>
                         <SidebarMenuSub>
                           {item.items?.map((subItem) => (
-                            <SidebarMenuSubItem
-                              key={subItem.title}
-                              className="w-full"
-                            >
-                              <SidebarMenuSubButton asChild>
-                                <Link
-                                  href={subItem.url || "/"}
-                                  className="text-white"
-                                >
-                                  <subItem.icon
-                                    height={32}
-                                    width={32}
-                                    className="text-white stroke-white"
-                                  />
-                                  <span>{subItem.title}</span>
-                                </Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
+                            <SidebarMenuSubButton asChild key={subItem.title}>
+                              <Link
+                                href={subItem.url || "/"}
+                                className="text-white hover:text-black [&:hover>svg]:stroke-black"
+                              >
+                                <subItem.icon color="white" />
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
                           ))}
                         </SidebarMenuSub>
                       </CollapsibleContent>
@@ -238,7 +229,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   ) : (
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <Link href={item.url || "/"} className="text-white">
-                        <item.icon className="text-white" />
+                        <item.icon />
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
