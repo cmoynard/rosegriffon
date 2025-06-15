@@ -157,7 +157,7 @@ export default function DiscordBlock({
               </div>
               <h3 className="font-bold text-lg">{discordData.name}</h3>
             </div>
-            <div className="flex items-center">
+            <div className="items-center hidden md:flex">
               <div className="text-sm text-gray-300 mr-2">
                 <span className="inline-block bg-green-500 w-2 h-2 rounded-full mr-1"></span>
                 <span>{discordData.presence_count} en ligne</span>
