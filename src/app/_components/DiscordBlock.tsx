@@ -259,10 +259,10 @@ export default function DiscordBlock({
         </>
       ) : (
         <>
-          <div className="w-full lg:w-1/2 h-[400px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-r-3xl overflow-hidden lg:shadow-lg">
+          <div className="w-full lg:w-1/2 h-[400px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-t-none lg:rounded-r-3xl overflow-hidden lg:shadow-lg">
             <CustomDiscordWidget />
           </div>
-          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-l-3xl shadow-lg">
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-br-none lg:rounded-l-3xl shadow-lg">
             {children}
           </div>
         </>
