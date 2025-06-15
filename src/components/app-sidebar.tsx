@@ -23,7 +23,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarFooter,
@@ -37,7 +36,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import LogoRG from "../../public/RG_Logo_V2.5.png";
-import bgRG from "../../public/RG_screens_twitch_ethan.png";
 
 // Menu items.
 const asso = [

@@ -133,25 +133,25 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col mb-8">
-      <div className="flex flex-col gap-8 px-4 py-4">
-        <div className="space-y-4">
-          <h1 className="text-5xl font-bold">Nous contacter</h1>
-          <p className="text-muted-foreground text-lg">
+      <div className="flex flex-col gap-6 px-2 sm:px-4 py-4">
+        <div className="space-y-2 sm:space-y-4">
+          <h1 className="text-3xl sm:text-5xl font-bold">Nous contacter</h1>
+          <p className="text-muted-foreground text-base sm:text-lg">
             Vous avez une question, une suggestion ou souhaitez collaborer avec
             nous ? N&apos;hésitez pas à nous contacter en remplissant le
             formulaire ci-dessous.
           </p>
         </div>
 
-        <div className="border rounded-lg p-8 bg-card">
+        <div className="border rounded-lg p-4 sm:p-8 bg-card">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="flex w-full justify-self-stretch gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem className="">
+                    <FormItem>
                       <FormLabel>Titre du message*</FormLabel>
                       <FormControl>
                         <Input
@@ -171,7 +171,7 @@ export default function ContactPage() {
                   control={form.control}
                   name="subject"
                   render={({ field }) => (
-                    <FormItem className="">
+                    <FormItem>
                       <FormLabel>Sujet*</FormLabel>
                       <Select
                         onValueChange={field.onChange}
@@ -221,12 +221,12 @@ export default function ContactPage() {
                 control={form.control}
                 name="description"
                 render={({ field }) => (
-                  <FormItem className="mb-6">
+                  <FormItem className="mb-4 sm:mb-6">
                     <FormLabel>Description*</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Détaillez votre demande ici..."
-                        className="min-h-[150px] resize-y"
+                        className="min-h-[120px] sm:min-h-[150px] resize-y"
                         {...field}
                       />
                     </FormControl>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                 render={(
                   { field: { value, onChange, ...fieldProps } } // eslint-disable-line @typescript-eslint/no-unused-vars
                 ) => (
-                  <FormItem className="mb-8">
+                  <FormItem className="mb-6 sm:mb-8">
                     <FormLabel>Pièce jointe (optionnel)</FormLabel>
                     <FormControl>
                       <Input
@@ -270,22 +270,23 @@ export default function ContactPage() {
                         {...fieldProps}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et
-                      TXT.
+                    <FormDescription className="text-xs sm:text-sm space-y-1">
+                      <p>
+                        Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et
+                        TXT.
+                      </p>
                       {fileSize > 0 && (
-                        <span
+                        <p
                           className={
                             fileSize > MAX_FILE_SIZE
                               ? "text-red-500 font-medium"
                               : ""
                           }
                         >
-                          {" "}
                           Taille actuelle: {formatFileSize(fileSize)}.
-                        </span>
-                      )}{" "}
-                      Taille maximale: 5MB.
+                        </p>
+                      )}
+                      <p>Taille maximale: 5MB.</p>
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -294,7 +295,7 @@ export default function ContactPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full md:w-auto md:px-8 bg-green-600 hover:bg-green-700 text-base py-2 h-auto"
                 disabled={mutation.isPending}
               >
                 {mutation.isPending

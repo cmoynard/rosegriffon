@@ -4,7 +4,6 @@ import FusionBlock from "./_components/FusionBlock";
 import DiscordBlock from "./_components/DiscordBlock";
 import LogoRG from "../../public/RG_Logo_V2.5.png";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import BanniereRG from "@public/RG_screens_twitch_ethan.png";
 import BanniereAzalee from "@public/Azalée 2.png";
 import BanniereAchillea from "@public/achillea.png";

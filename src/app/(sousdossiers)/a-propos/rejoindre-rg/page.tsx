@@ -1,13 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function RejoindreRGPage() {
   return (
@@ -117,7 +111,7 @@ export default function RejoindreRGPage() {
       </div>
 
       {/* Section "Nos recherches actuelles" */}
-      <div className="mb-12">
+      {/* <div className="mb-12">
         <h2 className="text-4xl font-semibold mb-4">
           Nos recherches actuelles
         </h2>
@@ -173,7 +167,7 @@ export default function RejoindreRGPage() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </div> */}
 
       {/* Lien vers le formulaire de candidature */}
       <div className="border-l-4 border-l-amber-500 rounded-lg p-8 bg-card">
