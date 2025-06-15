@@ -5,12 +5,15 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import getTeamMembers from "@/lib/get-team-members";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type TeamMember = {
   name: string;
   role: string;
   image?: string;
   index: number;
+  link?: string;
 };
 
 // Image component with skeleton loader
@@ -50,10 +53,12 @@ export default function CollaborateursPage() {
     queryKey: ["collaborateurs"],
     queryFn: async () => {
       const response = await getTeamMembers("collabteam");
+      console.log("Données des partenaires:", response);
       return response.map((member) => ({
         name: member.metadata.memberName,
         role: member.metadata.memberRole,
         index: member.metadata.memberIndex,
+        link: member.metadata.memberLink || "",
         image: member.url,
       }));
     },
@@ -106,6 +111,17 @@ export default function CollaborateursPage() {
                   <div>
                     <h3 className="text-2xl font-semibold">{member.name}</h3>
                     <p className="text-xl text-rose-700">{member.role}</p>
+                    {member.link && member.link.trim() !== "" && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="text-blue-600 hover:text-blue-800 hover:underline"
+                      >
+                        <Link href={member.link} target="_blank">
+                          Visiter le site
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))

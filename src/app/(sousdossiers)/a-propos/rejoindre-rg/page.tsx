@@ -1,13 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function RejoindreRGPage() {
   return (
@@ -78,14 +72,6 @@ export default function RejoindreRGPage() {
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 <div className="border-b pb-3">
-                  <h3 className="font-bold mb-1 text-lg">Temps plein</h3>
-                  <p className="text-lg">
-                    Pour ceux qui souhaitent s&apos;investir pleinement dans nos
-                    projets et contribuer quotidiennement à notre mission.
-                  </p>
-                </div>
-
-                <div className="border-b pb-3">
                   <h3 className="font-bold mb-1 text-lg">Bénévolat régulier</h3>
                   <p className="text-lg">
                     Engagement hebdomadaire ou mensuel sur des projets
@@ -102,12 +88,10 @@ export default function RejoindreRGPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-bold mb-1 text-lg">
-                    Stage / Service civique
-                  </h3>
+                  <h3 className="font-bold mb-1 text-lg">Stage</h3>
                   <p className="text-lg">
                     Pour les étudiants ou jeunes diplômés souhaitant acquérir
-                    une expérience professionnelle enrichissante.
+                    une expérience enrichissante.
                   </p>
                 </div>
               </div>
@@ -117,7 +101,7 @@ export default function RejoindreRGPage() {
       </div>
 
       {/* Section "Nos recherches actuelles" */}
-      <div className="mb-12">
+      {/* <div className="mb-12">
         <h2 className="text-4xl font-semibold mb-4">
           Nos recherches actuelles
         </h2>
@@ -173,7 +157,7 @@ export default function RejoindreRGPage() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </div> */}
 
       {/* Lien vers le formulaire de candidature */}
       <div className="border-l-4 border-l-amber-500 rounded-lg p-8 bg-card">

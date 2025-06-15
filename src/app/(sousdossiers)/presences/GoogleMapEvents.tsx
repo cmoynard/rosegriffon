@@ -30,6 +30,10 @@ export interface EventData {
   name: string;
   location: string;
   date: string;
+  startDate: Date;
+  endDate: Date;
+  startDateFormatted: string;
+  endDateFormatted: string;
   description: string;
   position: { lat: number; lng: number };
   type: EventType;
@@ -149,16 +153,48 @@ async function fetchGoogleCalendarEvents(): Promise<EventData[]> {
         year: "numeric",
       };
 
+      const timeOptions: Intl.DateTimeFormatOptions = {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+
       // Gestion des erreurs de formatage de date
       let formattedDate: string;
+      let startDateFormatted: string;
+      let endDateFormatted: string;
+
       try {
         formattedDate = eventStart.toLocaleDateString("fr-FR", dateOptions);
-        // Vérifier si la date est valide
+
+        // Formater les dates de début et de fin avec l'heure si disponible
+        if (event.start.dateTime) {
+          startDateFormatted = eventStart.toLocaleString("fr-FR", timeOptions);
+        } else {
+          startDateFormatted = eventStart.toLocaleDateString(
+            "fr-FR",
+            dateOptions
+          );
+        }
+
+        if (event.end.dateTime) {
+          endDateFormatted = eventEnd.toLocaleString("fr-FR", timeOptions);
+        } else {
+          endDateFormatted = eventEnd.toLocaleDateString("fr-FR", dateOptions);
+        }
+
+        // Vérifier si les dates sont valides
         if (formattedDate === "Invalid Date") {
           formattedDate = "Date non spécifiée";
+          startDateFormatted = "Date non spécifiée";
+          endDateFormatted = "Date non spécifiée";
         }
       } catch (error) {
         formattedDate = "Date non spécifiée";
+        startDateFormatted = "Date non spécifiée";
+        endDateFormatted = "Date non spécifiée";
         console.error("Erreur lors du formatage de la date:", error);
       }
 
@@ -171,6 +207,10 @@ async function fetchGoogleCalendarEvents(): Promise<EventData[]> {
         name: event.summary || "Événement sans titre",
         location: event.location || "Lieu non précisé",
         date: formattedDate,
+        startDate: eventStart,
+        endDate: eventEnd,
+        startDateFormatted,
+        endDateFormatted,
         description: event.description || "Pas de description disponible",
         position: { lat, lng },
         type,
@@ -230,6 +270,7 @@ export default function GoogleMapEvents() {
   const mapRef = useRef<HTMLDivElement>(null);
   const { events, isLoading } = useEvents();
   const [mapsLoaded, setMapsLoaded] = useState(false);
+  const [isGeocodingInProgress, setIsGeocodingInProgress] = useState(false);
 
   useEffect(() => {
     // Fonction pour charger l'API Google Maps (uniquement pour l'affichage de la carte)
@@ -262,6 +303,16 @@ export default function GoogleMapEvents() {
       }
     };
   }, []);
+
+  // Vérifier si le géocodage est en cours
+  useEffect(() => {
+    if (events.length > 0) {
+      const hasEventsNeedingGeocoding = events.some(
+        (event) => event.needsGeocoding
+      );
+      setIsGeocodingInProgress(hasEventsNeedingGeocoding);
+    }
+  }, [events]);
 
   // Effet pour initialiser la carte quand les événements sont chargés et l'API Maps est prête
   useEffect(() => {
@@ -320,7 +371,10 @@ export default function GoogleMapEvents() {
       const infoContent = `
         <div style="padding: 10px; max-width: 300px;">
           <h3 style="font-size: 18px; margin-bottom: 5px;">${event.name}</h3>
-          <p style="color: #666; margin-bottom: 8px;">${event.date} • ${event.location}</p>
+          <p style="color: #666; margin-bottom: 8px;">
+            <strong>Période:</strong> ${event.startDateFormatted} - ${event.endDateFormatted}
+          </p>
+          <p style="color: #666; margin-bottom: 8px;">${event.location}</p>
           <p style="color: #4b5563; margin-bottom: 8px;"><strong>Type :</strong> ${event.category}</p>
           <p>${event.description}</p>
         </div>
@@ -341,13 +395,22 @@ export default function GoogleMapEvents() {
     });
   }, [events, mapsLoaded]);
 
+  const isMapLoading = isLoading || !mapsLoaded || isGeocodingInProgress;
+  const loadingMessage = isLoading
+    ? "Chargement des événements..."
+    : !mapsLoaded
+    ? "Chargement de la carte..."
+    : isGeocodingInProgress
+    ? "Localisation des adresses en cours..."
+    : "Chargement...";
+
   return (
     <>
-      {isLoading && (
+      {isMapLoading && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-white p-4 rounded-md shadow-md">
           <div className="flex items-center justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-700"></div>
-            <p className="ml-2">Chargement des événements...</p>
+            <p className="ml-2">{loadingMessage}</p>
           </div>
         </div>
       )}
@@ -360,6 +423,7 @@ export default function GoogleMapEvents() {
 export function useEvents() {
   const [events, setEvents] = useState<EventData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGeocodingLoading, setIsGeocodingLoading] = useState(false);
 
   // Effet pour charger les événements
   useEffect(() => {
@@ -381,66 +445,77 @@ export function useEvents() {
   // Effet pour géocoder les adresses après le chargement des événements
   useEffect(() => {
     if (events.length > 0) {
-      console.log("Début du géocodage pour", events.length, "événements");
-      console.log(
-        "Événements à géocoder:",
-        events.filter((e) => e.needsGeocoding).map((e) => e.location)
-      );
+      const eventsToGeocode = events.filter((e) => e.needsGeocoding);
 
-      const geocodeEvents = async () => {
-        const updatedEvents = [...events];
-        let hasChanges = false;
+      if (eventsToGeocode.length > 0) {
+        setIsGeocodingLoading(true);
+        console.log(
+          "Début du géocodage pour",
+          eventsToGeocode.length,
+          "événements"
+        );
+        console.log(
+          "Événements à géocoder:",
+          eventsToGeocode.map((e) => e.location)
+        );
 
-        for (let i = 0; i < updatedEvents.length; i++) {
-          const event = updatedEvents[i];
-          if (event.needsGeocoding) {
-            console.log(`Tentative de géocodage pour: "${event.location}"`);
+        const geocodeEvents = async () => {
+          const updatedEvents = [...events];
+          let hasChanges = false;
 
-            // Attendre 1 seconde entre chaque requête pour respecter les limites de Nominatim
-            if (i > 0) {
-              await new Promise((resolve) => setTimeout(resolve, 1000));
-            }
+          for (let i = 0; i < updatedEvents.length; i++) {
+            const event = updatedEvents[i];
+            if (event.needsGeocoding) {
+              console.log(`Tentative de géocodage pour: "${event.location}"`);
 
-            try {
-              const coordinates = await geocodeWithNominatim(event.location);
+              // Attendre 1 seconde entre chaque requête pour respecter les limites de Nominatim
+              if (i > 0) {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+              }
 
-              if (coordinates) {
-                updatedEvents[i] = {
-                  ...event,
-                  position: coordinates,
-                  needsGeocoding: false,
-                };
-                hasChanges = true;
-                console.log(
-                  `✅ Géocodage réussi pour "${event.location}": lat=${coordinates.lat}, lng=${coordinates.lng}`
-                );
-              } else {
-                console.warn(
-                  `⚠️ Aucun résultat trouvé pour "${event.location}"`
+              try {
+                const coordinates = await geocodeWithNominatim(event.location);
+
+                if (coordinates) {
+                  updatedEvents[i] = {
+                    ...event,
+                    position: coordinates,
+                    needsGeocoding: false,
+                  };
+                  hasChanges = true;
+                  console.log(
+                    `✅ Géocodage réussi pour "${event.location}": lat=${coordinates.lat}, lng=${coordinates.lng}`
+                  );
+                } else {
+                  console.warn(
+                    `⚠️ Aucun résultat trouvé pour "${event.location}"`
+                  );
+                }
+              } catch (error) {
+                console.error(
+                  `❌ Erreur de géocodage pour "${event.location}":`,
+                  error
                 );
               }
-            } catch (error) {
-              console.error(
-                `❌ Erreur de géocodage pour "${event.location}":`,
-                error
-              );
             }
           }
-        }
 
-        if (hasChanges) {
-          console.log(
-            "Mise à jour des événements avec les nouvelles coordonnées"
-          );
-          setEvents(updatedEvents);
-        } else {
-          console.log("Aucun changement après géocodage");
-        }
-      };
+          if (hasChanges) {
+            console.log(
+              "Mise à jour des événements avec les nouvelles coordonnées"
+            );
+            setEvents(updatedEvents);
+          } else {
+            console.log("Aucun changement après géocodage");
+          }
 
-      geocodeEvents();
+          setIsGeocodingLoading(false);
+        };
+
+        geocodeEvents();
+      }
     }
   }, [events, setEvents]);
 
-  return { events, isLoading };
+  return { events, isLoading: isLoading || isGeocodingLoading };
 }

@@ -21,21 +21,21 @@ export default function PresencesPage() {
           manifestations pour promouvoir nos activités et rencontrer notre
           public.
         </p>
-        <p className="text-lg">
+        <p className="text-lg hidden sm:block">
           La carte ci-dessous vous permet de visualiser nos prochaines
           présences. Cliquez sur un marqueur pour obtenir plus
           d&apos;informations sur l&apos;événement.
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600">
+      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600 hidden md:block">
         <h2 className="text-4xl font-semibold mb-4">Carte des événements</h2>
         <div
           id="map-container"
           className="w-full h-[600px] bg-gray-100 rounded-md relative"
         >
           <GoogleMapEvents />
-          <div className="absolute top-4 left-4 bg-white p-3 rounded-md shadow-md z-10">
+          <div className="absolute bottom-8 left-4 bg-white p-3 rounded-md shadow-md z-10">
             <h3 className="text-sm font-medium mb-2">Légende</h3>
             <div className="flex flex-col gap-2">
               <div className="border-b pb-2">
@@ -50,7 +50,7 @@ export default function PresencesPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-                  <span className="text-sm">Événement du jour</span>
+                  <span className="text-sm">Événement en cours</span>
                 </div>
               </div>
               <div>
@@ -74,6 +74,12 @@ export default function PresencesPage() {
                     S
                   </div>
                   <span className="text-sm">Stand associatif</span>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center text-white text-xs font-bold">
+                    C
+                  </div>
+                  <span className="text-sm">Conventions</span>
                 </div>
               </div>
             </div>
@@ -103,7 +109,7 @@ function EventsList({
     return (
       <div className="flex items-center justify-center py-8">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-700 mr-2"></div>
-        <p>Chargement des événements...</p>
+        <p>Chargement des événements et localisation en cours...</p>
       </div>
     );
   }
@@ -122,34 +128,17 @@ function EventsList({
     if (a.type === "today" && b.type !== "today") return -1;
     if (a.type !== "today" && b.type === "today") return 1;
 
-    // Si les deux dates sont "Date non spécifiée", ne pas changer l'ordre
-    if (a.date === "Date non spécifiée" && b.date === "Date non spécifiée")
-      return 0;
-
-    // Mettre les dates non spécifiées à la fin
-    if (a.date === "Date non spécifiée") return 1;
-    if (b.date === "Date non spécifiée") return -1;
-
-    // Pour les dates valides, essayer de les comparer
+    // Comparer les dates de début
     try {
-      // Extraire les parties de la date (jour, mois, année)
-      const aParts = a.date.split(" ");
-      const bParts = b.date.split(" ");
-
-      // Créer des objets Date pour comparaison
-      const aDate = new Date(
-        `${aParts[2]}-${getMonthNumber(aParts[1])}-${aParts[0]}`
-      );
-      const bDate = new Date(
-        `${bParts[2]}-${getMonthNumber(bParts[1])}-${bParts[0]}`
-      );
-
       // Vérifier si les dates sont valides
-      if (isNaN(aDate.getTime()) || isNaN(bDate.getTime())) {
-        return 0; // Conserver l'ordre existant si l'une des dates est invalide
-      }
+      const aTime = a.startDate.getTime();
+      const bTime = b.startDate.getTime();
 
-      return aDate.getTime() - bDate.getTime();
+      if (isNaN(aTime) && isNaN(bTime)) return 0;
+      if (isNaN(aTime)) return 1;
+      if (isNaN(bTime)) return -1;
+
+      return aTime - bTime;
     } catch (error) {
       console.error("Erreur lors du tri des événements:", error);
       return 0; // En cas d'erreur, conserver l'ordre existant
@@ -166,33 +155,20 @@ function EventsList({
           } pl-4 py-2`}
         >
           <h3 className="text-xl font-medium">{event.name}</h3>
-          <p className="text-gray-600">
-            {event.date} • {event.location}
-          </p>
+          <div className="text-gray-600">
+            <p>
+              <span className="font-medium">Début:</span>{" "}
+              {event.startDateFormatted}
+            </p>
+            <p>
+              <span className="font-medium">Fin:</span> {event.endDateFormatted}
+            </p>
+            <p>{event.location}</p>
+          </div>
           <p className="text-gray-600 text-sm">Type : {event.category}</p>
           <p className="mt-1">{event.description}</p>
         </div>
       ))}
     </div>
   );
-}
-
-// Fonction utilitaire pour convertir le nom du mois en français en numéro
-function getMonthNumber(monthName: string): string {
-  const months: Record<string, string> = {
-    janvier: "01",
-    février: "02",
-    mars: "03",
-    avril: "04",
-    mai: "05",
-    juin: "06",
-    juillet: "07",
-    août: "08",
-    septembre: "09",
-    octobre: "10",
-    novembre: "11",
-    décembre: "12",
-  };
-
-  return months[monthName.toLowerCase()] || "01";
 }
