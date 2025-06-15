@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import GoogleMapEvents, { EventData, useEvents } from "./GoogleMapEvents";
 
 export default function PresencesPage() {
@@ -55,7 +54,9 @@ export default function PresencesPage() {
                 </div>
               </div>
               <div>
-                <h4 className="text-xs font-medium mb-1">Type d'événement</h4>
+                <h4 className="text-xs font-medium mb-1">
+                  Type d&apos;événement
+                </h4>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center text-white text-xs font-bold">
                     M
@@ -150,6 +151,7 @@ function EventsList({
 
       return aDate.getTime() - bDate.getTime();
     } catch (error) {
+      console.error("Erreur lors du tri des événements:", error);
       return 0; // En cas d'erreur, conserver l'ordre existant
     }
   });

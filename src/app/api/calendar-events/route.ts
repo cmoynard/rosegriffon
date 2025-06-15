@@ -4,12 +4,9 @@ import { google, calendar_v3 } from "googleapis";
 // Configuration des scopes pour l'API Google Calendar
 const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
-export async function GET(request: NextRequest) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(_request: NextRequest) {
   try {
-    // Récupérer la catégorie depuis les paramètres de requête
-    const searchParams = request.nextUrl.searchParams;
-    const category = searchParams.get("category") || "Conventions";
-
     // Initialiser l'authentification avec Google
     const auth = new google.auth.GoogleAuth({
       credentials: {

@@ -159,6 +159,7 @@ async function fetchGoogleCalendarEvents(): Promise<EventData[]> {
         }
       } catch (error) {
         formattedDate = "Date non spécifiée";
+        console.error("Erreur lors du formatage de la date:", error);
       }
 
       // Déterminer la catégorie à partir de la description

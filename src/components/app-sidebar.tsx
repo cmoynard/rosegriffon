@@ -8,8 +8,6 @@ import {
   Users,
   ChevronDown,
   Users2,
-  Crown,
-  Mailbox,
   UserCircle,
   Building,
   Handshake,
