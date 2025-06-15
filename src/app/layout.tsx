@@ -9,8 +9,47 @@ import { Metadata } from "next";
 import SidebarNavigationHandler from "./_components/SidebarNavigationHandler";
 
 export const metadata: Metadata = {
-  title: "Rose Griffon",
-  description: "Site officiel de l'association Rose Griffon",
+  title: "Rose Griffon | Association Inazuma Eleven France",
+  description:
+    "Site officiel de l'association Rose Griffon, rassemblant la communauté Inazuma Eleven en France. Découvrez nos événements, projets et rejoignez-nous !",
+  keywords:
+    "Rose Griffon, Inazuma Eleven, association, communauté, gaming, France, Azalée, Achilléa",
+  authors: [{ name: "Rose Griffon" }],
+  creator: "Association Rose Griffon",
+  publisher: "Association Rose Griffon",
+  formatDetection: {
+    telephone: false,
+  },
+  metadataBase: new URL("https://rosegriffon.fr"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Rose Griffon | Association Inazuma Eleven France",
+    description:
+      "Site officiel de l'association Rose Griffon, rassemblant la communauté Inazuma Eleven en France. Découvrez nos événements, projets et rejoignez-nous !",
+    url: "https://rosegriffon.fr",
+    siteName: "Rose Griffon",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rose Griffon | Association Inazuma Eleven France",
+    description:
+      "Site officiel de l'association Rose Griffon, rassemblant la communauté Inazuma Eleven en France",
+    creator: "@rose_griffon",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
