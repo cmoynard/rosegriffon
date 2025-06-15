@@ -65,11 +65,10 @@ export default function CollaborateursPage() {
     <main className="container mx-auto py-12 px-4">
       <section className="flex flex-col gap-8">
         <div className="text-center space-y-4">
-          <h2 className="text-5xl font-bold">Nos Collaborateurs</h2>
+          <h2 className="text-5xl font-bold">Nos partenaires</h2>
           <p className="text-xl max-w-3xl mx-auto">
-            Découvrez les talentueux collaborateurs qui contribuent à enrichir
-            l&apos;univers de Rose Griffon par leur expertise et leur
-            créativité.
+            Découvrez les partenaires qui contribuent à enrichir l&apos;univers
+            de Rose Griffon par leur expertise et leur créativité.
           </p>
         </div>
 
