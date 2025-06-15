@@ -7,7 +7,9 @@ import Mural2 from "../../../../../public/mural2.png";
 export default function CommunityPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-5xl font-bold mb-6">Projets communautaires</h1>
+      <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+        Projets communautaires
+      </h1>
 
       <div className="flex flex-col gap-4 prose max-w-none mb-8">
         <p className="text-lg">
