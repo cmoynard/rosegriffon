@@ -2,7 +2,7 @@ import React from "react";
 import HomeCarousel from "./_components/HomeCarousel";
 import FusionBlock from "./_components/FusionBlock";
 import DiscordBlock from "./_components/DiscordBlock";
-import LogoRG from "../../public/logo-rg-vide-mais-blanc.png";
+import LogoRG from "../../public/RG_Logo_V2.5.png";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import BanniereRG from "@public/RG_screens_twitch_ethan.png";
@@ -150,13 +150,6 @@ export default async function Home() {
             className="h-20 w-20 lg:h-32 lg:w-32"
           />
           <span>Nos projets</span>
-          <a
-            href="/projects"
-            className="ml-0 lg:ml-4 mt-4 lg:mt-0 text-lg font-medium bg-slate-800 text-white px-4 py-2 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md"
-          >
-            Voir plus
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
 
         {/* Azalée */}
