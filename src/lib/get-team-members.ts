@@ -7,6 +7,7 @@ export type TeamMemberResponse = {
     memberName: string;
     memberRole: string;
     memberIndex: number;
+    memberLink: string;
   };
   url: string;
 };

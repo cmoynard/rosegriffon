@@ -27,6 +27,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarFooter,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -36,6 +37,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import LogoRG from "../../public/RG_Logo_V2.5.png";
+import bgRG from "../../public/RG_screens_twitch_ethan.png";
 
 // Menu items.
 const asso = [
@@ -77,7 +79,7 @@ const asso = [
       //   icon: Crown,
       // },
       {
-        title: "Projets communautaire",
+        title: "Communautaire",
         url: "/projets/community",
         icon: Users2,
       },
@@ -148,12 +150,32 @@ const socialLinks = [
     ),
     color: "text-white hover:text-white bg-[#000000] hover:bg-[#000000]",
   },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com/@RoseGriffon",
+    icon: () => (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+      </svg>
+    ),
+    color: "text-white hover:text-white bg-[#FF0000] hover:bg-[#FF0000]",
+  },
+  {
+    name: "Twitch",
+    url: "https://www.twitch.tv/rose_griffontv",
+    icon: () => (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" />
+      </svg>
+    ),
+    color: "text-white hover:text-white bg-[#9146FF] hover:bg-[#9146FF]",
+  },
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarContent className="overflow-y-auto overflow-x-hidden">
+      <SidebarContent className="overflow-y-auto overflow-x-hidden bg-red-950 text-white">
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
@@ -174,10 +196,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarHeader>
 
-        <SidebarSeparator />
-
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
+          <SidebarGroupLabel className="text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap text-white">
             L&apos;association
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -196,12 +216,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <CollapsibleContent>
                         <SidebarMenuSub>
                           {item.items?.map((subItem) => (
-                            <li key={subItem.title}>
+                            <li key={subItem.title} className="w-full">
                               <SidebarMenuSubButton asChild>
-                                <Link href={subItem.url}>
-                                  <subItem.icon />
-                                  <span>{subItem.title}</span>
-                                </Link>
+                                <SidebarMenuSubItem>
+                                  <SidebarMenuButton
+                                    asChild
+                                    tooltip={subItem.title}
+                                  >
+                                    <Link
+                                      href={subItem.url || "/"}
+                                      className="text-white"
+                                    >
+                                      <subItem.icon height={32} width={32} />
+                                      <span>{subItem.title}</span>
+                                    </Link>
+                                  </SidebarMenuButton>
+                                </SidebarMenuSubItem>
                               </SidebarMenuSubButton>
                             </li>
                           ))}
@@ -221,9 +251,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarSeparator />
+
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
+          <SidebarGroupLabel className="text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap text-white">
             Nous concernant
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -244,33 +274,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <SidebarFooter className="mt-auto">
+          <SidebarGroup>
+            <SidebarGroupLabel className="text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap text-white">
+              Nous suivre
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {socialLinks.map((social) => (
+                  <SidebarMenuItem key={social.name}>
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={social.name}
+                      className={social.color}
+                    >
+                      <Link href={social.url || "/"} className={social.color}>
+                        <social.icon />
+                        <span>{social.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarFooter>
       </SidebarContent>
-
-      <SidebarFooter className="mt-auto">
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">
-            Nous suivre
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {socialLinks.map((social) => (
-                <SidebarMenuItem key={social.name}>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={social.name}
-                    className={social.color}
-                  >
-                    <Link href={social.url || "/"} className={social.color}>
-                      <social.icon />
-                      <span>{social.name}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarFooter>
     </Sidebar>
   );
 }

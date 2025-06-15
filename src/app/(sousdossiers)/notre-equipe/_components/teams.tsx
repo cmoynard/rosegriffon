@@ -56,11 +56,11 @@ export default function TeamsSection() {
       // Map team IDs to display names
       const teamConfig: Record<string, string> = {
         loreteam: "Équipe Lore",
-        achilleateam: "Équipe Achilléa",
-        azaleeteam: "Équipe Azalée",
         dessinateurteam: "Équipe Dessinateur",
         productionteam: "Équipe Production",
         socialteam: "Équipe Réseaux",
+        achilleateam: "Équipe Achilléa",
+        azaleeteam: "Équipe Azalée",
       };
 
       const teamIds = Object.keys(teamConfig);
@@ -107,7 +107,7 @@ export default function TeamsSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
         {isLoading ? (
           // Loading skeletons
           [...Array(6)].map((_, index) => (
@@ -133,7 +133,7 @@ export default function TeamsSection() {
           teams.map((team) => (
             <div key={team.name} className="bg-white rounded-xl p-6 shadow-md">
               <h2 className="text-3xl font-bold mb-6">{team.name}</h2>
-              <div className="grid grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {team.members.map((member, index) => (
                   <div
                     key={`${member.name}-${index}`}
