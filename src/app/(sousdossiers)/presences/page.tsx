@@ -17,9 +17,8 @@ export default function PresencesPage() {
       <div className="flex flex-col gap-4 prose max-w-none mb-8">
         <p className="text-lg">
           Retrouvez Rose Griffon lors de différents événements tout au long de
-          l&apos;année. Notre association participe à de nombreuses
-          manifestations pour promouvoir nos activités et rencontrer notre
-          public.
+          l&apos;année. Notre association participe à de nombreux évènements
+          pour promouvoir nos activités et rencontrer notre public.
         </p>
         <p className="text-lg hidden sm:block">
           La carte ci-dessous vous permet de visualiser nos prochaines
@@ -74,12 +73,6 @@ export default function PresencesPage() {
                     S
                   </div>
                   <span className="text-sm">Stand associatif</span>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center text-white text-xs font-bold">
-                    C
-                  </div>
-                  <span className="text-sm">Conventions</span>
                 </div>
               </div>
             </div>
