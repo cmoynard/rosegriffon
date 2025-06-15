@@ -2,8 +2,6 @@ import React from "react";
 import HomeCarousel from "./_components/HomeCarousel";
 import FusionBlock from "./_components/FusionBlock";
 import DiscordBlock from "./_components/DiscordBlock";
-import LogoRG from "../../public/RG_Logo_V2.5.png";
-import Image from "next/image";
 import BanniereRG from "@public/RG_screens_twitch_ethan.png";
 import BanniereAzalee from "@public/Azalée 2.png";
 import BanniereAchillea from "@public/achillea.png";
@@ -35,14 +33,14 @@ export default async function Home() {
         </FusionBlock>
 
         {/* Section des réseaux sociaux */}
-        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2">
-          <Image
+        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2 py-4">
+          {/*<Image
             src={LogoRG}
             alt="Rose Griffon Logo"
             height={100}
             width={100}
             className="h-20 w-20 lg:h-32 lg:w-32"
-          />
+          />*/}
           <span>Où nous trouver ?</span>
         </div>
 
@@ -140,14 +138,14 @@ export default async function Home() {
           </div>
         </FusionBlock>
 
-        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2">
-          <Image
+        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2 py-4">
+          {/*<Image
             src={LogoRG}
             alt="Rose Griffon Logo"
             height={100}
             width={100}
             className="h-20 w-20 lg:h-32 lg:w-32"
-          />
+          />*/}
           <span>Nos projets</span>
         </div>
 

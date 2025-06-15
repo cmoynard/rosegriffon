@@ -88,11 +88,11 @@ const asso = [
     url: "/presences",
     icon: CalendarCheck2,
   },
-  {
-    title: "Charte et engagement",
-    url: "/",
-    icon: ScrollText,
-  },
+  //{
+  //  title: "Charte et engagement",
+  //  url: "/",
+  //  icon: ScrollText,
+  //},
 ];
 
 const contact = [

@@ -21,14 +21,14 @@ export default function PresencesPage() {
           manifestations pour promouvoir nos activités et rencontrer notre
           public.
         </p>
-        <p className="text-lg">
+        <p className="text-lg hidden sm:block">
           La carte ci-dessous vous permet de visualiser nos prochaines
           présences. Cliquez sur un marqueur pour obtenir plus
           d&apos;informations sur l&apos;événement.
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600">
+      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600 hidden md:block">
         <h2 className="text-4xl font-semibold mb-4">Carte des événements</h2>
         <div
           id="map-container"
