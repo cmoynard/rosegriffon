@@ -194,7 +194,7 @@ export default function RejoindreRGPage() {
               <path d="M12 11v6" />
               <path d="M9 14h6" />
             </svg>
-            Accéder au formulaire
+            Formulaire de l&apos;association
           </a>
         </Button>
       </div>
