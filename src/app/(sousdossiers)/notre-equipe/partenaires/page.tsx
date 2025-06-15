@@ -7,6 +7,7 @@ import getTeamMembers from "@/lib/get-team-members";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 type TeamMember = {
   name: string;
@@ -112,15 +113,15 @@ export default function CollaborateursPage() {
                     <h3 className="text-2xl font-semibold">{member.name}</h3>
                     <p className="text-xl text-rose-700">{member.role}</p>
                     {member.link && member.link.trim() !== "" && (
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="text-blue-600 hover:text-blue-800 hover:underline"
-                      >
-                        <Link href={member.link} target="_blank">
+                      <Link href={member.link} className="hover:cursor-pointer">
+                        <Button
+                          variant="outline"
+                          className="text-blue-600 mt-2 hover:bg-blue-600 hover:text-white hover:cursor-pointer"
+                        >
                           Visiter le site
-                        </Link>
-                      </Button>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </Button>
+                      </Link>
                     )}
                   </div>
                 </div>
