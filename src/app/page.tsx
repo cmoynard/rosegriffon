@@ -261,7 +261,7 @@ export default async function Home() {
                 Discord
               </a>
               <a
-                href="https://twitch.tv/AchilleaIE"
+                href="https://twitch.tv/Achillea_IE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-[#9146FF] text-white px-4 py-2 rounded-full hover:bg-[#7B3FE4] transition-colors"

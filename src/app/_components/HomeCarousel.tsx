@@ -48,6 +48,7 @@ export default function HomeCarousel({ data }: HomeCarouselProps) {
     text?: string;
     blurAmount?: number;
     href?: string;
+    newTab?: boolean;
   }[] =
     data?.map((item) => ({
       isImage: true,
@@ -55,6 +56,7 @@ export default function HomeCarousel({ data }: HomeCarouselProps) {
       text: item.metadata.title,
       href: item.metadata.href,
       blurAmount: 5,
+      newTab: item.metadata.newTab || false,
     })) || [];
 
   return (
@@ -74,7 +76,11 @@ export default function HomeCarousel({ data }: HomeCarouselProps) {
             <CarouselItem key={index} className="h-full pt-0">
               <div className="h-full w-full">
                 {card.href ? (
-                  <Link href={card.href} className="block h-full w-full group">
+                  <Link
+                    href={card.href}
+                    className="block h-full w-full group"
+                    target={card.newTab ? "_blank" : "_self"}
+                  >
                     <div className="h-full w-full overflow-hidden relative rounded-xl group">
                       {card.isImage && card.imageSrc && (
                         <div className="absolute inset-0 w-full h-full">
