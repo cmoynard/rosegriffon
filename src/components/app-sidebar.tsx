@@ -203,7 +203,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   {item.collapsible ? (
                     <Collapsible className="w-full group/collapsible">
                       <CollapsibleTrigger asChild>
-                        <SidebarMenuButton tooltip={item.title}>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          className="hover:cursor-pointer"
+                        >
                           <item.icon />
                           <span>{item.title}</span>
                           <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
