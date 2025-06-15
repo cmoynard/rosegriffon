@@ -22,7 +22,7 @@ export default function FusionBlock({
     <div className="flex flex-col lg:flex-row w-full lg:h-[400px]">
       {isImageLeft ? (
         <>
-          <div className="w-full lg:w-1/2 h-[300px] lg:h-full rounded-l-3xl overflow-hidden relative shadow-lg">
+          <div className="w-full lg:w-1/2 h-[300px] lg:h-full rounded-t-3xl lg:rounded-l-3xl overflow-hidden relative lg:shadow-lg">
             <Image
               src={imageUrl}
               alt="Description"
@@ -37,13 +37,13 @@ export default function FusionBlock({
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2 bg-white p-6 lg:p-8 flex items-center rounded-r-3xl shadow-lg">
+          <div className="w-full lg:w-1/2 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-r-3xl shadow-lg">
             {children}
           </div>
         </>
       ) : (
         <>
-          <div className="w-full lg:w-1/2 h-[300px] lg:h-full order-1 lg:order-2 rounded-r-3xl overflow-hidden relative shadow-lg">
+          <div className="w-full lg:w-1/2 h-[300px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-r-3xl overflow-hidden relative lg:shadow-lg">
             <Image
               src={imageUrl}
               alt="Description"
@@ -58,7 +58,7 @@ export default function FusionBlock({
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-l-3xl shadow-lg">
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 bg-white p-6 lg:p-8 flex items-center rounded-b-3xl lg:rounded-l-3xl shadow-lg">
             {children}
           </div>
         </>
