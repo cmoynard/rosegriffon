@@ -236,7 +236,7 @@ export default function GoogleMapEvents() {
       if (!window.google || !window.google.maps) {
         const script = document.createElement("script");
         // Nous n'avons plus besoin de la bibliothèque de géocodage
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=marker&v=weekly`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}&libraries=marker&v=weekly`;
         script.async = true;
         script.defer = true;
         script.onload = () => {
