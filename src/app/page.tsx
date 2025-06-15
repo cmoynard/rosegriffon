@@ -52,7 +52,7 @@ export default async function Home() {
             </h2>
             <p className="text-base lg:text-lg">
               Rejoignez notre serveur Discord pour discuter avec la communauté
-              Rose Griffon, participer à nos événements et rester informé de
+              Rose Griffon, participer à nos événements et restez informés de
               toutes nos actualités en temps réel.
             </p>
           </div>
