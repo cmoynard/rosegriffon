@@ -270,23 +270,21 @@ export default function ContactPage() {
                         {...fieldProps}
                       />
                     </FormControl>
-                    <FormDescription className="text-xs sm:text-sm space-y-1">
-                      <p>
-                        Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et
-                        TXT.
-                      </p>
+                    <FormDescription>
+                      Formats acceptés: PDF, DOCX, images (JPG, PNG, GIF) et
+                      TXT.
                       {fileSize > 0 && (
-                        <p
+                        <span
                           className={
                             fileSize > MAX_FILE_SIZE
-                              ? "text-red-500 font-medium"
-                              : ""
+                              ? "text-red-500 font-medium block mt-1"
+                              : "block mt-1"
                           }
                         >
                           Taille actuelle: {formatFileSize(fileSize)}.
-                        </p>
+                        </span>
                       )}
-                      <p>Taille maximale: 5MB.</p>
+                      <span className="block mt-1">Taille maximale: 5MB.</span>
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

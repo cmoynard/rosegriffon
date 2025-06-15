@@ -14,6 +14,8 @@ declare global {
         };
       };
     };
+    // Pour le singleton de chargement de l'API
+    googleMapsApiLoading?: Promise<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   }
 }
 
@@ -272,36 +274,81 @@ export default function GoogleMapEvents() {
   const [mapsLoaded, setMapsLoaded] = useState(false);
   const [isGeocodingInProgress, setIsGeocodingInProgress] = useState(false);
 
-  useEffect(() => {
-    // Fonction pour charger l'API Google Maps (uniquement pour l'affichage de la carte)
-    const loadGoogleMapsApi = () => {
-      if (!window.google || !window.google.maps) {
+  // Singleton pour gérer le chargement de l'API Google Maps
+  const loadGoogleMapsApiSingleton = () => {
+    // Utiliser une variable globale pour suivre l'état du chargement
+    if (!window.googleMapsApiLoading) {
+      window.googleMapsApiLoading = new Promise((resolve) => {
+        // Si l'API est déjà chargée et disponible
+        if (window.google && window.google.maps && window.google.maps.Map) {
+          console.log("API Google Maps déjà chargée");
+          resolve(window.google.maps);
+          return;
+        }
+
+        // Vérifier si le script existe déjà
+        const existingScript = document.querySelector(
+          'script[src*="maps.googleapis.com/maps/api"]'
+        );
+
+        if (existingScript) {
+          // Si le script existe déjà, attendre qu'il se charge
+          console.log("Script Google Maps déjà présent, attente du chargement");
+          if (window.google && window.google.maps && window.google.maps.Map) {
+            resolve(window.google.maps);
+          } else {
+            // Attendre que l'API soit complètement chargée
+            const checkGoogleMapsLoaded = () => {
+              if (
+                window.google &&
+                window.google.maps &&
+                window.google.maps.Map
+              ) {
+                console.log("API Google Maps chargée via script existant");
+                resolve(window.google.maps);
+              } else {
+                setTimeout(checkGoogleMapsLoaded, 100);
+              }
+            };
+            checkGoogleMapsLoaded();
+          }
+          return;
+        }
+
+        // Sinon, créer et ajouter le script
+        console.log("Ajout d'un nouveau script Google Maps");
         const script = document.createElement("script");
-        // Nous n'avons plus besoin de la bibliothèque de géocodage
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=marker&v=weekly`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=marker&v=weekly&loading=async`;
         script.async = true;
         script.defer = true;
+
         script.onload = () => {
-          setMapsLoaded(true);
+          // Vérifier que l'API est bien chargée
+          const checkGoogleMapsLoaded = () => {
+            if (window.google && window.google.maps && window.google.maps.Map) {
+              console.log("API Google Maps chargée via nouveau script");
+              resolve(window.google.maps);
+            } else {
+              setTimeout(checkGoogleMapsLoaded, 100);
+            }
+          };
+          checkGoogleMapsLoaded();
         };
+
         document.head.appendChild(script);
-      } else {
-        setMapsLoaded(true);
-      }
-    };
+      });
+    }
+    return window.googleMapsApiLoading;
+  };
 
-    loadGoogleMapsApi();
+  // La variable googleMapsApiLoading est déjà déclarée dans l'interface Window
 
-    // Nettoyage
-    return () => {
-      // Supprimer le script si nécessaire
-      const script = document.querySelector(
-        'script[src*="maps.googleapis.com/maps/api"]'
-      );
-      if (script) {
-        script.remove();
-      }
-    };
+  useEffect(() => {
+    loadGoogleMapsApiSingleton().then(() => {
+      setMapsLoaded(true);
+    });
+
+    // Pas besoin de nettoyer le script car d'autres composants pourraient l'utiliser
   }, []);
 
   // Vérifier si le géocodage est en cours
@@ -316,8 +363,17 @@ export default function GoogleMapEvents() {
 
   // Effet pour initialiser la carte quand les événements sont chargés et l'API Maps est prête
   useEffect(() => {
-    if (!mapsLoaded || !window.google || !window.google.maps || !mapRef.current)
+    if (!mapsLoaded || !mapRef.current) return;
+
+    // Vérifier que l'API Google Maps est bien chargée et disponible
+    if (
+      !window.google ||
+      !window.google.maps ||
+      typeof window.google.maps.Map !== "function"
+    ) {
+      console.error("L'API Google Maps n'est pas correctement chargée");
       return;
+    }
 
     console.log("Initialisation de la carte avec", events.length, "événements");
 
@@ -327,72 +383,79 @@ export default function GoogleMapEvents() {
       mapId: "DEMO_MAP_ID",
     };
 
-    const map = new window.google.maps.Map(mapRef.current, mapOptions);
+    try {
+      const map = new window.google.maps.Map(mapRef.current, mapOptions);
 
-    // Ajouter les marqueurs pour chaque événement
-    events.forEach((event) => {
-      const markerColor =
-        event.type === "upcoming"
-          ? "#22c55e"
-          : event.type === "today"
-          ? "#3b82f6"
-          : "#ef4444";
+      // Ajouter les marqueurs pour chaque événement
+      events.forEach((event) => {
+        const markerColor =
+          event.type === "upcoming"
+            ? "#22c55e"
+            : event.type === "today"
+            ? "#3b82f6"
+            : "#ef4444";
 
-      // Déterminer l'icône en fonction de la catégorie
-      let icon = "RG";
-      if (event.category === "Meet-up") {
-        icon = "M";
-      } else if (event.category === "Stand artiste RG") {
-        icon = "A";
-      } else if (event.category === "Stand associatif") {
-        icon = "S";
-      } else if (event.category === "Conventions") {
-        icon = "C";
-      }
+        // Déterminer l'icône en fonction de la catégorie
+        let icon = "RG";
+        if (event.category === "Meet-up") {
+          icon = "M";
+        } else if (event.category === "Stand artiste RG") {
+          icon = "A";
+        } else if (event.category === "Stand associatif") {
+          icon = "S";
+        } else if (event.category === "Conventions") {
+          icon = "C";
+        }
 
-      // Créer un élément HTML personnalisé pour le marqueur
-      const markerElement = document.createElement("div");
-      markerElement.className = "marker-content";
-      markerElement.innerHTML = `
-        <div style="background-color: ${markerColor}; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-          <span style="font-size: 14px;">${icon}</span>
-        </div>
-      `;
+        // Créer un élément HTML personnalisé pour le marqueur
+        const markerElement = document.createElement("div");
+        markerElement.className = "marker-content";
+        markerElement.innerHTML = `
+          <div style="background-color: ${markerColor}; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+            <span style="font-size: 14px;">${icon}</span>
+          </div>
+        `;
 
-      // Créer le marqueur avancé
-      const marker = new window.google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: event.position,
-        content: markerElement,
-        title: event.name,
-      });
-
-      // Créer la fenêtre d'info
-      const infoContent = `
-        <div style="padding: 10px; max-width: 300px;">
-          <h3 style="font-size: 18px; margin-bottom: 5px;">${event.name}</h3>
-          <p style="color: #666; margin-bottom: 8px;">
-            <strong>Période:</strong> ${event.startDateFormatted} - ${event.endDateFormatted}
-          </p>
-          <p style="color: #666; margin-bottom: 8px;">${event.location}</p>
-          <p style="color: #4b5563; margin-bottom: 8px;"><strong>Type :</strong> ${event.category}</p>
-          <p>${event.description}</p>
-        </div>
-      `;
-
-      const infoWindow = new window.google.maps.InfoWindow({
-        content: infoContent,
-        ariaLabel: event.name,
-      });
-
-      // Ajouter l'événement de clic
-      marker.addListener("click", () => {
-        infoWindow.open({
-          anchor: marker,
+        // Créer le marqueur avancé
+        const marker = new window.google.maps.marker.AdvancedMarkerElement({
           map,
+          position: event.position,
+          content: markerElement,
+          title: event.name,
+        });
+
+        // Créer la fenêtre d'info
+        const infoContent = `
+          <div style="padding: 10px; max-width: 300px;">
+            <h3 style="font-size: 18px; margin-bottom: 5px;">${event.name}</h3>
+            <p style="color: #666; margin-bottom: 8px;">
+              <strong>Période:</strong> ${event.startDateFormatted} - ${event.endDateFormatted}
+            </p>
+            <p style="color: #666; margin-bottom: 8px;">${event.location}</p>
+            <p style="color: #4b5563; margin-bottom: 8px;"><strong>Type :</strong> ${event.category}</p>
+            <p>${event.description}</p>
+          </div>
+        `;
+
+        const infoWindow = new window.google.maps.InfoWindow({
+          content: infoContent,
+          ariaLabel: event.name,
+        });
+
+        // Ajouter l'événement de clic
+        marker.addListener("gmp-click", () => {
+          infoWindow.open({
+            anchor: marker,
+            map,
+          });
         });
       });
-    });
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'initialisation de la carte Google Maps:",
+        error
+      );
+    }
   }, [events, mapsLoaded]);
 
   const isMapLoading = isLoading || !mapsLoaded || isGeocodingInProgress;

@@ -39,7 +39,7 @@ function ImageWithSkeleton({
         alt={alt + " Rose Griffon"}
         fill
         className="object-cover"
-        onLoadingComplete={() => setIsLoading(false)}
+        onLoad={() => setIsLoading(false)}
         priority={priority}
         loading={priority ? "eager" : "lazy"}
         sizes="(max-width: 768px) 100px, 144px"
