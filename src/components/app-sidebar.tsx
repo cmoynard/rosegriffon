@@ -3,7 +3,6 @@ import {
   Files,
   Heart,
   PencilLine,
-  ScrollText,
   UserPlus,
   Users,
   ChevronDown,
