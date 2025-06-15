@@ -1,5 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import Mural1 from "../../../../../public/mural1.png";
+import Mural2 from "../../../../../public/mural2.png";
 
 export default function CommunityPage() {
   return (
@@ -40,38 +43,30 @@ export default function CommunityPage() {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Mural Communautaire 1</h2>
+        <h2 className="text-2xl font-semibold mb-4">
+          Mural Communautaire 1 - Cliquez sur l&apos;image !
+        </h2>
         <div className="aspect-w-16 aspect-h-9">
-          <iframe
-            src="https://app.mural.co/embed/20adc136-9ad0-4acb-ad47-591629b1718a"
-            width="100%"
-            height="480px"
-            style={{
-              minWidth: "640px",
-              minHeight: "480px",
-              backgroundColor: "#f4f4f4",
-              border: "1px solid #efefef",
-            }}
-            sandbox="allow-same-origin allow-scripts allow-modals allow-popups allow-popups-to-escape-sandbox"
-          />
+          <a
+            href="https://app.mural.co/t/test07988/m/test07988/1697613494251/021f27cb0d01ff0ef10d8dd9a1d15104bf592c07"
+            target="_blank"
+          >
+            <Image src={Mural1} alt="Mural Communautaire 1" />
+          </a>
         </div>
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Mural Communautaire 2</h2>
+        <h2 className="text-2xl font-semibold mb-4">
+          Mural Communautaire 2 - Cliquez sur l&apos;image !
+        </h2>
         <div className="aspect-w-16 aspect-h-9">
-          <iframe
-            src="https://app.mural.co/embed/189394dd-92ad-44e5-8d9f-58eb522ec765"
-            width="100%"
-            height="480px"
-            style={{
-              minWidth: "640px",
-              minHeight: "480px",
-              backgroundColor: "#f4f4f4",
-              border: "1px solid #efefef",
-            }}
-            sandbox="allow-same-origin allow-scripts allow-modals allow-popups allow-popups-to-escape-sandbox"
-          />
+          <a
+            href="https://app.mural.co/t/rosegriffon0367/m/rosegriffon0367/1699660105968/d8ed3bf55dc33d4b7bf288fcdbed4bb1ff5bf992"
+            target="_blank"
+          >
+            <Image src={Mural2} alt="Mural Communautaire 2" />
+          </a>
         </div>
       </div>
     </div>
