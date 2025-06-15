@@ -24,80 +24,104 @@ function submitSitemap(searchEngine) {
   return new Promise((resolve, reject) => {
     console.log(`Soumission du sitemap à ${searchEngine.name}...`);
 
-    https
-      .get(searchEngine.url, (res) => {
-        let data = "";
+    // Note: Ces endpoints sont pour information seulement.
+    // La soumission automatique via API ne fonctionne généralement pas sans authentification.
+    // Il est recommandé de soumettre manuellement via les interfaces web des outils webmaster.
+    console.log(`URL de soumission: ${searchEngine.url}`);
+    console.log(
+      `Pour ${searchEngine.name}, veuillez soumettre manuellement le sitemap via l'interface web.`
+    );
 
-        res.on("data", (chunk) => {
-          data += chunk;
-        });
+    resolve({
+      engine: searchEngine.name,
+      success: false,
+      message:
+        "Soumission automatique non supportée. Veuillez soumettre manuellement.",
+    });
 
-        res.on("end", () => {
-          if (res.statusCode >= 200 && res.statusCode < 300) {
-            console.log(
-              `✅ Sitemap soumis avec succès à ${searchEngine.name} (Status: ${res.statusCode})`
-            );
-            resolve({ success: true, searchEngine: searchEngine.name });
-          } else {
-            console.error(
-              `❌ Échec de la soumission à ${searchEngine.name} (Status: ${res.statusCode})`
-            );
-            reject({
-              success: false,
-              searchEngine: searchEngine.name,
-              statusCode: res.statusCode,
-            });
-          }
-        });
-      })
-      .on("error", (err) => {
-        console.error(
-          `❌ Erreur lors de la soumission à ${searchEngine.name}: ${err.message}`
-        );
-        reject({
-          success: false,
-          searchEngine: searchEngine.name,
-          error: err.message,
-        });
+    /* Ancien code de soumission automatique - conservé pour référence
+    https.get(searchEngine.url, (res) => {
+      let data = '';
+      
+      res.on('data', (chunk) => {
+        data += chunk;
       });
+      
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve({
+            engine: searchEngine.name,
+            success: true,
+            status: res.statusCode,
+            message: `Soumission réussie (${res.statusCode})`
+          });
+        } else {
+          resolve({
+            engine: searchEngine.name,
+            success: false,
+            status: res.statusCode,
+            message: `Échec de la soumission (Status: ${res.statusCode})`
+          });
+        }
+      });
+    }).on('error', (err) => {
+      resolve({
+        engine: searchEngine.name,
+        success: false,
+        message: `Erreur lors de la soumission: ${err.message}`
+      });
+    });
+    */
   });
 }
 
 /**
- * Fonction principale qui soumet le sitemap à tous les moteurs de recherche
+ * Fonction principale
  */
-async function submitToAllSearchEngines() {
-  console.log(`🚀 Début de la soumission du sitemap: ${sitemapUrl}`);
+async function main() {
+  console.log(`\n🚀 Début de la soumission du sitemap: ${sitemapUrl}`);
 
   const results = [];
 
+  // Soumettre le sitemap à chaque moteur de recherche
   for (const searchEngine of searchEngines) {
     try {
       const result = await submitSitemap(searchEngine);
       results.push(result);
     } catch (error) {
-      results.push(error);
+      results.push({
+        engine: searchEngine.name,
+        success: false,
+        message: `Exception: ${error.message}`,
+      });
     }
   }
 
+  // Afficher un résumé des résultats
   console.log("\n📊 Résumé des soumissions:");
-  const successful = results.filter((r) => r.success).length;
-  console.log(`✅ Réussies: ${successful}/${searchEngines.length}`);
-  console.log(
-    `❌ Échouées: ${searchEngines.length - successful}/${searchEngines.length}`
-  );
 
-  if (successful === searchEngines.length) {
-    console.log("🎉 Toutes les soumissions ont réussi!");
-  } else {
+  const successCount = results.filter((r) => r.success).length;
+  console.log(`✅ Réussies: ${successCount}/${results.length}`);
+
+  if (successCount < results.length) {
     console.log(
-      "⚠️ Certaines soumissions ont échoué. Vérifiez les erreurs ci-dessus."
+      `❌ Échouées: ${results.length - successCount}/${results.length}`
+    );
+    console.log(
+      `⚠️ La soumission automatique n'est généralement pas supportée. Veuillez suivre les instructions dans docs/sitemap-guide.md pour soumettre manuellement le sitemap.`
     );
   }
+
+  // Afficher les instructions pour la soumission manuelle
+  console.log("\n📝 Instructions pour la soumission manuelle:");
+  console.log(
+    "1. Google Search Console: https://search.google.com/search-console"
+  );
+  console.log("2. Bing Webmaster Tools: https://www.bing.com/webmasters");
+  console.log(
+    "\nConsultez docs/sitemap-guide.md pour des instructions détaillées."
+  );
 }
 
-// Exécution
-submitToAllSearchEngines().catch((err) => {
-  console.error("Erreur inattendue:", err);
-  process.exit(1);
-});
+// Exécuter la fonction principale
+main().catch(console.error);
