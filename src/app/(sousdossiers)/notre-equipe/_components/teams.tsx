@@ -36,7 +36,7 @@ function ImageWithSkeleton({
       )}
       <Image
         src={src}
-        alt={alt}
+        alt={alt + " Rose Griffon"}
         fill
         className="object-cover"
         onLoadingComplete={() => setIsLoading(false)}
@@ -142,7 +142,7 @@ export default function TeamsSection() {
                     <div className="relative w-24 h-24 rounded-full overflow-hidden">
                       <ImageWithSkeleton
                         src={member.image || "https://placehold.co/200x200"}
-                        alt={member.name}
+                        alt={member.name + " Rose Griffon"}
                       />
                     </div>
                     <div>

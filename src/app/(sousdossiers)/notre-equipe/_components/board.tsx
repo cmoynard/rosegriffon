@@ -32,7 +32,7 @@ function ImageWithSkeleton({
       )}
       <Image
         src={src}
-        alt={alt}
+        alt={alt + " Rose Griffon"}
         fill
         className="object-cover"
         onLoadingComplete={() => setIsLoading(false)}
@@ -101,7 +101,7 @@ export default function BoardMembersSection() {
                 <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-rose-500">
                   <ImageWithSkeleton
                     src={member.image || "https://placehold.co/200x200"}
-                    alt={member.name}
+                    alt={member.name + " Rose Griffon"}
                     priority={member.index < 3} // Charge en priorité les 3 premiers membres
                   />
                 </div>

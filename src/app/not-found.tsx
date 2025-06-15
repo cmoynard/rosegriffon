@@ -12,7 +12,7 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center h-screen gap-2">
       <Image
         src={GaelleLagoattePP}
-        alt="Gaelle Lagoatte"
+        alt="Gaelle Lagoatte Rose Griffon"
         width={300}
         height={300}
       />

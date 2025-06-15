@@ -86,7 +86,10 @@ export default function HomeCarousel({ data }: HomeCarouselProps) {
                         <div className="absolute inset-0 w-full h-full">
                           <Image
                             src={card.imageSrc}
-                            alt={card.text || `Slide ${index + 1}`}
+                            alt={
+                              card.text + " Rose Griffon" ||
+                              `Slide ${index + 1} Rose Griffon`
+                            }
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             priority
@@ -125,7 +128,10 @@ export default function HomeCarousel({ data }: HomeCarouselProps) {
                       <div className="absolute inset-0 w-full h-full">
                         <Image
                           src={card.imageSrc}
-                          alt={card.text || `Slide ${index + 1}`}
+                          alt={
+                            card.text + " Rose Griffon" ||
+                            `Slide ${index + 1} Rose Griffon`
+                          }
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority

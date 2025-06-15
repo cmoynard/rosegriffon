@@ -25,7 +25,7 @@ export default function FusionBlock({
           <div className="w-full lg:w-1/2 h-[300px] lg:h-full rounded-t-3xl lg:rounded-l-3xl overflow-hidden relative lg:shadow-lg">
             <Image
               src={imageUrl}
-              alt="Description"
+              alt="Description Rose Griffon"
               width={600}
               height={400}
               className="w-full h-full object-cover"
@@ -46,7 +46,7 @@ export default function FusionBlock({
           <div className="w-full lg:w-1/2 h-[300px] lg:h-full order-1 lg:order-2 rounded-t-3xl lg:rounded-r-3xl overflow-hidden relative lg:shadow-lg">
             <Image
               src={imageUrl}
-              alt="Description"
+              alt="Description Rose Griffon"
               width={600}
               height={400}
               className="w-full h-full object-cover"

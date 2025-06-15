@@ -53,7 +53,11 @@ export default function CommunityPage() {
             href="https://app.mural.co/t/test07988/m/test07988/1697613494251/021f27cb0d01ff0ef10d8dd9a1d15104bf592c07"
             target="_blank"
           >
-            <Image src={Mural1} alt="Mural Communautaire 1" />
+            <Image
+              src={Mural1}
+              alt="Mural Communautaire 1 Rose Griffon"
+              className="rounded-lg"
+            />
           </a>
         </div>
       </div>
@@ -67,7 +71,11 @@ export default function CommunityPage() {
             href="https://app.mural.co/t/rosegriffon0367/m/rosegriffon0367/1699660105968/d8ed3bf55dc33d4b7bf288fcdbed4bb1ff5bf992"
             target="_blank"
           >
-            <Image src={Mural2} alt="Mural Communautaire 2" />
+            <Image
+              src={Mural2}
+              alt="Mural Communautaire 2 Rose Griffon"
+              className="rounded-lg"
+            />
           </a>
         </div>
       </div>
