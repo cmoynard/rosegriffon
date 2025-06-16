@@ -1,14 +1,26 @@
 "use client";
 
 import GoogleMapEvents, { EventData, useEvents } from "./GoogleMapEvents";
+import { useState } from "react";
 
 export default function PresencesPage() {
   const { events, isLoading } = useEvents();
+  const [searchFilter, setSearchFilter] = useState("");
 
-  // Filtrer uniquement les événements à venir
-  const upcomingEvents = events.filter(
+  // Filtrer par recherche (tous les événements)
+  const filteredEvents = searchFilter
+    ? events.filter((event) =>
+        event.name.toLowerCase().includes(searchFilter.toLowerCase())
+      )
+    : events;
+
+  // Filtrer uniquement les événements à venir parmi les événements filtrés
+  const upcomingFilteredEvents = filteredEvents.filter(
     (event) => event.type === "upcoming" || event.type === "today"
   );
+
+  // Fonction pour réinitialiser le filtre
+  const resetFilter = () => setSearchFilter("");
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -28,12 +40,31 @@ export default function PresencesPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600 hidden md:block">
-        <h2 className="text-4xl font-semibold mb-4">Carte des événements</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-4xl font-semibold">Carte des événements</h2>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              className="px-3 py-2 border rounded-md"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+            />
+            {searchFilter && (
+              <button
+                onClick={resetFilter}
+                className="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Réinitialiser
+              </button>
+            )}
+          </div>
+        </div>
         <div
           id="map-container"
           className="w-full h-[600px] bg-gray-100 rounded-md relative"
         >
-          <GoogleMapEvents />
+          <GoogleMapEvents filteredEvents={filteredEvents} />
           <div className="absolute bottom-8 left-4 bg-white p-3 rounded-md shadow-md z-10">
             <h3 className="text-sm font-medium mb-2">Légende</h3>
             <div className="flex flex-col gap-2">
@@ -81,10 +112,29 @@ export default function PresencesPage() {
       </div>
 
       <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
-        <h2 className="text-4xl font-semibold mb-4">
-          Liste des prochains événements
-        </h2>
-        <EventsList events={upcomingEvents} isLoading={isLoading} />
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+          <h2 className="text-4xl font-semibold">
+            Liste des prochains événements
+          </h2>
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              className="px-3 py-2 border rounded-md flex-grow md:flex-grow-0"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+            />
+            {searchFilter && (
+              <button
+                onClick={resetFilter}
+                className="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Réinitialiser
+              </button>
+            )}
+          </div>
+        </div>
+        <EventsList events={upcomingFilteredEvents} isLoading={isLoading} />
       </div>
     </div>
   );

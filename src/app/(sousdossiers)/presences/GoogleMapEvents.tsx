@@ -268,11 +268,18 @@ async function geocodeWithNominatim(
   }
 }
 
-export default function GoogleMapEvents() {
+export default function GoogleMapEvents({
+  filteredEvents,
+}: {
+  filteredEvents?: EventData[];
+}) {
   const mapRef = useRef<HTMLDivElement>(null);
-  const { events, isLoading } = useEvents();
+  const { events: allEvents, isLoading } = useEvents();
   const [mapsLoaded, setMapsLoaded] = useState(false);
   const [isGeocodingInProgress, setIsGeocodingInProgress] = useState(false);
+
+  // Utiliser les événements filtrés s'ils sont fournis, sinon utiliser tous les événements
+  const events = filteredEvents || allEvents;
 
   // Singleton pour gérer le chargement de l'API Google Maps
   const loadGoogleMapsApiSingleton = () => {
