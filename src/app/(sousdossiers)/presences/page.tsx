@@ -19,20 +19,24 @@ export default function PresencesPage() {
     (event) => event.type === "upcoming" || event.type === "today"
   );
 
+  const pastFilteredEvents = filteredEvents.filter(
+    (event) => event.type === "past"
+  );
+
   // Fonction pour réinitialiser le filtre
   const resetFilter = () => setSearchFilter("");
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-5xl font-bold mb-6">Nos présences</h1>
+    <div className="container mx-auto py-4 px-4">
+      <h1 className="text-4xl lg:text-5xl font-bold mb-6">Nos présences</h1>
 
       <div className="flex flex-col gap-4 prose max-w-none mb-8">
-        <p className="text-lg">
+        <p className="text-lg lg:text-xl">
           Retrouvez Rose Griffon lors de différents événements tout au long de
           l&apos;année. Notre association participe à de nombreux évènements
           pour promouvoir nos activités et rencontrer notre public.
         </p>
-        <p className="text-lg hidden sm:block">
+        <p className="text-lg lg:text-xl hidden sm:block">
           La carte ci-dessous vous permet de visualiser nos prochaines
           présences. Cliquez sur un marqueur pour obtenir plus
           d&apos;informations sur l&apos;événement.
@@ -113,7 +117,7 @@ export default function PresencesPage() {
 
       <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-          <h2 className="text-4xl font-semibold">
+          <h2 className="text-3xl lg:text-4xl font-semibold">
             Liste des prochains événements
           </h2>
           <div className="flex items-center gap-2 w-full md:w-auto">
@@ -134,7 +138,41 @@ export default function PresencesPage() {
             )}
           </div>
         </div>
-        <EventsList events={upcomingFilteredEvents} isLoading={isLoading} />
+        <EventsList
+          events={upcomingFilteredEvents}
+          isLoading={isLoading}
+          type={"upcoming"}
+        />
+      </div>
+
+      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-semibold">
+            Liste des événements passés
+          </h2>
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              className="px-3 py-2 border rounded-md flex-grow md:flex-grow-0"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+            />
+            {searchFilter && (
+              <button
+                onClick={resetFilter}
+                className="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Réinitialiser
+              </button>
+            )}
+          </div>
+        </div>
+        <EventsList
+          events={pastFilteredEvents}
+          isLoading={isLoading}
+          type={"past"}
+        />
       </div>
     </div>
   );
@@ -144,9 +182,11 @@ export default function PresencesPage() {
 function EventsList({
   events,
   isLoading,
+  type,
 }: {
   events: EventData[];
   isLoading: boolean;
+  type: "upcoming" | "past";
 }) {
   if (isLoading) {
     return (
@@ -160,7 +200,9 @@ function EventsList({
   if (events.length === 0) {
     return (
       <div className="py-8 text-center">
-        <p className="text-gray-600">Aucun événement à venir pour le moment.</p>
+        <p className="text-gray-600">
+          Aucun événement trouvé, pensez à réinitialiser le filtre.
+        </p>
       </div>
     );
   }
@@ -193,22 +235,33 @@ function EventsList({
       {sortedEvents.map((event, index) => (
         <div
           key={index}
-          className={`border-l-4 ${
-            event.type === "today" ? "border-blue-500" : "border-green-500"
+          className={`border-l-4 rounded-l-sm ${
+            event.type === "today"
+              ? "border-blue-500"
+              : event.type === "upcoming"
+              ? "border-green-500"
+              : "border-red-500"
           } pl-4 py-2`}
         >
           <h3 className="text-xl font-medium">{event.name}</h3>
           <div className="text-gray-600">
             <p>
-              <span className="font-medium">Début:</span>{" "}
+              <span className="font-medium underline">Début:</span>{" "}
               {event.startDateFormatted}
             </p>
             <p>
-              <span className="font-medium">Fin:</span> {event.endDateFormatted}
+              <span className="font-medium underline">Fin:</span>{" "}
+              {event.endDateFormatted}
             </p>
-            <p>{event.location}</p>
+            <p>
+              <span className="font-medium underline">Localisation:</span>{" "}
+              {event.location}
+            </p>
           </div>
-          <p className="text-gray-600 text-sm">Type : {event.category}</p>
+          <p className="text-gray-600">
+            <span className="font-medium underline">Type :</span>{" "}
+            {event.category}
+          </p>
           <p className="mt-1">{event.description}</p>
         </div>
       ))}
