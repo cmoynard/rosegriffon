@@ -63,9 +63,11 @@ export default function BoardMembersSection() {
 
   return (
     <section className="flex flex-col gap-8">
-      <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold">Bureau de l&apos;Association</h2>
-        <p className="text-xl max-w-3xl mx-auto">
+      <div className="space-y-4">
+        <h2 className="text-4xl lg:text-5xl font-bold">
+          Bureau de l&apos;Association
+        </h2>
+        <p className="text-lg lg:text-xl max-w-3xl">
           Les membres du bureau de l&apos;association Rose Griffon sont
           responsables de la gestion administrative, légale et financière du
           projet. Ils assurent le bon fonctionnement de l&apos;association et

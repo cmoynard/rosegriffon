@@ -63,9 +63,11 @@ export default function AssoMembersSection() {
 
   return (
     <section className="flex flex-col gap-8">
-      <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold">Membres de l&apos;Association</h2>
-        <p className="text-xl max-w-3xl mx-auto">
+      <div className="space-y-4">
+        <h2 className="text-4xl lg:text-5xl font-bold">
+          Membres de l&apos;Association
+        </h2>
+        <p className="text-lg lg:text-xl max-w-3xl">
           Les membres de l&apos;association Rose Griffon contribuent au
           développement et à la réalisation du projet. Leur engagement et leur
           passion sont essentiels à notre succès collectif.
