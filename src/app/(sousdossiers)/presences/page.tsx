@@ -138,11 +138,7 @@ export default function PresencesPage() {
             )}
           </div>
         </div>
-        <EventsList
-          events={upcomingFilteredEvents}
-          isLoading={isLoading}
-          type={"upcoming"}
-        />
+        <EventsList events={upcomingFilteredEvents} isLoading={isLoading} />
       </div>
 
       <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
@@ -168,11 +164,7 @@ export default function PresencesPage() {
             )}
           </div>
         </div>
-        <EventsList
-          events={pastFilteredEvents}
-          isLoading={isLoading}
-          type={"past"}
-        />
+        <EventsList events={pastFilteredEvents} isLoading={isLoading} />
       </div>
     </div>
   );
@@ -182,11 +174,9 @@ export default function PresencesPage() {
 function EventsList({
   events,
   isLoading,
-  type,
 }: {
   events: EventData[];
   isLoading: boolean;
-  type: "upcoming" | "past";
 }) {
   if (isLoading) {
     return (
