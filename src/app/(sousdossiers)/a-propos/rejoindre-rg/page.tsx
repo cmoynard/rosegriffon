@@ -6,12 +6,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function RejoindreRGPage() {
   return (
     <div className="container mx-auto py-4 px-4">
-      <h1 className="text-5xl font-bold mb-6">Rejoindre Rose Griffon</h1>
+      <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+        Rejoindre Rose Griffon
+      </h1>
 
       {/* Section d'explication sur les conditions d'intégration */}
       <div className="prose max-w-none mb-12">
-        <h2 className="text-4xl font-semibold mb-4">Rejoignez notre équipe</h2>
-        <p className="mb-8 text-lg">
+        <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+          Rejoignez notre équipe
+        </h2>
+        <p className="mb-8 text-base lg:text-lg">
           Rose Griffon est une association dynamique et passionnée qui recherche
           constamment de nouveaux talents pour renforcer son équipe. Nous
           offrons différentes possibilités d&apos;engagement pour permettre à
@@ -22,20 +26,20 @@ export default function RejoindreRGPage() {
           {/* Conditions d'intégration */}
           <Card className="border-l-4 border-l-rose-500">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between text-2xl">
+              <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Conditions d&apos;intégration
               </CardTitle>
             </CardHeader>
 
             <CardContent>
-              <p className="text-lg border-b pb-3">
+              <p className="text-base lg:text-lg border-b pb-3">
                 Pour rejoindre l&apos;association, il faut être{" "}
                 <span className="font-bold">légalement majeur</span>. Chaque
                 membre doit fournir certaines informations personnelles (nom,
                 prénom, date de naissance, ville et adresse e-mail) afin de
                 garantir une organisation sérieuse et transparente.
               </p>
-              <p className="text-lg border-b py-3">
+              <p className="text-base lg:text-lg border-b py-3">
                 L&apos;engagement implique la{" "}
                 <span className="font-bold">
                   capacité de se déplacer ponctuellement
@@ -53,7 +57,7 @@ export default function RejoindreRGPage() {
                 <span className="font-bold">assumer leurs responsabilités</span>
                 , notamment en cas d&apos;erreur.
               </p>
-              <p className="text-lg pt-3">
+              <p className="text-base lg:text-lg pt-3">
                 Enfin, chacun doit pouvoir apporter une contribution concrète à
                 l&apos;association, qu&apos;elle soit créative, logistique,
                 technique ou humaine.
@@ -64,7 +68,7 @@ export default function RejoindreRGPage() {
           {/* Types d'engagement */}
           <Card className="border-l-4 border-l-indigo-500">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between text-2xl">
+              <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Types d&apos;engagement possibles
               </CardTitle>
             </CardHeader>
@@ -72,24 +76,28 @@ export default function RejoindreRGPage() {
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 <div className="border-b pb-3">
-                  <h3 className="font-bold mb-1 text-lg">Bénévolat régulier</h3>
-                  <p className="text-lg">
+                  <h3 className="font-bold mb-1 text-base lg:text-lg">
+                    Bénévolat régulier
+                  </h3>
+                  <p className="text-base lg:text-lg">
                     Engagement hebdomadaire ou mensuel sur des projets
                     spécifiques, avec des horaires flexibles.
                   </p>
                 </div>
 
                 <div className="border-b pb-3">
-                  <h3 className="font-bold mb-1 text-lg">Événementiel</h3>
-                  <p className="text-lg">
+                  <h3 className="font-bold mb-1 text-base lg:text-lg">
+                    Événementiel
+                  </h3>
+                  <p className="text-base lg:text-lg">
                     Participation ponctuelle à nos événements (festivals,
                     expositions, ateliers, etc.).
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="font-bold mb-1 text-lg">Stage</h3>
-                  <p className="text-lg">
+                  <h3 className="font-bold mb-1 text-base lg:text-lg">Stage</h3>
+                  <p className="text-base lg:text-lg">
                     Pour les étudiants ou jeunes diplômés souhaitant acquérir
                     une expérience enrichissante.
                   </p>
@@ -161,10 +169,10 @@ export default function RejoindreRGPage() {
 
       {/* Lien vers le formulaire de candidature */}
       <div className="border-l-4 border-l-amber-500 rounded-lg p-8 bg-card">
-        <h2 className="text-4xl font-semibold mb-4">
+        <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
           Formulaire de candidature
         </h2>
-        <p className="mb-6 text-lg">
+        <p className="mb-6 text-base lg:text-lg">
           Vous souhaitez rejoindre notre équipe ? Remplissez notre formulaire de
           candidature en ligne pour nous faire part de votre motivation et de
           vos compétences.
