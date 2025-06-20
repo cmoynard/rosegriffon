@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AssociationPage() {
   return (
-    <main className="container mx-auto py-12 px-4 space-y-16">
+    <main className="container mx-auto py-4 px-4 space-y-16">
       <Suspense fallback={<TeamSectionSkeleton />}>
         <BoardMembersSection />
       </Suspense>

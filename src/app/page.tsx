@@ -18,9 +18,9 @@ export default async function Home() {
       <div className="flex flex-col gap-8 px-4 mt-8">
         <FusionBlock isImageLeft={true} image={BanniereRG.src}>
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
+            <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold">
               Qu&apos;est-ce que Rose Griffon ?
-            </h2>
+            </h1>
             <p className="text-base xl:text-lg">
               Rose Griffon est une association française régie par la loi 1901,
               ayant pour vocation de rassembler les principaux acteurs de la
@@ -33,7 +33,7 @@ export default async function Home() {
         </FusionBlock>
 
         {/* Section des réseaux sociaux */}
-        <div className="flex flex-col lg:flex-row text-4xl lg:text-6xl font-bold items-center gap-2 py-4">
+        <div className="flex flex-col lg:flex-row text-4xl lg:text-5xl font-bold items-center gap-2 py-4">
           {/*<Image
             src={LogoRG}
             alt="Rose Griffon Logo"

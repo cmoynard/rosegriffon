@@ -5,12 +5,16 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import getTeamMembers from "@/lib/get-team-members";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 type TeamMember = {
   name: string;
   role: string;
   image?: string;
   index: number;
+  link?: string;
 };
 
 // Image component with skeleton loader
@@ -45,15 +49,17 @@ function ImageWithSkeleton({
   );
 }
 
-export default function AssoMembersSection() {
-  const { data: assoMembers, isLoading } = useQuery<TeamMember[]>({
-    queryKey: ["asso-members"],
+export default function PartenairesSection() {
+  const { data: collaborateurs, isLoading } = useQuery<TeamMember[]>({
+    queryKey: ["collaborateurs"],
     queryFn: async () => {
-      const response = await getTeamMembers("assoteam");
+      const response = await getTeamMembers("collabteam");
+      console.log("Données des partenaires:", response);
       return response.map((member) => ({
         name: member.metadata.memberName,
         role: member.metadata.memberRole,
         index: member.metadata.memberIndex,
+        link: member.metadata.memberLink || "",
         image: member.url,
       }));
     },
@@ -64,17 +70,14 @@ export default function AssoMembersSection() {
   return (
     <section className="flex flex-col gap-8">
       <div className="space-y-4">
-        <h2 className="text-4xl lg:text-5xl font-bold">
-          Membres de l&apos;Association
-        </h2>
+        <h2 className="text-4xl lg:text-5xl font-bold">Nos partenaires</h2>
         <p className="text-lg lg:text-xl max-w-3xl">
-          Les membres de l&apos;association Rose Griffon contribuent au
-          développement et à la réalisation du projet. Leur engagement et leur
-          passion sont essentiels à notre succès collectif.
+          Découvrez les partenaires qui contribuent à enrichir l&apos;univers de
+          Rose Griffon par leur expertise et leur créativité.
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 mt-6">
+      <div className="flex flex-wrap justify-center gap-4 mt-6">
         {isLoading ? (
           <div className="flex flex-wrap justify-center gap-4">
             {[...Array(8)].map((_, index) => (
@@ -90,9 +93,8 @@ export default function AssoMembersSection() {
               </div>
             ))}
           </div>
-        ) : (
-          assoMembers &&
-          assoMembers
+        ) : collaborateurs && collaborateurs.length > 0 ? (
+          collaborateurs
             .sort((a, b) => a.index - b.index)
             .map((member: TeamMember) => (
               <div
@@ -108,9 +110,27 @@ export default function AssoMembersSection() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold">{member.name}</h3>
+                  <p className="text-xl text-rose-700">{member.role}</p>
+                  {member.link && member.link.trim() !== "" && (
+                    <Link href={member.link} className="hover:cursor-pointer">
+                      <Button
+                        variant="outline"
+                        className="text-blue-600 mt-2 hover:bg-blue-600 hover:text-white hover:cursor-pointer"
+                      >
+                        Visiter le site
+                        <ArrowUpRight className="w-4 h-4" />
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             ))
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-500">
+              Aucun collaborateur à afficher pour le moment.
+            </p>
+          </div>
         )}
       </div>
     </section>

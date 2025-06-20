@@ -3,9 +3,11 @@ export default function SoutenirPage() {
     <div className="flex flex-col mb-8">
       <div className="container mx-auto py-4">
         <div className="flex flex-col gap-8 px-4">
-          <h2 className="text-5xl font-bold">Comment nous soutenir ?</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold">
+            Comment nous soutenir ?
+          </h2>
 
-          <p className="text-lg">
+          <p className="text-base lg:text-lg">
             Rose Griffon est une association à but non lucratif qui
             s&apos;efforce de créer une communauté dynamique autour
             d&apos;Inazuma Eleven. Votre soutien est essentiel pour nous
@@ -19,10 +21,10 @@ export default function SoutenirPage() {
             <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-blue-700 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold mb-4 text-blue-700">
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-blue-700">
                     Don unique via PayPal
                   </h3>
-                  <p className="text-lg">
+                  <p className="text-base lg:text-lg">
                     Vous souhaitez faire un don ponctuel pour soutenir nos
                     actions ? PayPal vous permet de contribuer facilement et en
                     toute sécurité, quel que soit le montant.
@@ -51,10 +53,10 @@ export default function SoutenirPage() {
             <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-red-600 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold mb-4 text-red-600">
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-red-600">
                     Don récurrent via Patreon
                   </h3>
-                  <p className="text-lg">
+                  <p className="text-base lg:text-lg">
                     Devenez un soutien régulier de Rose Griffon et bénéficiez
                     d&apos;avantages exclusifs ! Votre contribution mensuelle
                     nous aide à planifier nos actions sur le long terme et à
@@ -82,11 +84,11 @@ export default function SoutenirPage() {
 
           {/* Bloc de transparence mis en avant */}
           <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500">
-            <h2 className="text-5xl font-bold my-4 pb-2 inline-block">
+            <h2 className="text-3xl lg:text-4xl font-bold my-4 pb-2 inline-block">
               Où va votre soutien ?
             </h2>
 
-            <p className="text-lg mb-4">
+            <p className="text-base lg:text-lg mb-4">
               Rose Griffon s&apos;engage à utiliser vos dons de manière
               transparente. Un bilan financier est présenté chaque année lors de
               notre assemblée générale et partagé avec nos membres. Pour toute
@@ -94,12 +96,12 @@ export default function SoutenirPage() {
               pas à nous contacter.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Événements communautaires
                 </h3>
-                <p className="text-lg">
+                <p className="text-base lg:text-lg">
                   Vos dons nous permettent d&apos;organiser des tournois, des
                   rencontres et des événements pour rassembler la communauté
                   Inazuma Eleven.
@@ -107,8 +109,10 @@ export default function SoutenirPage() {
               </div>
 
               <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4">Projets médiatiques</h3>
-                <p className="text-lg">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                  Projets médiatiques
+                </h3>
+                <p className="text-base lg:text-lg">
                   Nous investissons dans du matériel et des ressources pour
                   améliorer la qualité de nos contenus sur Azalée et nos autres
                   plateformes.
@@ -116,10 +120,10 @@ export default function SoutenirPage() {
               </div>
 
               <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Développement e-sport
                 </h3>
-                <p className="text-lg">
+                <p className="text-base lg:text-lg">
                   Votre soutien aide à structurer la scène compétitive
                   d&apos;Inazuma Eleven à travers notre branche Achilléa et à
                   organiser des compétitions de qualité.
@@ -127,10 +131,10 @@ export default function SoutenirPage() {
               </div>
 
               <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Infrastructure technique
                 </h3>
-                <p className="text-lg">
+                <p className="text-base lg:text-lg">
                   Nous maintenons des serveurs, des sites web et des outils pour
                   offrir la meilleure expérience possible à notre communauté.
                 </p>

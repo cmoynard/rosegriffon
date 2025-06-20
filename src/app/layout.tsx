@@ -13,10 +13,15 @@ export const metadata: Metadata = {
   description:
     "Site officiel de l'association Rose Griffon, rassemblant la communauté Inazuma Eleven en France. Découvrez nos événements, projets et rejoignez-nous !",
   keywords:
-    "Rose Griffon, Inazuma Eleven, association, communauté, gaming, France, Azalée, Achilléa",
+    "Rose Griffon, Inazuma Eleven, association, communauté, gaming, France, Azalée, Achilléa, Roy, Gaëlle, Inazuma Eleven France, Inazuma Eleven France Association, Inazuma Eleven France Association Rose Griffon",
   authors: [{ name: "Rose Griffon" }],
   creator: "Association Rose Griffon",
   publisher: "Association Rose Griffon",
+  icons: {
+    icon: "/RG_Logo_V2.5.png",
+    shortcut: "/RG_Logo_V2.5.png",
+    apple: "/RG_Logo_V2.5.png",
+  },
   formatDetection: {
     telephone: false,
   },

@@ -98,9 +98,9 @@ export default function TeamsSection() {
 
   return (
     <section className="flex flex-col gap-8">
-      <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold">Nos Équipes</h2>
-        <p className="text-xl max-w-3xl mx-auto">
+      <div className="space-y-4">
+        <h2 className="text-4xl lg:text-5xl font-bold">Nos Équipes</h2>
+        <p className="text-lg lg:text-xl max-w-3xl">
           Découvrez les talents qui donnent vie à l&apos;univers de Rose
           Griffon. Notre équipe passionnée travaille ensemble pour créer des
           histoires captivantes et des illustrations magnifiques.

@@ -6,14 +6,14 @@ import Mural2 from "../../../../../public/mural2.png";
 
 export default function CommunityPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+    <div className="container mx-auto px-4 py-4">
+      <h1 className="text-4xl lg:text-5xl font-bold mb-6">
         Projets communautaires
       </h1>
 
       <div className="flex flex-col gap-4 prose max-w-none mb-8">
-        <p className="text-lg">
-          <strong className="text-2xl">
+        <p className="text-lg lg:text-xl">
+          <strong className="text-2xl lg:text-3xl">
             Rose Griffon valorise et encourage la créativité collective à
             travers une série d&apos;initiatives pensées pour faire vivre
             l&apos;imaginaire des fans.
@@ -45,7 +45,7 @@ export default function CommunityPage() {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
           Mural Communautaire 1 - Cliquez sur l&apos;image !
         </h2>
         <div className="aspect-w-16 aspect-h-9">
@@ -63,7 +63,7 @@ export default function CommunityPage() {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
           Mural Communautaire 2 - Cliquez sur l&apos;image !
         </h2>
         <div className="aspect-w-16 aspect-h-9">
