@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { useSidebar } from "@/components/ui/sidebar";
 
@@ -18,6 +18,7 @@ export function SwipeHandler() {
     onSwiping: () => {
       setIsSwipping(true);
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onSwipedRight: (eventData) => {
       // Ouvrir la sidebar sur un swipe de gauche à droite depuis le bord gauche
       if (isMobile && !openMobile && swipeZone === "left") {
@@ -25,6 +26,7 @@ export function SwipeHandler() {
       }
       setIsSwipping(false);
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onSwipedLeft: (eventData) => {
       // Fermer la sidebar sur un swipe de droite à gauche depuis le bord droit
       if (isMobile && openMobile) {
