@@ -10,6 +10,7 @@ import {
   UserCircle,
   Building,
   Handshake,
+  ScrollText,
 } from "lucide-react";
 
 import {
@@ -86,11 +87,11 @@ const asso = [
     url: "/presences",
     icon: CalendarCheck2,
   },
-  //{
-  //  title: "Charte et engagement",
-  //  url: "/",
-  //  icon: ScrollText,
-  //},
+  {
+    title: "Charte et engagement",
+    url: "/charte-engagements",
+    icon: ScrollText,
+  },
 ];
 
 const contact = [
