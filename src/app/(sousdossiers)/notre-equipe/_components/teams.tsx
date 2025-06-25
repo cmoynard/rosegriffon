@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +18,7 @@ type Team = {
 };
 
 // Image component with skeleton loader
-function ImageWithSkeleton({
+const ImageWithSkeleton = React.memo(function ImageWithSkeleton({
   src,
   alt,
   priority = false,
@@ -47,9 +47,9 @@ function ImageWithSkeleton({
       />
     </>
   );
-}
+});
 
-export default function TeamsSection() {
+function TeamsSection() {
   const { data: teams, isLoading } = useQuery<Team[]>({
     queryKey: ["teams"],
     queryFn: async () => {
@@ -96,6 +96,69 @@ export default function TeamsSection() {
     gcTime: 30 * 60 * 1000, // 30 minutes (anciennement cacheTime)
   });
 
+  // Mémoriser les skeletons pour éviter les re-rendus inutiles
+  const loadingSkeletons = useMemo(
+    () =>
+      [...Array(6)].map((_, index) => (
+        <div key={index} className="bg-white rounded-xl p-6 shadow-md">
+          <Skeleton className="h-10 w-48 mb-6 bg-gray-400" />
+          <div className="grid grid-cols-2 xl:grid-cols-3 gap-6">
+            {[...Array(4)].map((_, memberIndex) => (
+              <div
+                key={memberIndex}
+                className="flex flex-col items-center text-center gap-2"
+              >
+                <Skeleton className="w-24 h-24 rounded-full bg-gray-400" />
+                <div>
+                  <Skeleton className="h-6 w-24 bg-gray-400" />
+                  <Skeleton className="h-4 w-20 bg-gray-400 mt-1" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )),
+    []
+  );
+
+  // Mémoriser le rendu des équipes
+  const teamsContent = useMemo(() => {
+    if (!teams || teams.length === 0) {
+      return (
+        <div className="col-span-2 text-center py-8">
+          <p className="text-gray-500">
+            Aucune équipe à afficher pour le moment.
+          </p>
+        </div>
+      );
+    }
+
+    return teams.map((team) => (
+      <div key={team.name} className="bg-white rounded-xl p-6 shadow-md">
+        <h2 className="text-3xl font-bold mb-6">{team.name}</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+          {team.members.map((member, index) => (
+            <div
+              key={`${member.name}-${index}`}
+              className="flex flex-col items-center text-center gap-2"
+            >
+              <div className="relative w-24 h-24 rounded-full overflow-hidden">
+                <ImageWithSkeleton
+                  src={member.image || "https://placehold.co/200x200"}
+                  alt={member.name + " Rose Griffon"}
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold">{member.name}</h3>
+                <p className="text-gray-600">{member.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ));
+  }, [teams]);
+
   return (
     <section className="flex flex-col gap-8">
       <div className="space-y-4">
@@ -108,60 +171,10 @@ export default function TeamsSection() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
-        {isLoading ? (
-          // Loading skeletons
-          [...Array(6)].map((_, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-              <Skeleton className="h-10 w-48 mb-6 bg-gray-400" />
-              <div className="grid grid-cols-2 xl:grid-cols-3 gap-6">
-                {[...Array(4)].map((_, memberIndex) => (
-                  <div
-                    key={memberIndex}
-                    className="flex flex-col items-center text-center gap-2"
-                  >
-                    <Skeleton className="w-24 h-24 rounded-full bg-gray-400" />
-                    <div>
-                      <Skeleton className="h-6 w-24 bg-gray-400" />
-                      <Skeleton className="h-4 w-20 bg-gray-400 mt-1" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
-        ) : teams && teams.length > 0 ? (
-          teams.map((team) => (
-            <div key={team.name} className="bg-white rounded-xl p-6 shadow-md">
-              <h2 className="text-3xl font-bold mb-6">{team.name}</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-                {team.members.map((member, index) => (
-                  <div
-                    key={`${member.name}-${index}`}
-                    className="flex flex-col items-center text-center gap-2"
-                  >
-                    <div className="relative w-24 h-24 rounded-full overflow-hidden">
-                      <ImageWithSkeleton
-                        src={member.image || "https://placehold.co/200x200"}
-                        alt={member.name + " Rose Griffon"}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">{member.name}</h3>
-                      <p className="text-gray-600">{member.role}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="col-span-2 text-center py-8">
-            <p className="text-gray-500">
-              Aucune équipe à afficher pour le moment.
-            </p>
-          </div>
-        )}
+        {isLoading ? loadingSkeletons : teamsContent}
       </div>
     </section>
   );
 }
+
+export default React.memo(TeamsSection);
