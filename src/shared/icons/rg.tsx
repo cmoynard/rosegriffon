@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LogoRG from "../../../public/logo-rg-vide-mais-blanc.png";
+import LogoRG from "../../../public/RG_Logo_V2.5.png";
 
 import React from "react";
 

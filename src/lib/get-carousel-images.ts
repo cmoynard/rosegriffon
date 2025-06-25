@@ -12,6 +12,7 @@ export type CarouselData = {
     title: string;
     href: string;
     newTab?: boolean;
+    index: number;
   };
   url: string;
 };

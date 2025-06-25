@@ -43,7 +43,7 @@ export default function PresencesPage() {
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-blue-600 hidden md:block">
+      <div className="bg-white rounded-lg shadow-lg p-6 border-l-8 border-l-blue-600 hidden md:block">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-4xl font-semibold">Carte des événements</h2>
           <div className="flex items-center gap-2">
@@ -83,7 +83,7 @@ export default function PresencesPage() {
                   <span className="text-sm">Événements à venir</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-blue-600"></div>
                   <span className="text-sm">Événement en cours</span>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function PresencesPage() {
         </div>
       </div>
 
-      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
+      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-8 border-l-green-500">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
           <h2 className="text-3xl lg:text-4xl font-semibold">
             Liste des prochains événements
@@ -141,7 +141,7 @@ export default function PresencesPage() {
         <EventsList events={upcomingFilteredEvents} isLoading={isLoading} />
       </div>
 
-      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-4 border-l-red-600">
+      <div className="mt-8 bg-white rounded-lg shadow-lg p-6 border-l-8 border-l-red-500">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
           <h2 className="text-3xl lg:text-4xl font-semibold">
             Liste des événements passés
@@ -227,7 +227,7 @@ function EventsList({
           key={index}
           className={`border-l-4 rounded-l-sm ${
             event.type === "today"
-              ? "border-blue-500"
+              ? "border-blue-600"
               : event.type === "upcoming"
               ? "border-green-500"
               : "border-red-500"

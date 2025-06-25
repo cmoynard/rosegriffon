@@ -18,10 +18,10 @@ export default function SoutenirPage() {
           {/* Blocs de dons côte à côte */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Don unique via PayPal */}
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-blue-700 hover:shadow-xl transition-shadow">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-8 border-blue-600 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-blue-700">
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-blue-600">
                     Don unique via PayPal
                   </h3>
                   <p className="text-base lg:text-lg">
@@ -50,10 +50,10 @@ export default function SoutenirPage() {
             </div>
 
             {/* Don récurrent via Patreon */}
-            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-red-600 hover:shadow-xl transition-shadow">
+            <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-8 border-red-500 hover:shadow-xl transition-shadow">
               <div className="flex flex-col h-full justify-between">
                 <div className="mb-6">
-                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-red-600">
+                  <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-red-500">
                     Don récurrent via Patreon
                   </h3>
                   <p className="text-base lg:text-lg">
@@ -83,7 +83,7 @@ export default function SoutenirPage() {
           </div>
 
           {/* Bloc de transparence mis en avant */}
-          <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500">
+          <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-8 border-amber-500">
             <h2 className="text-3xl lg:text-4xl font-bold my-4 pb-2 inline-block">
               Où va votre soutien ?
             </h2>
@@ -97,7 +97,7 @@ export default function SoutenirPage() {
             </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500 hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Événements communautaires
                 </h3>
@@ -108,7 +108,7 @@ export default function SoutenirPage() {
                 </p>
               </div>
 
-              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500 hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Projets médiatiques
                 </h3>
@@ -119,7 +119,7 @@ export default function SoutenirPage() {
                 </p>
               </div>
 
-              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500 hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Développement e-sport
                 </h3>
@@ -130,7 +130,7 @@ export default function SoutenirPage() {
                 </p>
               </div>
 
-              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-t-4 border-amber-500 hover:shadow-xl transition-shadow">
+              <div className="bg-white text-black p-8 rounded-lg shadow-lg border-l-4 border-amber-500 hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl lg:text-3xl font-bold mb-4">
                   Infrastructure technique
                 </h3>

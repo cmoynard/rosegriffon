@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { Providers } from "@/lib/providers";
 import { Metadata } from "next";
 import SidebarNavigationHandler from "./_components/SidebarNavigationHandler";
+import ScrollToTopButton from "./_components/ScrollToTopButton";
 
 export const metadata: Metadata = {
   title: "Rose Griffon | Association Inazuma Eleven France",
@@ -83,6 +84,7 @@ export default function RootLayout({
                 </div>
               </div>
               <Footer />
+              <ScrollToTopButton />
             </div>
           </SidebarInset>
           <Toaster richColors position="top-right" />

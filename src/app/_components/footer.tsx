@@ -7,14 +7,14 @@ import React from "react";
 export default function Footer() {
   return (
     <div className="bg-white flex flex-col h-fit w-full items-center gap-2">
-      <div className="flex w-full h-full items-center place-content-evenly p-2">
-        <div className="flex flex-col">
-          <Link href={"*"} className="hover:underline">
-            Informations légales
+      <div className="flex flex-col md:flex-row w-full h-full items-center md:place-content-evenly md:items-start p-4 gap-6">
+        <div className="flex flex-col items-center md:items-start">
+          <Link href={"/charte-engagements"} className="hover:underline">
+            Charte et engagements
           </Link>
-          <Link href={"*"} className="hover:underline">
+          {/* <Link href={"/mentions-legales"} className="hover:underline">
             Mentions légales et RGPD
-          </Link>
+          </Link> */}
           <Link
             href={
               "https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:202400200922"
@@ -32,7 +32,7 @@ export default function Footer() {
             Nous Soutenir
           </Link>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-2">
             <Link href={"https://www.tiktok.com/@rose_griffon"}>
               <TiktokIcon width={24} height={24} />
             </Link>
