@@ -24,7 +24,7 @@ export default function RejoindreRGPage() {
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
           {/* Conditions d'intégration */}
-          <Card className="border-l-4 border-l-rose-500">
+          <Card className="border-l-8 border-l-rose-500">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Conditions d&apos;intégration
@@ -66,7 +66,7 @@ export default function RejoindreRGPage() {
           </Card>
 
           {/* Types d'engagement */}
-          <Card className="border-l-4 border-l-indigo-500">
+          <Card className="border-l-8 border-l-blue-600">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Types d&apos;engagement possibles
@@ -168,7 +168,7 @@ export default function RejoindreRGPage() {
       </div> */}
 
       {/* Lien vers le formulaire de candidature */}
-      <div className="border-l-4 border-l-amber-500 rounded-lg p-8 bg-card">
+      <div className="border-l-8 border-l-amber-500 rounded-lg p-8 bg-card">
         <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
           Formulaire de candidature
         </h2>

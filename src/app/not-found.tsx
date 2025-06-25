@@ -34,7 +34,7 @@ export default function NotFound() {
       <p className="text-2xl">
         404 - La page que vous cherchez n&apos;existe pas.
       </p>
-      <Link href="/" className="text-blue-500">
+      <Link href="/" className="text-blue-600">
         <Button>Retour à la page d&apos;accueil</Button>
       </Link>
     </div>

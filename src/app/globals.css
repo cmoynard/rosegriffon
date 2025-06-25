@@ -131,33 +131,33 @@
 @keyframes rainbow {
   0%,
   100% {
-    color: #e60000; /* Rouge vif */
+    color: #ff3366; /* Rose vif */
   }
   10% {
-    color: #ff6600; /* Orange foncé */
+    color: #ff6633; /* Orange vif */
   }
   20% {
-    color: #ccaa00; /* Jaune foncé */
+    color: #ffcc33; /* Jaune vif */
   }
   30% {
-    color: #669900; /* Vert olive */
+    color: #99ff33; /* Vert lime */
   }
   40% {
-    color: #008000; /* Vert foncé */
+    color: #33ff99; /* Vert menthe */
   }
   50% {
-    color: #008080; /* Turquoise foncé */
+    color: #33ffff; /* Cyan vif */
   }
   60% {
-    color: #0066cc; /* Bleu moyen */
+    color: #33ccff; /* Bleu ciel */
   }
   70% {
-    color: #0000cc; /* Bleu foncé */
+    color: #3366ff; /* Bleu royal */
   }
   80% {
-    color: #6600cc; /* Violet */
+    color: #9933ff; /* Violet vif */
   }
   90% {
-    color: #cc0099; /* Rose foncé */
+    color: #ff33cc; /* Rose fuchsia */
   }
 }

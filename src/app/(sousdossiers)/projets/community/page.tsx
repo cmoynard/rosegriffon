@@ -34,7 +34,7 @@ export default function CommunityPage() {
           <Link
             href="https://discord.gg/rosegriffon"
             target="_blank"
-            className="text-blue-500 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             Discord
           </Link>

@@ -33,7 +33,7 @@ export default function CharteEngagementsPage() {
           </Card>
 
           {/* Transparence */}
-          <Card className="border-l-8 border-l-indigo-500 shadow-lg">
+          <Card className="border-l-8 border-l-blue-600 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Transparence sur nos actions
@@ -68,7 +68,7 @@ export default function CharteEngagementsPage() {
           </Card>
 
           {/* Respect et tolérance */}
-          <Card className="border-l-8 border-l-indigo-500 shadow-lg">
+          <Card className="border-l-8 border-l-blue-600 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-2xl lg:text-3xl">
                 Respect et tolérance inconditionnels
