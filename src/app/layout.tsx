@@ -8,6 +8,7 @@ import { Providers } from "@/lib/providers";
 import { Metadata } from "next";
 import SidebarNavigationHandler from "./_components/SidebarNavigationHandler";
 import ScrollToTopButton from "./_components/ScrollToTopButton";
+import { SwipeHandler } from "@/components/SwipeHandler";
 
 export const metadata: Metadata = {
   title: "Rose Griffon | Association Inazuma Eleven France",
@@ -69,6 +70,7 @@ export default function RootLayout({
         <Providers>
           <AppSidebar />
           <SidebarNavigationHandler />
+          <SwipeHandler />
           <SidebarInset>
             <div className="flex flex-col min-h-screen w-full">
               <div className="sticky top-0 z-20 bg-slate-200 p-2 flex gap-2 items-center md:hidden">
